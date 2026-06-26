@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClayPay - Transaction History</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Design System Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "surface": "#fbf8ff",
+                "on-primary-fixed": "#001d35",
+                "primary-container": "#6c9bcf",
+                "error-container": "#ffdad6",
+                "on-primary": "#ffffff",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary-fixed-variant": "#005137",
+                "outline": "#727780",
+                "tertiary-fixed-dim": "#f4bd67",
+                "on-background": "#161a32",
+                "primary-fixed": "#d1e4ff",
+                "outline-variant": "#c2c7d0",
+                "surface-bright": "#fbf8ff",
+                "on-tertiary-fixed": "#281800",
+                "on-secondary-fixed": "#002114",
+                "on-surface-variant": "#42474f",
+                "tertiary-fixed": "#ffddaf",
+                "on-primary-fixed-variant": "#0d4978",
+                "error": "#ba1a1a",
+                "tertiary": "#7f5604",
+                "on-tertiary": "#ffffff",
+                "on-surface": "#161a32",
+                "tertiary-container": "#c08f3e",
+                "on-secondary-container": "#007350",
+                "inverse-surface": "#2b2f48",
+                "on-tertiary-container": "#432b00",
+                "inverse-primary": "#9dcaff",
+                "surface-dim": "#d5d8f9",
+                "surface-container-low": "#f4f2ff",
+                "primary": "#2f6192",
+                "surface-variant": "#dee0ff",
+                "secondary-container": "#8af8c5",
+                "background": "#fbf8ff",
+                "surface-container": "#ececff",
+                "inverse-on-surface": "#f0efff",
+                "on-error-container": "#93000a",
+                "secondary": "#006c4b",
+                "on-tertiary-fixed-variant": "#614000",
+                "on-primary-container": "#003256",
+                "surface-tint": "#2f6192",
+                "secondary-fixed": "#8af8c5",
+                "primary-fixed-dim": "#9dcaff",
+                "on-secondary": "#ffffff",
+                "surface-container-highest": "#dee0ff",
+                "secondary-fixed-dim": "#6ddbaa",
+                "surface-container-high": "#e5e6ff",
+                "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "container-padding": "24px",
+                "xs": "8px",
+                "gutter": "20px",
+                "md": "20px",
+                "lg": "32px",
+                "xl": "48px",
+                "unit": "4px",
+                "sm": "12px"
+            },
+            "fontFamily": {
+                "label-md": ["Nunito Sans"],
+                "headline-md": ["Nunito Sans"],
+                "body-md": ["Nunito Sans"],
+                "headline-lg": ["Nunito Sans"],
+                "title-lg": ["Nunito Sans"],
+                "headline-lg-mobile": ["Nunito Sans"],
+                "label-sm": ["Nunito Sans"],
+                "display": ["Nunito Sans"],
+                "body-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .clay-card {
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+        .clay-button {
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.6);
+        }
+        .clay-button:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+            transform: scale(0.95);
+        }
+        .clay-inset {
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.4), inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf8ff;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-container-padding py-sm w-full z-50 fixed top-0 bg-background clay-card">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-display text-display text-primary tracking-tight text-headline-md">ClayPay</h1>
+</div>
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity" data-icon="notifications">notifications</span>
+<img alt="User profile" class="w-10 h-10 rounded-full clay-card border-2 border-white" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChRnybe6YcWcX4ouOvItqSgZUoK3kJuLvzgqeoPmwYR6vSYT3YoxqK-urIhBWRUmTLoPJ6o6oSYYr28IRP_pPHQFRFVVveByI-LoNwFF27MYZf32JkdkoiJ6nEKKPsCTY0XoAtn7Whb7Z1Y-_MCpqcDo29keSsQ6GRMQljr1zANZ9kLT1Pm2ykU9KHh1Si0C0qSil2_bkc_QQS_XbbA1I_9O9DqJaXwu9ty-hhr63_JdUz6o2AfZILZgeDF4fFA9MfmKTbvHsY_2UN"/>
+</div>
+</header>
+<main class="mt-24 mb-32 px-container-padding max-w-[1200px] mx-auto">
+<!-- Header & Search -->
+<section class="mb-lg">
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-md mb-md">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary">History</h2>
+<!-- Search Box -->
+<div class="relative w-full md:w-80 group">
+<div class="clay-inset bg-surface-container-low rounded-lg flex items-center px-md py-sm">
+<span class="material-symbols-outlined text-outline mr-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none w-full text-body-md font-body-md text-on-surface placeholder:text-outline-variant" placeholder="Search transactions..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-sm overflow-x-auto pb-sm no-scrollbar">
+<button class="clay-button bg-primary-container text-on-primary-container px-md py-sm rounded-full font-label-md text-label-md whitespace-nowrap">All Activities</button>
+<button class="clay-button bg-white text-on-surface-variant px-md py-sm rounded-full font-label-md text-label-md whitespace-nowrap hover:text-primary transition-colors">Payments</button>
+<button class="clay-button bg-white text-on-surface-variant px-md py-sm rounded-full font-label-md text-label-md whitespace-nowrap hover:text-primary transition-colors">Received</button>
+<button class="clay-button bg-white text-on-surface-variant px-md py-sm rounded-full font-label-md text-label-md whitespace-nowrap hover:text-primary transition-colors">Refunds</button>
+<button class="clay-button bg-white text-on-surface-variant px-md py-sm rounded-full font-label-md text-label-md whitespace-nowrap hover:text-primary transition-colors">Bills</button>
+</div>
+</section>
+<!-- Transaction List -->
+<section class="flex flex-col gap-lg">
+<!-- Date Group -->
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface-variant mb-md px-xs">Today, Oct 24</h3>
+<div class="flex flex-col gap-md">
+<!-- Transaction Item -->
+<div class="clay-card bg-white p-md rounded-lg flex items-center justify-between group hover:scale-[1.01] transition-transform cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 bg-secondary-container rounded-lg flex items-center justify-center text-on-secondary-container clay-button">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-on-surface">Whole Foods Market</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Groceries • 10:24 AM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-error">-$84.50</p>
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-sm py-[2px] rounded-full">Completed</span>
+</div>
+</div>
+<!-- Transaction Item -->
+<div class="clay-card bg-white p-md rounded-lg flex items-center justify-between group hover:scale-[1.01] transition-transform cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 bg-tertiary-container rounded-lg flex items-center justify-center text-on-tertiary-container clay-button">
+<span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-on-surface">The Coffee Bean</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Dining • 08:15 AM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-error">-$12.00</p>
+<span class="font-label-sm text-label-sm bg-error-container text-on-error-container px-sm py-[2px] rounded-full">Completed</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Date Group -->
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface-variant mb-md px-xs">Yesterday, Oct 23</h3>
+<div class="flex flex-col gap-md">
+<!-- Transaction Item -->
+<div class="clay-card bg-white p-md rounded-lg flex items-center justify-between group hover:scale-[1.01] transition-transform cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container clay-button">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-on-surface">Alex Clay</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Transfer Received • 04:45 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-secondary">+$250.00</p>
+<span class="font-label-sm text-label-sm bg-secondary-container text-on-secondary-container px-sm py-[2px] rounded-full">Verified</span>
+</div>
+</div>
+<!-- Transaction Item -->
+<div class="clay-card bg-white p-md rounded-lg flex items-center justify-between group hover:scale-[1.01] transition-transform cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 bg-surface-variant rounded-lg flex items-center justify-center text-primary clay-button">
+<span class="material-symbols-outlined" data-icon="electric_bolt">electric_bolt</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg text-on-surface">Electricity Bill</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Utilities • 11:30 AM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-headline-md text-headline-md text-error">-$142.20</p>
+<span class="font-label-sm text-label-sm bg-surface-container-highest text-on-surface-variant px-sm py-[2px] rounded-full">Pending</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action: Export -->
+<div class="flex justify-center mt-xl">
+<button class="clay-button bg-primary text-on-primary px-xl py-md rounded-lg flex items-center gap-sm font-label-md text-label-md active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                    Get Monthly Statement
+                </button>
+</div>
+</section>
+</main>
+<!-- Navigation Drawer (Hidden by default, used for structure) -->
+<div class="fixed top-0 left-[-100%] h-full w-80 z-[60] flex flex-col p-md bg-surface-container-low clay-card transition-all duration-300" id="drawer">
+<div class="flex items-center gap-md mb-xl p-sm">
+<img alt="User Profile" class="w-12 h-12 rounded-full border-2 border-white shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNxHY-Y2Wn07piYgqnsWK7-bOruwQzTZ7JSMtseGKCJUk3UE9hmUA1BHIOeyMqnUHUvhFVPoghkzSnSWwEcCKCCn1fAdwsFPwGqlCDME9z0-OZBBa_2F_GGd-M1NfeSB3MKj9XrangAlhvd64cELX2xprfLrVCwZofJYfaS73UgGNyUhthpdCnlB4285R9DPeapa77wiiSV9olY7shMFpbAi7RSbPCf4YZxEqeEYpNBU2HSLOVQWe-hWY9EDCmD8E9kUjw7hOlaNc0"/>
+<div>
+<h4 class="font-title-lg text-title-lg text-primary">Alex Clay</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">alex.clay@upi</p>
+</div>
+</div>
+<nav class="flex flex-col gap-sm">
+<div class="flex items-center gap-md p-md hover:bg-surface-variant/50 rounded-lg cursor-pointer transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="qr_code_2">qr_code_2</span>
+<span class="font-body-md text-body-md">My QR Code</span>
+</div>
+<div class="flex items-center gap-md p-md hover:bg-surface-variant/50 rounded-lg cursor-pointer transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span class="font-body-md text-body-md">Limits &amp; Charges</span>
+</div>
+<div class="flex items-center gap-md p-md hover:bg-surface-variant/50 rounded-lg cursor-pointer transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="font-body-md text-body-md">Help Support</span>
+</div>
+<div class="flex items-center gap-md p-md hover:bg-surface-variant/50 rounded-lg cursor-pointer transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<span class="font-body-md text-body-md">Security</span>
+</div>
+<hr class="my-md border-outline-variant opacity-30"/>
+<div class="flex items-center gap-md p-md text-error hover:bg-error-container/20 rounded-lg cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</div>
+</nav>
+</div>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg pb-lg pt-xs bg-surface-bright/90 backdrop-blur-md">
+<div class="fixed bottom-md left-container-padding right-container-padding rounded-lg flex justify-around items-center h-20 bg-surface-bright clay-card px-sm">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-sm text-label-sm">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-4 py-2 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)]" href="#">
+<span class="material-symbols-outlined" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-sm text-label-sm font-bold">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors group" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Simple Interaction logic for demo
+        const menuBtn = document.querySelector('[data-icon="menu"]');
+        const drawer = document.getElementById('drawer');
+        let isOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isOpen = !isOpen;
+            drawer.style.left = isOpen ? '0' : '-100%';
+        });
+
+        // Close drawer on click outside
+        document.addEventListener('click', (e) => {
+            if (isOpen && !drawer.contains(e.target) && e.target !== menuBtn) {
+                isOpen = false;
+                drawer.style.left = '-100%';
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay - Send Money</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200..1000;1,200..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#ffffff",
+                    "background": "#fbf8ff",
+                    "on-tertiary-fixed": "#281800",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d5d8f9",
+                    "secondary-container": "#8af8c5",
+                    "primary-fixed": "#d1e4ff",
+                    "surface-container-highest": "#dee0ff",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "tertiary-fixed": "#ffddaf",
+                    "tertiary-container": "#c08f3e",
+                    "outline-variant": "#c2c7d0",
+                    "on-surface": "#161a32",
+                    "surface-variant": "#dee0ff",
+                    "on-secondary-fixed": "#002114",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "inverse-surface": "#2b2f48",
+                    "primary": "#2f6192",
+                    "on-primary-fixed": "#001d35",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed-variant": "#005137",
+                    "surface": "#fbf8ff",
+                    "on-secondary-container": "#007350",
+                    "surface-tint": "#2f6192",
+                    "surface-container-lowest": "#ffffff",
+                    "on-background": "#161a32",
+                    "secondary-fixed": "#8af8c5",
+                    "primary-fixed-dim": "#9dcaff",
+                    "surface-bright": "#fbf8ff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "outline": "#727780",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f4f2ff",
+                    "inverse-on-surface": "#f0efff",
+                    "tertiary": "#7f5604",
+                    "inverse-primary": "#9dcaff",
+                    "primary-container": "#6c9bcf",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "surface-container-high": "#e5e6ff",
+                    "on-tertiary-container": "#432b00",
+                    "surface-container": "#ececff",
+                    "secondary": "#006c4b",
+                    "on-surface-variant": "#42474f",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "on-primary-container": "#003256"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "20px",
+                    "unit": "4px",
+                    "lg": "32px",
+                    "xl": "48px",
+                    "md": "20px",
+                    "container-padding": "24px",
+                    "xs": "8px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .clay-raised {
+            background: #ffffff;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .clay-raised:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+            transform: scale(0.98);
+        }
+
+        .clay-sunken {
+            background: #E8E5E0; /* Slightly darker than background */
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.4), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+            border: none;
+        }
+
+        .clay-pressed {
+            background: #6c9bcf; /* primary-container */
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.1),
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.2);
+            color: #003256; /* on-primary-container */
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .avatar-clay {
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1),
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen text-on-surface">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-50 flex items-center justify-between px-container-padding py-md bg-transparent">
+<button class="flex items-center justify-center w-12 h-12 rounded-full clay-raised hover:scale-105 transition-transform active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)] transition-all">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile text-primary">Send to</h1>
+<button class="flex items-center justify-center w-12 h-12 rounded-full clay-raised hover:scale-105 transition-transform active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)] transition-all">
+<span class="material-symbols-outlined text-primary">search</span>
+</button>
+</header>
+<main class="px-container-padding pb-32">
+<!-- Search Bar -->
+<div class="mt-sm mb-lg">
+<div class="clay-sunken flex items-center px-md py-sm rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant mr-xs">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface placeholder:text-on-surface-variant" placeholder="Search contacts..." type="text"/>
+</div>
+</div>
+<!-- Tab Toggles -->
+<div class="flex gap-sm mb-xl">
+<button class="flex-1 py-sm rounded-full font-label-md clay-pressed transition-all duration-200">
+                All
+            </button>
+<button class="flex-1 py-sm rounded-full font-label-md clay-raised text-on-surface-variant hover:text-primary transition-all duration-200">
+                Favorites
+            </button>
+<button class="flex-1 py-sm rounded-full font-label-md clay-raised text-on-surface-variant hover:text-primary transition-all duration-200">
+                Recent
+            </button>
+</div>
+<!-- Contact List -->
+<div class="space-y-md">
+<!-- Contact 1 -->
+<div class="clay-raised p-md rounded-lg flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full flex items-center justify-center avatar-clay bg-[#FFD1DC] text-[#D81B60] font-display text-headline-md-mobile">
+                        P
+                    </div>
+<div>
+<p class="font-title-lg text-on-surface">Priya Sharma</p>
+<p class="font-label-sm text-on-surface-variant">98765XXXXX</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Contact 2 -->
+<div class="clay-raised p-md rounded-lg flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full flex items-center justify-center avatar-clay bg-secondary-container text-on-secondary-container font-display text-headline-md-mobile">
+                        A
+                    </div>
+<div>
+<p class="font-title-lg text-on-surface">Amit Kumar</p>
+<p class="font-label-sm text-on-surface-variant">87654XXXXX</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Contact 3 -->
+<div class="clay-raised p-md rounded-lg flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full flex items-center justify-center avatar-clay bg-primary-container text-on-primary-container font-display text-headline-md-mobile">
+                        S
+                    </div>
+<div>
+<p class="font-title-lg text-on-surface">Suresh Patel</p>
+<p class="font-label-sm text-on-surface-variant">76543XXXXX</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Contact 4 -->
+<div class="clay-raised p-md rounded-lg flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full flex items-center justify-center avatar-clay bg-[#FFCCBC] text-[#E64A19] font-display text-headline-md-mobile">
+                        N
+                    </div>
+<div>
+<p class="font-title-lg text-on-surface">Neha Gupta</p>
+<p class="font-label-sm text-on-surface-variant">65432XXXXX</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Contact 5 -->
+<div class="clay-raised p-md rounded-lg flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full flex items-center justify-center avatar-clay bg-[#E1BEE7] text-[#7B1FA2] font-display text-headline-md-mobile">
+                        V
+                    </div>
+<div>
+<p class="font-title-lg text-on-surface">Vikram Singh</p>
+<p class="font-label-sm text-on-surface-variant">54321XXXXX</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<!-- Contact 6 -->
+<div class="clay-raised p-md rounded-lg flex items-center justify-between group cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-14 h-14 rounded-full flex items-center justify-center avatar-clay bg-[#FFE082] text-[#FFA000] font-display text-headline-md-mobile">
+                        D
+                    </div>
+<div>
+<p class="font-title-lg text-on-surface">Deepa Nair</p>
+<p class="font-label-sm text-on-surface-variant">43210XXXXX</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-md pt-sm bg-surface-container/80 backdrop-blur-lg">
+<div class="flex justify-around items-center w-full max-w-md mx-auto">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-sm hover:bg-surface-container-high transition-colors active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-sm hover:bg-surface-container-high transition-colors active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md text-label-md mt-1">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-sm hover:bg-surface-container-high transition-colors active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">local_offer</span>
+<span class="font-label-md text-label-md mt-1">Offers</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-sm hover:bg-surface-container-high transition-colors active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Micro-interaction for contact cards
+        document.querySelectorAll('.clay-raised').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.97)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Tab switching logic (simple UI toggle)
+        const tabs = document.querySelectorAll('.flex.gap-sm button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('clay-pressed');
+                    t.classList.add('clay-raised', 'text-on-surface-variant');
+                });
+                tab.classList.remove('clay-raised', 'text-on-surface-variant');
+                tab.classList.add('clay-pressed');
+            });
+        });
+    </script>
+</body></html>

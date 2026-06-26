@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay Support | Soft Matter Dynamics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#7f5604",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d5d8f9",
+                        "outline-variant": "#c2c7d0",
+                        "on-tertiary-fixed": "#281800",
+                        "tertiary-container": "#c08f3e",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "primary-fixed-dim": "#9dcaff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f0efff",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "surface-container-low": "#f4f2ff",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#432b00",
+                        "on-secondary-container": "#007350",
+                        "on-primary-fixed": "#001d35",
+                        "error": "#ba1a1a",
+                        "on-background": "#161a32",
+                        "secondary-container": "#8af8c5",
+                        "surface-variant": "#dee0ff",
+                        "inverse-primary": "#9dcaff",
+                        "inverse-surface": "#2b2f48",
+                        "on-secondary-fixed": "#002114",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "surface-container-highest": "#dee0ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e5e6ff",
+                        "secondary": "#006c4b",
+                        "primary-container": "#6c9bcf",
+                        "primary": "#2f6192",
+                        "on-surface": "#161a32",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "secondary-fixed": "#8af8c5",
+                        "surface-tint": "#2f6192",
+                        "on-primary-container": "#003256",
+                        "surface-container": "#ececff",
+                        "background": "#fbf8ff",
+                        "on-surface-variant": "#42474f",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "primary-fixed": "#d1e4ff",
+                        "outline": "#727780",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "48px",
+                        "gutter": "20px",
+                        "sm": "12px",
+                        "md": "20px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "container-padding": "24px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "title-lg": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #fbf8ff;
+            color: #161a32;
+            font-family: 'Nunito Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .clay-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.4), 
+                        -10px -10px 15px rgba(255, 255, 255, 0.8),
+                        inset 2px 2px 5px rgba(255, 255, 255, 0.5);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .clay-card:active {
+            transform: scale(0.97);
+            box-shadow: inset 4px 4px 10px rgba(163, 177, 198, 0.4), 
+                        inset -4px -4px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-button {
+            background: #2f6192;
+            color: white;
+            border-radius: 9999px;
+            box-shadow: 8px 8px 16px rgba(47, 97, 146, 0.3), 
+                        -4px -4px 8px rgba(255, 255, 255, 0.2),
+                        inset 4px 4px 6px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .clay-button:active {
+            transform: scale(0.95);
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .clay-badge-blue {
+            background: #e1effe;
+            color: #1e429f;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                        -2px -2px 4px rgba(255, 255, 255, 0.6),
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .clay-badge-green {
+            background: #def7ec;
+            color: #03543f;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                        -2px -2px 4px rgba(255, 255, 255, 0.6),
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .clay-inset-search {
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.4), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+            border: none;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top App Bar (Shared Component Reference) -->
+<header class="flex justify-between items-center w-full sticky top-0 z-50 bg-surface dark:bg-surface-container-high w-full top-0 px-gutter pt-4 pb-4 shadow-[10px_10px_20px_rgba(163,177,198,0.4),-10px_-10px_15px_rgba(255,255,255,0.6)]">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary p-2 hover:scale-105 transition-transform active:shadow-[inset_2px_2px_5px_rgba(0,0,0,0.1)] active:scale-95">menu</button>
+<h1 class="font-display text-display text-primary tracking-tight">PayClay</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden clay-card border-2 border-white">
+<img class="w-full h-full object-cover" data-alt="A friendly, high-quality 3D clay-style character avatar of a young professional with soft textures, clean lines, and a cheerful expression, set against a pastel blue studio background with soft directional lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlBBDVjvzNzzv5OS0mlVFpJtCbJIrryY9KIUhzLK3-CaNKy5VzuL3YOhmcvm_HTKqwwWiibSn4EUP8YiyedJUF7ZkbLxdI786TI_GV1CCZXRbxc4XwHEpBzguWKWyXKi4Kmf_KYgcaAGE7-dtZ4520N9Nc17lFU5dL_pHwCIdY6DsEaarQCgJe7uFz1AycL8_HL8W5AyI8632fKn1Z6OMSfWTvAmDH0BPb4v3gzMTDTPXRbSFMSOTkBreLLcmz9RaqREwU1gu-cuSP"/>
+</div>
+</div>
+</header>
+<main class="max-w-screen-md mx-auto px-gutter mt-8">
+<!-- Header Section -->
+<div class="mb-8">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Support Center</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage your inquiries and find solutions with our squishy-soft support team.</p>
+</div>
+<!-- Search Bar -->
+<div class="mb-10 relative">
+<div class="clay-inset-search bg-surface-container rounded-xl flex items-center px-6 py-4">
+<span class="material-symbols-outlined text-outline mr-3">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface placeholder:text-outline-variant" placeholder="Search for tickets..." type="text"/>
+</div>
+</div>
+<!-- Ticket List Container -->
+<div class="space-y-6">
+<!-- Ticket Card 1: In Progress -->
+<div class="clay-card p-container-padding flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">#TK-8821</span>
+<span class="clay-badge-blue px-3 py-1 rounded-full font-label-sm text-label-sm">In Progress</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Double Transaction</h3>
+</div>
+</div>
+<div class="flex items-center gap-6 text-on-surface-variant font-label-md">
+<div class="flex flex-col items-end">
+<span class="text-xs text-outline-variant uppercase">Updated</span>
+<span>2h ago</span>
+</div>
+<span class="material-symbols-outlined text-primary">chevron_right</span>
+</div>
+</div>
+<!-- Ticket Card 2: Resolved -->
+<div class="clay-card p-container-padding flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">credit_card</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">#TK-7740</span>
+<span class="clay-badge-green px-3 py-1 rounded-full font-label-sm text-label-sm">Resolved</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Virtual Card Limit Adjustment</h3>
+</div>
+</div>
+<div class="flex items-center gap-6 text-on-surface-variant font-label-md">
+<div class="flex flex-col items-end">
+<span class="text-xs text-outline-variant uppercase">Resolved</span>
+<span>Yesterday</span>
+</div>
+<span class="material-symbols-outlined text-primary">chevron_right</span>
+</div>
+</div>
+<!-- Ticket Card 3: In Progress -->
+<div class="clay-card p-container-padding flex flex-col md:flex-row md:items-center justify-between gap-4 cursor-pointer">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">#TK-9012</span>
+<span class="clay-badge-blue px-3 py-1 rounded-full font-label-sm text-label-sm">In Progress</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Transfer Pending over 24h</h3>
+</div>
+</div>
+<div class="flex items-center gap-6 text-on-surface-variant font-label-md">
+<div class="flex flex-col items-end">
+<span class="text-xs text-outline-variant uppercase">Updated</span>
+<span>5h ago</span>
+</div>
+<span class="material-symbols-outlined text-primary">chevron_right</span>
+</div>
+</div>
+<!-- Empty State Illustration Placeholder (Bento Style) -->
+<div class="mt-12 p-8 clay-card bg-surface-container-low flex flex-col items-center text-center">
+<div class="w-32 h-32 mb-6">
+<img class="w-full h-full object-contain" data-alt="A whimsical 3D clay illustration of a soft, rounded robot sitting on a cloud, looking through a magnifying glass at a floating colorful ticket. The style is claymorphic with high tactile depth, soft shadows, and a pastel palette of blues and yellows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc2LaKSbggHTOgMh14Fe3DVwQAXBzuLWpEu_47Jr-7cdcFNrhnVdWNUEZHeb0NHNqv0IKo3VPkoDhwEbxmXqFrAZHIXbEiHuXYDBwxaq-8lxCtJFuo1p0jNw07JE_ERqcpBCSoMKpKAgwC62q_WcorwddWYwChpYJ_aZB7dH24f4UCuRn914nPey6CKmCUCi7u374jAFfaNprU16wTNN5v6L-R-73RtVfV9ysxqgbEWI-Q0w24KRG_kLeVXwIkIRxKtsINb9tqRLUV"/>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface-variant">Still need help?</h4>
+<p class="max-w-xs mx-auto text-on-surface-variant font-body-md mt-2">Our clay-molded support team is ready to squash any bugs or payment issues for you.</p>
+</div>
+</div>
+<!-- Floating Create Button -->
+<div class="fixed bottom-28 left-0 right-0 flex justify-center pointer-events-none">
+<button class="clay-button pointer-events-auto px-10 py-5 flex items-center gap-3 shadow-[10px_20px_30px_rgba(47,91,146,0.4)]">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-md text-label-md uppercase tracking-widest">Create New Ticket</span>
+</button>
+</div>
+</main>
+<!-- Bottom Nav Bar (Shared Component Logic) -->
+<nav class="fixed bottom-6 w-[92%] max-w-md mx-auto left-0 right-0 z-50 flex justify-around items-center py-2 px-4 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-md rounded-xl shadow-[20px_20px_40px_rgba(163,177,198,0.4),-10px_-10px_20px_rgba(255,255,255,0.7)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg p-3 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.05),2px_2px_10px_rgba(255,255,255,0.5)]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">contact_support</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="font-label-sm text-label-sm">Cards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high transition-all active:scale-90" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions for tactile feel
+        document.querySelectorAll('.clay-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = "scale(0.98)";
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = "scale(1.02)";
+                setTimeout(() => {
+                    card.style.transform = "scale(1)";
+                }, 150);
+            });
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = "translateY(-4px)";
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = "translateY(0px)";
+            });
+        });
+
+        // Search highlight effect
+        const searchInput = document.querySelector('input');
+        const searchContainer = document.querySelector('.clay-inset-search');
+        
+        searchInput.addEventListener('focus', () => {
+            searchContainer.style.boxShadow = "inset 8px 8px 16px rgba(47, 97, 146, 0.15), inset -8px -8px 16px rgba(255, 255, 255, 0.8)";
+        });
+
+        searchInput.addEventListener('blur', () => {
+            searchContainer.style.boxShadow = "inset 6px 6px 12px rgba(163, 177, 198, 0.4), inset -6px -6px 12px rgba(255, 255, 255, 0.8)";
+        });
+    </script>
+</body></html>

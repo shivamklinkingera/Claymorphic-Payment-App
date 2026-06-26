@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClayPay - Export Statement</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#fbf8ff",
+                        "on-primary-fixed": "#001d35",
+                        "primary-container": "#6c9bcf",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "outline": "#727780",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "on-background": "#161a32",
+                        "primary-fixed": "#d1e4ff",
+                        "outline-variant": "#c2c7d0",
+                        "surface-bright": "#fbf8ff",
+                        "on-tertiary-fixed": "#281800",
+                        "on-secondary-fixed": "#002114",
+                        "on-surface-variant": "#42474f",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "error": "#ba1a1a",
+                        "tertiary": "#7f5604",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#161a32",
+                        "tertiary-container": "#c08f3e",
+                        "on-secondary-container": "#007350",
+                        "inverse-surface": "#2b2f48",
+                        "on-tertiary-container": "#432b00",
+                        "inverse-primary": "#9dcaff",
+                        "surface-dim": "#d5d8f9",
+                        "surface-container-low": "#f4f2ff",
+                        "primary": "#2f6192",
+                        "surface-variant": "#dee0ff",
+                        "secondary-container": "#8af8c5",
+                        "background": "#fbf8ff",
+                        "surface-container": "#ececff",
+                        "inverse-on-surface": "#f0efff",
+                        "on-error-container": "#93000a",
+                        "secondary": "#006c4b",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-primary-container": "#003256",
+                        "surface-tint": "#2f6192",
+                        "secondary-fixed": "#8af8c5",
+                        "primary-fixed-dim": "#9dcaff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-highest": "#dee0ff",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "surface-container-high": "#e5e6ff",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "xs": "8px",
+                        "gutter": "20px",
+                        "md": "20px",
+                        "lg": "32px",
+                        "xl": "48px",
+                        "unit": "4px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "title-lg": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Nunito Sans', sans-serif; background-color: #fbf8ff; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        
+        /* Claymorphic Utility Classes */
+        .clay-card {
+            background: #ffffff;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+        
+        .clay-button-primary {
+            background-color: #2f6192;
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.5), inset 4px 4px 8px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .clay-button-primary:active {
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(0.96);
+        }
+
+        .clay-input {
+            background: #f4f2ff;
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.3), inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-chip {
+            background: #fbf8ff;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), inset 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+        
+        .clay-chip-active {
+            background: #6c9bcf;
+            color: #003256;
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .clay-top-bar {
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-nav-shell {
+            box-shadow: 20px 20px 40px rgba(163, 177, 198, 0.4), inset 5px 5px 10px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-40">
+<!-- Top App Bar (Top-level destination) -->
+<header class="flex justify-between items-center px-container-padding py-sm w-full z-50 bg-background clay-top-bar sticky top-0">
+<div class="flex items-center gap-sm">
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform" data-icon="menu">menu</button>
+<h1 class="font-display text-display text-primary tracking-tight text-headline-md">ClayPay</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden clay-card flex items-center justify-center">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdHVeskLGowdGCrOjxeP6zBfcguE3udLhOZIsIT_22RpIimQE7z0P7-CQPg5-7JkY46SRbOUWYpSmQUJ7bjcEGzUjHSVCbFkwFZWfiKFsxPSS4ONzNHSfz2b4BdNkuoUqc9I-ffZp_SxxfdnIvrDul84QlAPhRqE88-RfumeCumQEySl2RG6ds7u9V7sUAC9Mzk2jLGeqzSZAwwGipjnRBNgSMsySb1seQFGxm8ua3EoBgUfhibg8ILhnp0H20uy4Dk3b5cHrpQnpQ"/>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-padding pt-lg">
+<div class="flex flex-col md:flex-row gap-lg items-center md:items-start">
+<!-- Visual Anchor: Large Claymorphic Document Icon -->
+<div class="w-full md:w-1/3 flex justify-center">
+<div class="relative w-64 h-80 clay-card rounded-xl flex flex-col items-center justify-center p-lg overflow-hidden">
+<!-- Background texture/shader -->
+
+<div class="relative z-10 w-32 h-40 bg-surface-container rounded-lg clay-card flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[64px]" style="font-variation-settings: 'FILL' 1;">description</span>
+</div>
+<div class="mt-md text-center z-10">
+<h2 class="font-headline-md text-headline-md text-primary">Statement</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Export your history</p>
+</div>
+</div>
+</div>
+<!-- Form Content -->
+<div class="w-full md:w-2/3 flex flex-col gap-lg">
+<!-- Select Duration Section -->
+<div class="flex flex-col gap-md">
+<label class="font-title-lg text-title-lg text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+                        Select Duration
+                    </label>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<button class="clay-chip p-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:opacity-80 transition-opacity">This Month</button>
+<button class="clay-chip-active p-md rounded-lg font-label-md text-label-md">Last 3 Months</button>
+<button class="clay-chip p-md rounded-lg font-label-md text-label-md text-on-surface-variant">Last 6 Months</button>
+<button class="clay-chip p-md rounded-lg font-label-md text-label-md text-on-surface-variant">Yearly</button>
+</div>
+</div>
+<!-- Custom Range (Inset Inputs) -->
+<div class="clay-card rounded-lg p-lg flex flex-col gap-md">
+<h3 class="font-label-md text-label-md text-on-surface-variant">OR CUSTOM RANGE</h3>
+<div class="flex flex-col md:flex-row gap-gutter">
+<div class="flex-1 flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm px-xs">Start Date</span>
+<div class="clay-input p-md rounded-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline" data-icon="event">event</span>
+<input class="bg-transparent border-none outline-none font-body-md text-body-md w-full" placeholder="DD/MM/YYYY" type="text"/>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm px-xs">End Date</span>
+<div class="clay-input p-md rounded-lg flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline" data-icon="event">event</span>
+<input class="bg-transparent border-none outline-none font-body-md text-body-md w-full" placeholder="DD/MM/YYYY" type="text"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Format Selection -->
+<div class="flex flex-col gap-md">
+<label class="font-title-lg text-title-lg text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="file_present">file_present</span>
+                        File Format
+                    </label>
+<div class="flex gap-md">
+<button class="flex-1 clay-card p-lg rounded-lg flex flex-col items-center gap-xs border-2 border-primary">
+<span class="material-symbols-outlined text-primary text-[32px]" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+<span class="font-label-md text-label-md">PDF</span>
+</button>
+<button class="flex-1 clay-card p-lg rounded-lg flex flex-col items-center gap-xs opacity-60">
+<span class="material-symbols-outlined text-outline text-[32px]">table_view</span>
+<span class="font-label-md text-label-md">CSV / Excel</span>
+</button>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-lg">
+<button class="clay-button-primary w-full py-lg rounded-lg text-on-primary font-title-lg text-title-lg flex items-center justify-center gap-sm group">
+<span class="material-symbols-outlined group-active:rotate-12 transition-transform" data-icon="download">download</span>
+                        Generate &amp; Download
+                    </button>
+<p class="text-center font-label-sm text-label-sm text-on-surface-variant mt-md">
+                        Your statement will be sent to <span class="text-primary">alex.clay@upi</span>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Top-level destination logic) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg pb-lg pt-xs bg-surface-bright/90 backdrop-blur-md clay-nav-shell md:hidden">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors active:shadow-inner scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors active:shadow-inner scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+<span class="font-label-sm text-label-sm">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-4 py-2 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)] active:shadow-inner scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history" style="font-variation-settings: 'FILL' 1;">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors active:shadow-inner scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Desktop Navigation Side Anchors (Optional for richness) -->
+<div class="hidden md:flex fixed left-gutter top-1/2 -translate-y-1/2 flex-col gap-lg z-40">
+<button class="w-16 h-16 clay-card rounded-full flex items-center justify-center text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">home</span>
+</button>
+<button class="w-16 h-16 clay-card rounded-full flex items-center justify-center text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">notifications</span>
+</button>
+<button class="w-16 h-16 clay-card rounded-full flex items-center justify-center text-primary hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[32px]">settings</span>
+</button>
+</div>
+</body></html>

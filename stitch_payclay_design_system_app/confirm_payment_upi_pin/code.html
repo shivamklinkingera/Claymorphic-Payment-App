@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Confirmation - PayClay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#ffffff",
+                        "background": "#fbf8ff",
+                        "on-tertiary-fixed": "#281800",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d5d8f9",
+                        "secondary-container": "#8af8c5",
+                        "primary-fixed": "#d1e4ff",
+                        "surface-container-highest": "#dee0ff",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "tertiary-fixed": "#ffddaf",
+                        "tertiary-container": "#c08f3e",
+                        "outline-variant": "#c2c7d0",
+                        "on-surface": "#161a32",
+                        "surface-variant": "#dee0ff",
+                        "on-secondary-fixed": "#002114",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "inverse-surface": "#2b2f48",
+                        "primary": "#2f6192",
+                        "on-primary-fixed": "#001d35",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface": "#fbf8ff",
+                        "on-secondary-container": "#007350",
+                        "surface-tint": "#2f6192",
+                        "surface-container-lowest": "#ffffff",
+                        "on-background": "#161a32",
+                        "secondary-fixed": "#8af8c5",
+                        "primary-fixed-dim": "#9dcaff",
+                        "surface-bright": "#fbf8ff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "outline": "#727780",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#f4f2ff",
+                        "inverse-on-surface": "#f0efff",
+                        "tertiary": "#7f5604",
+                        "inverse-primary": "#9dcaff",
+                        "primary-container": "#6c9bcf",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "surface-container-high": "#e5e6ff",
+                        "on-tertiary-container": "#432b00",
+                        "surface-container": "#ececff",
+                        "secondary": "#006c4b",
+                        "on-surface-variant": "#42474f",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "on-primary-container": "#003256"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "xl": "48px",
+                        "md": "20px",
+                        "container-padding": "24px",
+                        "xs": "8px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "title-lg": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .clay-card-level-2 {
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-panel-level-3 {
+            background: #fbf8ff;
+            border-radius: 2rem 2rem 0 0;
+            box-shadow: 20px 20px 40px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-button-inset {
+            background: #ececff;
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.3), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-dot-active {
+            background: #2f6192;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.4), 
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.4);
+        }
+
+        .clay-dot-empty {
+            background: transparent;
+            border: 2px solid #c2c7d0;
+            box-shadow: inset 2px 2px 4px rgba(163, 177, 198, 0.2);
+        }
+
+        .clay-keypad-btn {
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f4f2ff;
+            border-radius: 9999px;
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.3), 
+                        inset 4px 4px 8px rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+        }
+
+        .clay-keypad-btn:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+                        inset -2px -2px 4px rgba(255, 255, 255, 0.5);
+            transform: scale(0.95);
+        }
+
+        .drag-handle {
+            width: 40px;
+            height: 4px;
+            background: #c2c7d0;
+            border-radius: 2px;
+        }
+
+        .glass-bg {
+            background: rgba(240, 237, 232, 0.6);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#F0EDE8] min-h-screen font-body-md text-on-surface flex flex-col items-center justify-end overflow-hidden">
+<!-- Background Content (Simulated previous screen) -->
+<div class="absolute inset-0 p-gutter flex flex-col gap-lg opacity-50 select-none pointer-events-none">
+<header class="flex items-center justify-between py-md">
+<span class="material-symbols-outlined text-primary" data-icon="arrow_back">arrow_back</span>
+<span class="font-headline-md-mobile text-headline-md-mobile text-primary">PayClay</span>
+<span class="material-symbols-outlined text-primary" data-icon="help">help</span>
+</header>
+<div class="clay-card-level-2 p-container-padding flex flex-col items-center gap-md">
+<div class="w-24 h-24 rounded-full bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a friendly Indian woman named Priya Sharma, looking directly into the camera with a warm smile. The lighting is soft and high-key, matching the clean blue and white aesthetic of the PayClay app. She has a minimalist, modern appearance against a solid, light-toned background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLEuWrq6vydbADHKCFkO7LgHPBPLEpTWWA0p7Tpw5TYb0hTxrwfUEPOdI0oUPW-QbA2V6CDNMvpwaK1oT-uUim7p7APVqnz3mhDcg5-pwejSqdeyUj6KjzwX1A_ZrcFtO1-1dE7WHffwBfKD4gbLoxwErQnm87GRcJ98Nusv-0qb-7RrFbcgj7iWyR-9GoHNzHMm2MA1zJbycnsI6QVmQTfHuQkpHcpDbDr4NTgw4WPQqFnUPdLcXCmwSn4gMjgphOQe5O1W3zc-Fz"/>
+</div>
+<h2 class="font-title-lg text-title-lg">Priya Sharma</h2>
+<p class="text-on-surface-variant">priya.sharma@upi</p>
+<div class="font-display text-display text-primary">₹500.00</div>
+</div>
+</div>
+<!-- Bottom Sheet Overlay -->
+<div class="fixed inset-0 glass-bg z-40 transition-opacity duration-300"></div>
+<main class="relative z-50 w-full max-w-md clay-panel-level-3 p-gutter pb-xl flex flex-col gap-lg animate-slide-up">
+<!-- Drag Handle -->
+<div class="flex justify-center pt-xs">
+<div class="drag-handle"></div>
+</div>
+<!-- Heading -->
+<div class="text-center">
+<h1 class="font-title-lg text-title-lg font-bold text-on-surface">Confirm Payment</h1>
+</div>
+<!-- Transaction Summary Card -->
+<section class="clay-card-level-2 p-container-padding space-y-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sending to</span>
+<div class="flex items-center gap-sm mt-xs">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-primary-container">
+<img class="w-full h-full object-cover" data-alt="A circular avatar of Priya Sharma, a middle-aged woman with a kind expression, softly lit from the front. The style is clean and focused, appearing as a professional profile image with a subtle pastel blue background that aligns with the soft clay UI system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWWdQp1limYgToHI_2WlU7c_gqAbqXEQBfyN2EdJsx_5QHrnxBEcF3h4MlMqKh6dJLSua6KESng41Csqk9wG5j5k6WRG4xjXyHTXb6f7bF4ptp5cYPuPqTsk3yKC58WblWuB8OmUvSHY99sxo65sWwIFwDvDZWX5zY9Iupz5d7qfu8zRjttXQDv3_yxRT1YtocEyMNqiNTAFcBeZG84-mQRxBupINpPHJOfU6l1dXAayJk-Pbdf0zmehv7D763IWDzVLG6OCWiedBM"/>
+</div>
+<span class="font-body-md text-body-md font-bold text-on-surface">Priya Sharma</span>
+</div>
+</div>
+<div class="py-xs">
+<span class="font-display text-headline-md text-primary block">₹500.00</span>
+</div>
+<div class="flex flex-col border-t border-outline-variant pt-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant">From</span>
+<div class="flex items-center gap-xs mt-xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="account_balance">account_balance</span>
+<span class="font-label-md text-label-md text-on-surface-variant">SBI Account •••• 4521</span>
+</div>
+</div>
+</section>
+<!-- PIN Input Section -->
+<section class="flex flex-col items-center gap-md">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Enter UPI PIN</span>
+<div class="flex gap-lg">
+<div class="w-4 h-4 rounded-full clay-dot-active"></div>
+<div class="w-4 h-4 rounded-full clay-dot-active"></div>
+<div class="w-4 h-4 rounded-full clay-dot-empty"></div>
+<div class="w-4 h-4 rounded-full clay-dot-empty"></div>
+</div>
+</section>
+<!-- Numeric Keypad -->
+<section class="grid grid-cols-3 gap-md px-lg">
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">1</button>
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">2</button>
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">3</button>
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">4</button>
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">5</button>
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">6</button>
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">7</button>
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">8</button>
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">9</button>
+<div></div> <!-- Spacer -->
+<button class="clay-keypad-btn font-title-lg text-title-lg text-on-surface" onclick="vibrate()">0</button>
+<button class="clay-keypad-btn text-on-surface" onclick="vibrate()">
+<span class="material-symbols-outlined" data-icon="backspace">backspace</span>
+</button>
+</section>
+<!-- Footer -->
+<div class="text-center pt-md">
+<a class="font-label-md text-label-md text-primary hover:underline transition-all" href="#">Forgot UPI PIN?</a>
+</div>
+</main>
+<script>
+        function vibrate() {
+            if (navigator.vibrate) {
+                navigator.vibrate(20);
+            }
+        }
+
+        // Simple entrance animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const panel = document.querySelector('main');
+            panel.style.transform = 'translateY(100%)';
+            panel.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
+            
+            setTimeout(() => {
+                panel.style.transform = 'translateY(0)';
+            }, 50);
+        });
+    </script>
+</body></html>

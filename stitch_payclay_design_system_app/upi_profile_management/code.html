@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClayPay - UPI Profile Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d1e4ff",
+                        "surface-bright": "#fbf8ff",
+                        "tertiary-container": "#c08f3e",
+                        "on-surface": "#161a32",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2b2f48",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-tertiary-fixed": "#281800",
+                        "on-secondary-container": "#007350",
+                        "primary-container": "#6c9bcf",
+                        "inverse-primary": "#9dcaff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-tertiary-container": "#432b00",
+                        "secondary-container": "#8af8c5",
+                        "primary-fixed-dim": "#9dcaff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-container-highest": "#dee0ff",
+                        "background": "#fbf8ff",
+                        "on-primary-container": "#003256",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "secondary": "#006c4b",
+                        "surface-variant": "#dee0ff",
+                        "primary": "#2f6192",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "on-background": "#161a32",
+                        "surface-tint": "#2f6192",
+                        "on-secondary-fixed": "#002114",
+                        "outline-variant": "#c2c7d0",
+                        "tertiary": "#7f5604",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "on-primary-fixed": "#001d35",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f2ff",
+                        "surface-container": "#ececff",
+                        "secondary-fixed": "#8af8c5",
+                        "surface-dim": "#d5d8f9",
+                        "outline": "#727780",
+                        "on-surface-variant": "#42474f",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0efff",
+                        "surface": "#fbf8ff",
+                        "surface-container-high": "#e5e6ff",
+                        "custom-warm": "#F0EDE8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "32px",
+                        "container-padding": "24px",
+                        "sm": "12px",
+                        "unit": "4px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "md": "20px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #F0EDE8;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Claymorphism Elevation 1 (Sunken/Low) */
+        .clay-low {
+            background-color: #F0EDE8;
+            box-shadow: 
+                8px 8px 16px rgba(163, 177, 198, 0.4),
+                inset 4px 4px 8px rgba(255, 255, 255, 0.6),
+                inset -2px -2px 4px rgba(163, 177, 198, 0.2);
+            border-radius: 1.25rem;
+        }
+
+        /* Claymorphism Elevation 2 (Standard) */
+        .clay-card {
+            background-color: #ffffff;
+            box-shadow: 
+                15px 15px 30px rgba(163, 177, 198, 0.4),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.8);
+            border-radius: 2rem;
+        }
+
+        /* Interactive Clay Button/Item */
+        .clay-interactive {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .clay-interactive:active {
+            transform: scale(0.96);
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Sunken Input/List Item */
+        .clay-sunken {
+            box-shadow: 
+                inset 6px 6px 12px rgba(163, 177, 198, 0.3),
+                inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+            background-color: #F7F5F2;
+        }
+
+        .avatar-clay {
+            box-shadow: 
+                8px 8px 16px rgba(163, 177, 198, 0.4),
+                inset 6px 6px 12px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen text-on-surface">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 w-full flex justify-between items-center px-container-padding py-sm bg-custom-warm">
+<div class="flex items-center gap-md">
+<button class="clay-interactive p-xs rounded-full flex items-center justify-center bg-white shadow-[6px_6px_12px_rgba(163,177,198,0.3),inset_4px_4px_8px_rgba(255,255,255,0.8)]">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary tracking-tight">UPI Profile</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-on-primary-container">person</span>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-padding pb-xl pt-md flex flex-col items-center gap-lg">
+<!-- Profile Card -->
+<section class="w-full flex justify-center">
+<div class="clay-card w-full max-w-[280px] p-lg flex flex-col items-center gap-md text-center">
+<div class="w-20 h-20 rounded-full bg-primary avatar-clay flex items-center justify-center mb-xs">
+<span class="font-display text-on-primary text-[32px]">R</span>
+</div>
+<div>
+<h2 class="font-title-lg text-title-lg text-on-surface">Rahul Sharma</h2>
+<div class="flex items-center justify-center gap-xs mt-unit text-primary">
+<span class="font-label-md text-label-md">rahul@payclay</span>
+<button class="clay-interactive">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+<button class="clay-interactive text-primary font-label-md text-label-md hover:underline decoration-2 underline-offset-4">
+                    Change UPI ID
+                </button>
+</div>
+</section>
+<!-- Linked Accounts -->
+<section class="w-full max-w-[400px]">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md px-xs">Linked Accounts</h3>
+<div class="flex flex-col gap-md">
+<!-- SBI Account -->
+<div class="clay-low p-md flex items-center justify-between clay-interactive">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-primary text-[28px]">account_balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-[16px] text-on-surface">•••• 4521</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">State Bank of India</span>
+</div>
+</div>
+<span class="bg-secondary-container text-on-secondary-container px-sm py-unit rounded-full font-label-sm text-[10px] uppercase font-bold shadow-sm">Primary</span>
+</div>
+<!-- HDFC Account -->
+<div class="clay-low p-md flex items-center justify-between clay-interactive">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center shadow-inner">
+<span class="material-symbols-outlined text-primary text-[28px]">account_balance_wallet</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-[16px] text-on-surface">•••• 7890</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">HDFC Bank Ltd</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<button class="w-full py-md rounded-lg border-2 border-dashed border-outline-variant text-on-surface-variant font-label-md flex items-center justify-center gap-xs hover:bg-white/50 transition-colors">
+<span class="material-symbols-outlined">add</span>
+                    Add New Bank Account
+                </button>
+</div>
+</section>
+<!-- Settings Section -->
+<section class="w-full max-w-[400px]">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md px-xs">UPI Settings</h3>
+<div class="clay-sunken rounded-lg overflow-hidden flex flex-col p-unit">
+<!-- Change UPI PIN -->
+<div class="h-14 px-md flex items-center justify-between clay-interactive border-b border-white/20">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">pin</span>
+<span class="font-body-md text-body-md">Change UPI PIN</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- Reset UPI PIN -->
+<div class="h-14 px-md flex items-center justify-between clay-interactive border-b border-white/20">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">lock_reset</span>
+<span class="font-body-md text-body-md">Reset UPI PIN</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- Transaction Limit -->
+<div class="h-14 px-md flex items-center justify-between clay-interactive border-b border-white/20">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary">speed</span>
+<span class="font-body-md text-body-md">Transaction Limit</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant">₹1,00,000/day</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- Deactivate UPI -->
+<div class="h-14 px-md flex items-center justify-between clay-interactive">
+<div class="flex items-center gap-md text-error">
+<span class="material-symbols-outlined">no_accounts</span>
+<span class="font-body-md text-body-md font-bold">Deactivate UPI</span>
+</div>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Bottom Nav Component -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg pb-lg pt-xs backdrop-blur-md">
+<div class="fixed bottom-md left-container-padding right-container-padding bg-surface-bright/90 rounded-lg shadow-[20px_20px_40px_rgba(163,177,198,0.4),inset_5px_5px_10px_rgba(255,255,255,0.8)] flex justify-around items-center p-2">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors active:shadow-inner scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm mt-1">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors active:shadow-inner scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-sm text-label-sm mt-1">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors active:shadow-inner scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm mt-1">History</span>
+</a>
+<!-- Active: Profile -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-4 py-2 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)] active:shadow-inner scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</a>
+</div>
+</nav>
+<script>
+        // Micro-interaction for copy feedback
+        document.querySelector('button.clay-interactive .material-symbols-outlined:contains("content_copy")')?.parentElement.addEventListener('click', function() {
+            const icon = this.querySelector('.material-symbols-outlined');
+            const originalIcon = icon.innerText;
+            icon.innerText = 'check';
+            icon.classList.add('text-secondary');
+            
+            setTimeout(() => {
+                icon.innerText = originalIcon;
+                icon.classList.remove('text-secondary');
+            }, 2000);
+        });
+
+        // Add custom text containment logic since ":contains" isn't standard CSS
+        document.querySelectorAll('button.clay-interactive').forEach(btn => {
+            if(btn.textContent.includes('content_copy')) {
+                btn.onclick = () => {
+                   const icon = btn.querySelector('.material-symbols-outlined');
+                   icon.textContent = 'done';
+                   setTimeout(() => icon.textContent = 'content_copy', 2000);
+                }
+            }
+        });
+    </script>
+</body></html>

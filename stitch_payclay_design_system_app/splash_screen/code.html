@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay Splash</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#2f6192",
+                    "on-primary-fixed": "#001d35",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "on-secondary-fixed": "#002114",
+                    "secondary-fixed": "#8af8c5",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#727780",
+                    "on-surface": "#161a32",
+                    "inverse-on-surface": "#f0efff",
+                    "on-background": "#161a32",
+                    "tertiary-fixed": "#ffddaf",
+                    "surface-variant": "#dee0ff",
+                    "tertiary": "#7f5604",
+                    "background": "#fbf8ff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface": "#fbf8ff",
+                    "surface-container-highest": "#dee0ff",
+                    "on-tertiary-container": "#432b00",
+                    "surface-dim": "#d5d8f9",
+                    "primary-fixed": "#d1e4ff",
+                    "surface-container": "#ececff",
+                    "on-primary-container": "#003256",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f4f2ff",
+                    "inverse-surface": "#2b2f48",
+                    "secondary": "#006c4b",
+                    "on-tertiary-fixed": "#281800",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#8af8c5",
+                    "on-primary": "#ffffff",
+                    "primary": "#2f6192",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "inverse-primary": "#9dcaff",
+                    "surface-bright": "#fbf8ff",
+                    "primary-container": "#6c9bcf",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#42474f",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#007350",
+                    "outline-variant": "#c2c7d0",
+                    "on-secondary-fixed-variant": "#005137",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e5e6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "lg": "32px",
+                    "container-padding": "24px",
+                    "gutter": "20px",
+                    "xl": "48px",
+                    "md": "20px",
+                    "xs": "8px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            overflow: hidden;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        .clay-logo-container {
+            background-color: #F0EDE8;
+            box-shadow: 20px 20px 40px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.8),
+                        inset -5px -5px 15px rgba(163, 177, 198, 0.2);
+            border-radius: 40px;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .clay-icon {
+            font-size: 64px;
+            color: #2f6192;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .clay-text {
+            text-shadow: 2px 2px 4px rgba(163, 177, 198, 0.3);
+        }
+
+        .floating-blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(60px);
+            opacity: 0.5;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d1e4ff 0%, #8af8c5 100%);
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        .press-effect:active {
+            box-shadow: inset 8px 8px 16px rgba(0,0,0,0.1),
+                        inset -8px -8px 16px rgba(255,255,255,0.8);
+            transform: scale(0.95);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col items-center justify-center min-h-screen">
+<!-- Decorative Soft Blobs for Atmosphere -->
+<div class="floating-blob w-64 h-64 top-[-10%] left-[-10%]"></div>
+<div class="floating-blob w-80 h-80 bottom-[-15%] right-[-10%]" style="animation-delay: -5s; background: linear-gradient(135deg, #ffddaf 0%, #dee0ff 100%);"></div>
+<!-- Main Content Area -->
+<main class="flex flex-col items-center space-y-lg text-center animate-fade-in">
+<!-- Logo Section (Level 3 Elevation) -->
+<div class="clay-logo-container press-effect cursor-pointer" id="logo-trigger">
+<span class="material-symbols-outlined clay-icon">monetization_on</span>
+</div>
+<!-- Brand Identity -->
+<div class="space-y-xs">
+<h1 class="font-display text-display text-primary clay-text tracking-tight">
+                PayClay
+            </h1>
+<p class="font-label-md text-label-md text-on-surface-variant opacity-80">
+                Payments made effortless
+            </p>
+</div>
+</main>
+<!-- Footer Branding -->
+<footer class="fixed bottom-lg w-full text-center">
+<p class="font-label-sm text-label-sm text-outline-variant tracking-wider flex items-center justify-center gap-xs">
+            Made with <span class="material-symbols-outlined text-error text-[14px]" style="font-variation-settings: 'FILL' 1;">favorite</span> in India
+        </p>
+</footer>
+<!-- Interactive Micro-interaction Script -->
+<script>
+        const logo = document.getElementById('logo-trigger');
+        
+        // Soft hover "wiggle" effect
+        logo.addEventListener('mouseenter', () => {
+            logo.style.transform = 'scale(1.05) rotate(5deg)';
+        });
+
+        logo.addEventListener('mouseleave', () => {
+            logo.style.transform = 'scale(1) rotate(0deg)';
+        });
+
+        // Simulating the "squishy" feel on interaction
+        logo.addEventListener('mousedown', () => {
+            logo.style.transform = 'scale(0.92)';
+        });
+
+        logo.addEventListener('mouseup', () => {
+            logo.style.transform = 'scale(1)';
+        });
+
+        // Optional: Gentle entry animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const main = document.querySelector('main');
+            main.style.opacity = '0';
+            main.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                main.style.transition = 'all 1s cubic-bezier(0.22, 1, 0.36, 1)';
+                main.style.opacity = '1';
+                main.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body></html>

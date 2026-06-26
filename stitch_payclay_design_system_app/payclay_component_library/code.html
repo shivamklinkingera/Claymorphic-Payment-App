@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay - Component Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#2f6192",
+                    "on-primary-fixed": "#001d35",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "on-secondary-fixed": "#002114",
+                    "secondary-fixed": "#8af8c5",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#727780",
+                    "on-surface": "#161a32",
+                    "inverse-on-surface": "#f0efff",
+                    "on-background": "#161a32",
+                    "tertiary-fixed": "#ffddaf",
+                    "surface-variant": "#dee0ff",
+                    "tertiary": "#7f5604",
+                    "background": "#fbf8ff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface": "#fbf8ff",
+                    "surface-container-highest": "#dee0ff",
+                    "on-tertiary-container": "#432b00",
+                    "surface-dim": "#d5d8f9",
+                    "primary-fixed": "#d1e4ff",
+                    "surface-container": "#ececff",
+                    "on-primary-container": "#003256",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f4f2ff",
+                    "inverse-surface": "#2b2f48",
+                    "secondary": "#006c4b",
+                    "on-tertiary-fixed": "#281800",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#8af8c5",
+                    "on-primary": "#ffffff",
+                    "primary": "#2f6192",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "inverse-primary": "#9dcaff",
+                    "surface-bright": "#fbf8ff",
+                    "primary-container": "#6c9bcf",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#42474f",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#007350",
+                    "outline-variant": "#c2c7d0",
+                    "on-secondary-fixed-variant": "#005137",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e5e6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "lg": "32px",
+                    "container-padding": "24px",
+                    "gutter": "20px",
+                    "xl": "48px",
+                    "md": "20px",
+                    "xs": "8px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        /* CLAYMORPHISM GLOBAL UTILITIES */
+        .clay-raised-l2 {
+            box-shadow: 
+                8px 8px 20px rgba(163, 177, 198, 0.4), 
+                inset 4px 4px 10px rgba(255, 255, 255, 0.6),
+                inset -4px -4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .clay-raised-l1 {
+            box-shadow: 
+                4px 4px 10px rgba(163, 177, 198, 0.3), 
+                inset 2px 2px 5px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-raised-l3 {
+            box-shadow: 
+                12px 12px 24px rgba(163, 177, 198, 0.5), 
+                inset 6px 6px 12px rgba(255, 255, 255, 0.7);
+        }
+
+        .clay-sunken {
+            box-shadow: 
+                inset 4px 4px 8px rgba(163, 177, 198, 0.4), 
+                inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-btn-active:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+            transform: scale(0.96);
+            transition: all 0.1s ease;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="w-full top-0 px-container-padding py-xs bg-surface shadow-[8px_8px_20px_rgba(163,177,198,0.4),inset_4px_4px_10px_rgba(255,255,255,0.6)] sticky z-50">
+<div class="flex justify-between items-center w-full max-w-7xl mx-auto">
+<button class="p-2 hover:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary">menu</span>
+</button>
+<h1 class="font-display text-display text-primary">PayClay</h1>
+<div class="w-10 h-10 rounded-full overflow-hidden clay-raised-l1">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young professional smiling, styled in soft 3D clay aesthetic with smooth skin textures and vibrant teal clothing background. The lighting is warm and volumetric, matching the soft claymorphism theme of the UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD78cdoAB8cAxcfhpGO0lKkFe3atybwpJOvr_d5HMR20-UIsSB-ljcVVFoinp_XhF9ye_O4ZEiypLbPosUa5Q6Wm_AMaaC3mXfj1QPoxI6S1wPCrN7NAeyw3sUG7IR9uFhNMXNgMBI43loHQRRMS8oKYaPfKF-uPhtAlw7IjETKRo2Wd4xz7K7_euzTs1rfBka5Cez21kAuHf-4SPAvgWHKTc2fyU-mApa2cjP4-EyI7gcLQNrSw-QhGQ3g_7c744zEvyW_GfrhuesI"/>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-container-padding py-lg">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+<!-- 1. PRIMARY BUTTON -->
+<div class="flex flex-col items-center gap-sm">
+<button class="bg-primary-container text-on-primary-container px-lg py-sm rounded-full font-label-md text-label-md clay-raised-l2 clay-btn-active">
+                    Pay ₹500
+                </button>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Primary Button (L2)</span>
+</div>
+<!-- 2. SECONDARY BUTTON -->
+<div class="flex flex-col items-center gap-sm">
+<button class="bg-surface border-2 border-primary text-primary px-lg py-sm rounded-full font-label-md text-label-md clay-raised-l1 clay-btn-active">
+                    Cancel
+                </button>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Secondary Button (L1)</span>
+</div>
+<!-- 3. DANGER BUTTON -->
+<div class="flex flex-col items-center gap-sm">
+<button class="bg-error text-on-error px-lg py-sm rounded-full font-label-md text-label-md clay-raised-l2 clay-btn-active" style="background-color: #EF6461;">
+                    Delete
+                </button>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Danger Button (Red L2)</span>
+</div>
+<!-- 4. CLAY INPUTS -->
+<div class="flex flex-col items-center gap-md">
+<div class="w-full flex flex-col gap-sm">
+<input class="w-full bg-surface-container-low border-none rounded-lg px-md py-sm clay-raised-l1 focus:ring-0 focus:outline-none" placeholder="Raised Input" type="text"/>
+<input class="w-full bg-surface-container border-none rounded-lg px-md py-sm clay-sunken focus:ring-0 focus:outline-none" placeholder="Focused/Sunken Input" type="text" value="Type here..."/>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Raised vs Sunken Inputs</span>
+</div>
+<!-- 5. CLAY TOGGLES -->
+<div class="flex flex-col items-center gap-md">
+<div class="flex gap-lg">
+<!-- Toggle ON -->
+<div class="relative w-14 h-8 bg-secondary-container rounded-full clay-sunken flex items-center px-1">
+<div class="w-6 h-6 bg-white rounded-full clay-raised-l1 transform translate-x-6 transition-transform"></div>
+</div>
+<!-- Toggle OFF -->
+<div class="relative w-14 h-8 bg-surface-container-highest rounded-full clay-sunken flex items-center px-1">
+<div class="w-6 h-6 bg-white rounded-full clay-raised-l1 transform translate-x-0 transition-transform"></div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clay Toggle (ON/OFF)</span>
+</div>
+<!-- 6. CLAY CHIPS -->
+<div class="flex flex-col items-center gap-md">
+<div class="flex gap-sm">
+<div class="bg-primary-container text-on-primary-container px-md py-xs rounded-full clay-sunken font-label-sm text-label-sm">
+                        Selected
+                    </div>
+<div class="bg-white text-on-surface-variant px-md py-xs rounded-full clay-raised-l1 font-label-sm text-label-sm">
+                        Unselected
+                    </div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clay Selection Chips</span>
+</div>
+<!-- 7. CLAY TAB BAR -->
+<div class="flex flex-col items-center gap-md col-span-full">
+<div class="bg-surface-container-low p-xs rounded-xl clay-raised-l1 flex gap-xs max-w-md w-full">
+<button class="flex-1 py-sm bg-primary-container text-on-primary-container rounded-lg clay-sunken font-label-md text-label-md">Activity</button>
+<button class="flex-1 py-sm text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors">Stats</button>
+<button class="flex-1 py-sm text-on-surface-variant rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-colors">Cards</button>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3-Tab Clay Switcher</span>
+</div>
+<!-- 8. CHECKBOX & RADIO -->
+<div class="flex flex-col items-center gap-md">
+<div class="flex gap-lg items-center">
+<!-- Checkbox -->
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center clay-sunken">
+<span class="material-symbols-outlined text-on-primary-container font-bold">check</span>
+</div>
+<!-- Radio -->
+<div class="w-8 h-8 rounded-full bg-white flex items-center justify-center clay-raised-l1">
+<div class="w-4 h-4 rounded-full bg-primary clay-raised-l1"></div>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clay Checkbox &amp; Radio</span>
+</div>
+<!-- 9. CLAY AVATARS -->
+<div class="flex flex-col items-center gap-md">
+<div class="flex items-end gap-sm">
+<div class="w-[40px] h-[40px] rounded-full bg-primary-container clay-raised-l1 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A 3D character headshot in soft clay style, deep blue skin tones with glossy highlights and a playful expression, circular composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCU7wZlKSinJtSydheHeM225zqXNVmApmLRnL1NzqWjucsgPqHTkVksrq_ow1G8enTdFGVEsB1jxCU5ZcBk8JugfzFzjVQqIVSW3Uo_JYRlI_p-hiltQRUycu7lpzqfYLKTyupd2dd8B_rKkKb-j6gxBckPHQMDGrGy3n1HGaSpaxs-hXPXXi9P8uNIa4JZX3gUYO-W5D842_4akiJ2vkGUAG61h3_0Ghtsj7zQ73Re5bWVPa---8w7O3As0FPt-WxRGwHVbQr4tUf"/>
+</div>
+<div class="w-[56px] h-[56px] rounded-full bg-secondary-container clay-raised-l2 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A 3D character headshot in soft clay style, mint green skin tones with a soft matte finish, wearing stylish clay glasses, circular composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6Uwjptz7U8kvDhfSyyYpyNnOBXi6G74CSWk63c-9b5KKDn60uDybxqAB_VFp6kIkg-xRFkXfNfIEpvDP_MmhvDaA7nlTiPYxgomggdshV0r-5lhYZyMW2XGK2Ab9Obrl4vbRfAbAZjwpLC9GHOPwgXwDxvURzWIAUww0n7tf1EKiuXwiD9Cv3zgLp3ykjpeHZb2JFHy3fjyG0F-0rOMgPfhi5IV8b0ICAKHB6P4tPEEQFHYW2x8PxjNrtMl_p5gLsIJWWinEmdCNu"/>
+</div>
+<div class="w-[80px] h-[80px] rounded-full bg-tertiary-fixed clay-raised-l3 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A 3D character headshot in soft clay style, warm coral skin tones with a bright, welcoming smile, soft volumetric studio lighting, circular composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEmi3xTMjWpKOAqbnkBAmmnStwMz6KidsWZ0QGNV6OzC4MlpzA5Xgg6EHogOj6gN8GObnCnN19sttCqpvWsJr19LotzJAqSBZTcodpyeS4hnDfSCS5Dv8e8XNB7VcY1ZmVdkD8JTMN4-rCyF3grfo0GxEgWD5lMr0QC0RkhR-EHxeMcEbM2TdCBAaYfHy-UIgR9Vvl6kskPRzeojABRCZGBD4tBVfa5ikncjgO7DbCSuWaAWuA3GOMmJaK8-37dPUoHRx82jdhEP_h"/>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">S/M/L Clay Avatars</span>
+</div>
+<!-- 10. ICON BUTTONS -->
+<div class="flex flex-col items-center gap-md">
+<div class="flex gap-md">
+<button class="w-11 h-11 rounded-full bg-white text-primary flex items-center justify-center clay-raised-l1 active:shadow-inner transition-all">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<button class="w-11 h-11 rounded-full bg-white text-primary flex items-center justify-center clay-raised-l1 active:shadow-inner transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-11 h-11 rounded-full bg-primary text-on-primary flex items-center justify-center clay-raised-l2 active:shadow-inner transition-all">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">44px Circular Icon Buttons</span>
+</div>
+<!-- 11. CLAY BADGE -->
+<div class="flex flex-col items-center gap-md">
+<div class="relative w-12 h-12 bg-surface-container-high rounded-lg clay-raised-l1 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">mail</span>
+<div class="absolute -top-1 -right-1 w-[22px] h-[22px] bg-error rounded-full flex items-center justify-center text-[10px] text-white font-bold clay-raised-l2 border-2 border-white">
+                        3
+                    </div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clay Badge Detail</span>
+</div>
+<!-- 12. STATUS CHIPS -->
+<div class="flex flex-col items-center gap-md">
+<div class="flex flex-col gap-xs w-full max-w-[140px]">
+<div class="flex items-center gap-xs bg-secondary-container text-on-secondary-container px-sm py-xs rounded-full clay-raised-l1">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="font-label-sm text-label-sm">Success</span>
+</div>
+<div class="flex items-center gap-xs bg-error-container text-on-error-container px-sm py-xs rounded-full clay-raised-l1">
+<div class="w-2 h-2 rounded-full bg-error"></div>
+<span class="font-label-sm text-label-sm">Failed</span>
+</div>
+<div class="flex items-center gap-xs bg-tertiary-fixed text-on-tertiary-container px-sm py-xs rounded-full clay-raised-l1">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="font-label-sm text-label-sm">Pending</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Semantic Status Chips</span>
+</div>
+<!-- 14. SEARCH BAR -->
+<div class="flex flex-col items-center gap-md col-span-1 md:col-span-2">
+<div class="w-full bg-white rounded-xl px-md py-sm flex items-center gap-sm clay-raised-l1">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 p-0 text-body-md font-body-md" placeholder="Search transactions..." type="text"/>
+<span class="material-symbols-outlined text-outline">tune</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clay Search Bar (Level 1)</span>
+</div>
+<!-- 15. NUMERIC KEYPAD -->
+<div class="flex flex-col items-center gap-md">
+<div class="grid grid-cols-3 gap-md bg-white p-md rounded-xl clay-raised-l1">
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">1</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">2</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">3</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">4</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">5</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">6</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">7</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">8</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">9</button>
+<button class="w-14 h-14 flex items-center justify-center font-title-lg text-title-lg text-primary">.</button>
+<button class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center font-title-lg text-title-lg text-primary clay-raised-l2 active:shadow-inner transition-all">0</button>
+<button class="w-14 h-14 flex items-center justify-center font-title-lg text-title-lg text-error">
+<span class="material-symbols-outlined">backspace</span>
+</button>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Numeric Keypad (3x4 Grid)</span>
+</div>
+</div>
+</main>
+<!-- 13. CLAY BOTTOM NAV BAR -->
+<nav class="fixed bottom-md left-container-padding right-container-padding bg-surface-container rounded-lg z-50 clay-raised-l3 max-w-lg mx-auto flex justify-around items-center p-xs">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-4 py-2 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.1)] active:scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm mt-1">History</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined">local_offer</span>
+<span class="font-label-sm text-label-sm mt-1">Offers</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</button>
+</nav>
+<script>
+        // Micro-interaction: Toggle Switch logic
+        document.querySelectorAll('.relative.w-14.h-8').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                const dot = this.querySelector('div');
+                const isOff = dot.classList.contains('translate-x-0');
+                if(isOff) {
+                    dot.classList.remove('translate-x-0');
+                    dot.classList.add('translate-x-6');
+                    this.classList.remove('bg-surface-container-highest');
+                    this.classList.add('bg-secondary-container');
+                } else {
+                    dot.classList.remove('translate-x-6');
+                    dot.classList.add('translate-x-0');
+                    this.classList.remove('bg-secondary-container');
+                    this.classList.add('bg-surface-container-highest');
+                }
+            });
+        });
+
+        // Micro-interaction: Simple Tab switching
+        const tabs = document.querySelectorAll('.col-span-full button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary-container', 'text-on-primary-container', 'clay-sunken');
+                    t.classList.add('text-on-surface-variant');
+                });
+                this.classList.add('bg-primary-container', 'text-on-primary-container', 'clay-sunken');
+                this.classList.remove('text-on-surface-variant');
+            });
+        });
+    </script>
+</body></html>

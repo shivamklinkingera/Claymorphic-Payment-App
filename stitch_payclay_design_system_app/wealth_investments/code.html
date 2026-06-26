@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay Wealth Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        :root {
+            --clay-shadow-outer: 0 10px 25px rgba(163, 177, 198, 0.4);
+            --clay-shadow-inner: inset 10px 10px 15px rgba(255, 255, 255, 0.6), inset -5px -5px 10px rgba(0, 0, 0, 0.05);
+            --clay-shadow-inset: inset 5px 5px 10px rgba(0, 0, 0, 0.1), inset -5px -5px 10px rgba(255, 255, 255, 0.8);
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #fbf8ff;
+            color: #161a32;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .clay-card {
+            box-shadow: var(--clay-shadow-outer), var(--clay-shadow-inner);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .clay-card:active {
+            transform: scale(0.98);
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .clay-inset {
+            box-shadow: var(--clay-shadow-inset);
+        }
+
+        .clay-button {
+            box-shadow: 0 8px 16px rgba(47, 97, 146, 0.2), inset 6px 6px 8px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .clay-button:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+            transform: scale(0.95);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .sparkline-path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: dash 2s ease-in-out forwards;
+        }
+
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .floating-blob {
+            position: absolute;
+            z-index: -1;
+            filter: blur(40px);
+            opacity: 0.4;
+            border-radius: 100%;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "primary-container": "#6c9bcf",
+                        "surface-tint": "#2f6192",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#8af8c5",
+                        "surface-container-high": "#e5e6ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#007350",
+                        "surface-container": "#ececff",
+                        "inverse-on-surface": "#f0efff",
+                        "secondary-container": "#8af8c5",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "surface": "#fbf8ff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-surface": "#161a32",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "surface-dim": "#d5d8f9",
+                        "inverse-primary": "#9dcaff",
+                        "primary-fixed-dim": "#9dcaff",
+                        "on-surface-variant": "#42474f",
+                        "background": "#fbf8ff",
+                        "outline-variant": "#c2c7d0",
+                        "outline": "#727780",
+                        "on-tertiary-fixed": "#281800",
+                        "on-tertiary-container": "#432b00",
+                        "surface-container-highest": "#dee0ff",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#003256",
+                        "secondary": "#006c4b",
+                        "primary-fixed": "#d1e4ff",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#002114",
+                        "surface-container-low": "#f4f2ff",
+                        "on-primary-fixed": "#001d35",
+                        "on-background": "#161a32",
+                        "inverse-surface": "#2b2f48",
+                        "tertiary-container": "#c08f3e",
+                        "primary": "#2f6192",
+                        "on-secondary-fixed-variant": "#005137",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#dee0ff",
+                        "tertiary": "#7f5604"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "gutter": "20px",
+                        "xl": "48px",
+                        "md": "20px",
+                        "sm": "12px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "title-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background min-h-screen pb-32 overflow-x-hidden">
+<!-- Decorative Atmosphere Blobs -->
+<div class="floating-blob w-[400px] h-[400px] bg-primary/10 -top-20 -left-20"></div>
+<div class="floating-blob w-[300px] h-[300px] bg-secondary/10 top-[40%] -right-10"></div>
+<!-- Top App Bar -->
+<header class="w-full pt-4 px-container-padding flex items-center justify-between h-20 max-w-[1200px] mx-auto z-40 relative">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container clay-card flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container">account_balance_wallet</span>
+</div>
+<h1 class="font-display text-headline-md text-primary tracking-tight">PayClay</h1>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-12 h-12 rounded-full bg-surface clay-card flex items-center justify-center text-outline hover:opacity-80 transition-all active:shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)]">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="w-12 h-12 rounded-full overflow-hidden clay-card border-2 border-white">
+<img class="w-full h-full object-cover" data-alt="A professional studio portrait of a young male professional with a friendly smile, set against a soft, clean light blue studio background. The lighting is bright and even, highlighting a clean, modern aesthetic that perfectly matches a high-end fintech application's user profile interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYcChq8L2umPYvBGgmrACIXW17X86VDdJZNpIutnIdppVp-sfWCjl43zaiSBCvIlIn5Ew-n37iaqYpLM2wsD9FjxzbI5BTI0FS7AQFl4XvqXBl3_wO3rcr-_9K2R_Jt10SxmByGHUn2vfADortTFOIrZttrU1lRu84qe4PyoDjpov0_37pyHIb9qIy6_L_xT2kiVypJZwwtLhoRuJi8v_p50WqDNqkPXE0fCoq4WuQEYuDgz12PxAI75sezs4k9_d7mthBQxPCRF7I"/>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-padding mt-8">
+<!-- Main Dashboard Header -->
+<div class="mb-lg">
+<h2 class="font-headline-lg text-on-surface mb-xs">Wealth Dashboard</h2>
+<p class="font-body-md text-on-surface-variant">Your financial ecosystem at a glance.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-lg items-start">
+<!-- Left Column: Total Value & Investments -->
+<div class="lg:col-span-8 flex flex-col gap-lg">
+<!-- Total Portfolio Value Card (Level 3) -->
+<section class="clay-card rounded-lg bg-gradient-to-br from-primary via-primary-container to-secondary-container p-lg text-white relative overflow-hidden h-[240px] flex flex-col justify-center">
+<div class="relative z-10">
+<span class="font-label-md text-white/80 uppercase tracking-widest">Total Portfolio Value</span>
+<div class="flex items-baseline gap-xs mt-xs">
+<span class="font-display text-white">$142,580</span>
+<span class="font-title-lg text-white/90">.45</span>
+</div>
+<div class="mt-md flex items-center gap-sm">
+<div class="flex items-center bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white font-label-md">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>
+                                +12.4%
+                            </div>
+<span class="font-label-sm text-white/80">+$14,200 this month</span>
+</div>
+</div>
+<!-- Abstract Background Shape -->
+<div class="absolute -right-10 -bottom-20 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+</section>
+<!-- Portfolio Performance Graph (Level 2) -->
+<section class="clay-card rounded-lg bg-surface p-lg">
+<div class="flex justify-between items-center mb-lg">
+<h3 class="font-title-lg text-on-surface">Performance</h3>
+<div class="clay-inset bg-surface-container-low px-4 py-1 rounded-full flex gap-md">
+<button class="font-label-sm text-primary">1W</button>
+<button class="font-label-sm text-outline">1M</button>
+<button class="font-label-sm text-outline">3M</button>
+<button class="font-label-sm text-outline">1Y</button>
+</div>
+</div>
+<div class="h-64 w-full relative">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 1000 250">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="rgba(47, 97, 146, 0.2)"></stop>
+<stop offset="100%" stop-color="rgba(47, 97, 146, 0)"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Lines -->
+<line stroke="#ececff" stroke-width="1" x1="0" x2="1000" y1="50" y2="50"></line>
+<line stroke="#ececff" stroke-width="1" x1="0" x2="1000" y1="125" y2="125"></line>
+<line stroke="#ececff" stroke-width="1" x1="0" x2="1000" y1="200" y2="200"></line>
+<!-- Area -->
+<path d="M0,180 C100,160 200,220 300,140 S450,40 600,100 S850,20 1000,60 L1000,250 L0,250 Z" fill="url(#chartGradient)"></path>
+<!-- Main Line -->
+<path class="sparkline-path" d="M0,180 C100,160 200,220 300,140 S450,40 600,100 S850,20 1000,60" fill="none" stroke="#2f6192" stroke-linecap="round" stroke-width="6"></path>
+<!-- Interactive Dots -->
+<circle cx="600" cy="100" fill="#2f6192" r="8" stroke="white" stroke-width="3"></circle>
+</svg>
+</div>
+</section>
+<!-- Investment Categories -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<!-- Mutual Funds -->
+<div class="clay-card rounded-lg bg-surface-bright p-md flex flex-col gap-sm">
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div>
+<p class="font-label-sm text-outline">Mutual Funds</p>
+<p class="font-title-lg text-on-surface">$54,200</p>
+</div>
+<div class="flex items-center gap-xs text-secondary font-label-sm">
+<span class="material-symbols-outlined text-xs">arrow_upward</span>
+                            8.2%
+                        </div>
+</div>
+<!-- Stocks -->
+<div class="clay-card rounded-lg bg-surface-bright p-md flex flex-col gap-sm">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">trending_up</span>
+</div>
+<div>
+<p class="font-label-sm text-outline">Stocks</p>
+<p class="font-title-lg text-on-surface">$72,150</p>
+</div>
+<div class="flex items-center gap-xs text-secondary font-label-sm">
+<span class="material-symbols-outlined text-xs">arrow_upward</span>
+                            15.4%
+                        </div>
+</div>
+<!-- Gold -->
+<div class="clay-card rounded-lg bg-surface-bright p-md flex flex-col gap-sm">
+<div class="w-12 h-12 rounded-xl bg-tertiary-fixed/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">diamond</span>
+</div>
+<div>
+<p class="font-label-sm text-outline">Gold</p>
+<p class="font-title-lg text-on-surface">$16,230</p>
+</div>
+<div class="flex items-center gap-xs text-error font-label-sm">
+<span class="material-symbols-outlined text-xs">arrow_downward</span>
+                            1.2%
+                        </div>
+</div>
+</div>
+</div>
+<!-- Right Column: Top Assets & Quick Actions -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Quick Actions (Level 2) -->
+<section class="clay-card rounded-lg bg-surface p-lg">
+<h3 class="font-title-lg text-on-surface mb-md">Actions</h3>
+<div class="grid grid-cols-2 gap-sm">
+<button class="clay-button bg-primary text-white p-md rounded-lg flex flex-col items-center gap-xs">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-md">Invest</span>
+</button>
+<button class="clay-button bg-surface-container-high text-primary p-md rounded-lg flex flex-col items-center gap-xs">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md">Withdraw</span>
+</button>
+</div>
+</section>
+<!-- Top Performing Assets (Level 2) -->
+<section class="clay-card rounded-lg bg-surface p-lg">
+<h3 class="font-title-lg text-on-surface mb-lg">Top Assets</h3>
+<div class="space-y-lg">
+<!-- Asset Item 1 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container clay-inset flex items-center justify-center">
+<span class="font-bold text-primary">T</span>
+</div>
+<div>
+<p class="font-title-lg leading-none">Tesla Inc.</p>
+<p class="font-label-sm text-outline">TSLA</p>
+</div>
+</div>
+<div class="text-right">
+<svg class="w-16 h-8" viewbox="0 0 60 20">
+<path d="M0,15 L10,12 L20,18 L30,5 L40,10 L50,2 L60,8" fill="none" stroke="#006c4b" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<p class="font-label-md text-secondary">+4.2%</p>
+</div>
+</div>
+<!-- Asset Item 2 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container clay-inset flex items-center justify-center">
+<span class="font-bold text-primary">A</span>
+</div>
+<div>
+<p class="font-title-lg leading-none">Apple</p>
+<p class="font-label-sm text-outline">AAPL</p>
+</div>
+</div>
+<div class="text-right">
+<svg class="w-16 h-8" viewbox="0 0 60 20">
+<path d="M0,10 L10,8 L20,12 L30,10 L40,5 L50,7 L60,4" fill="none" stroke="#006c4b" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<p class="font-label-md text-secondary">+2.1%</p>
+</div>
+</div>
+<!-- Asset Item 3 -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-surface-container clay-inset flex items-center justify-center">
+<span class="font-bold text-primary">B</span>
+</div>
+<div>
+<p class="font-title-lg leading-none">Bitcoin</p>
+<p class="font-label-sm text-outline">BTC</p>
+</div>
+</div>
+<div class="text-right">
+<svg class="w-16 h-8" viewbox="0 0 60 20">
+<path d="M0,18 L10,15 L20,10 L30,12 L40,18 L50,15 L60,19" fill="none" stroke="#ba1a1a" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+<p class="font-label-md text-error">-1.5%</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-lg py-sm font-label-md text-primary border-t border-outline-variant hover:bg-surface-container transition-colors">
+                        View All Assets
+                    </button>
+</section>
+<!-- Insights Section (Level 1) -->
+<section class="clay-inset bg-surface-container-low rounded-lg p-lg">
+<div class="flex items-center gap-sm mb-sm text-primary">
+<span class="material-symbols-outlined">lightbulb</span>
+<h4 class="font-title-lg">Wealth Insight</h4>
+</div>
+<p class="font-body-md text-on-surface-variant">Your Gold holdings outperformed 80% of your portfolio this week. Consider rebalancing into diversified stocks.</p>
+</section>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (The Anchor) -->
+<nav class="fixed bottom-gutter left-gutter right-gutter h-20 bg-surface-container-low/90 backdrop-blur-md rounded-xl z-50 flex justify-around items-center px-4 max-w-[600px] mx-auto shadow-[0_20px_40px_rgba(163,177,198,0.4),inset_0_10px_10px_rgba(255,255,255,0.6)]">
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-4 py-2 hover:text-primary transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-label-sm text-label-sm">Bank</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container dark:bg-on-primary-fixed-variant rounded-full px-4 py-2 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05)] active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="font-label-sm text-label-sm">Wealth</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-4 py-2 hover:text-primary transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Pay</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-4 py-2 hover:text-primary transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-4 py-2 hover:text-primary transition-all active:scale-95" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-sm text-label-sm">Help</span>
+</a>
+</nav>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.clay-card, .clay-button').forEach(item => {
+            item.addEventListener('mousedown', () => {
+                item.style.transform = 'scale(0.97)';
+            });
+            item.addEventListener('mouseup', () => {
+                item.style.transform = 'scale(1)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

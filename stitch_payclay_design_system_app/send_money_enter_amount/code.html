@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay — Send Money</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Claymorphic Shadows */
+        .clay-elevation-1 {
+            box-shadow: 4px 4px 10px rgba(163, 177, 198, 0.3), inset 2px 2px 5px rgba(255, 255, 255, 0.7);
+        }
+        
+        .clay-elevation-2 {
+            box-shadow: 8px 8px 20px rgba(163, 177, 198, 0.4), inset 4px 4px 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-elevation-3 {
+            box-shadow: 12px 12px 24px rgba(163, 177, 198, 0.5), inset 6px 6px 12px rgba(255, 255, 255, 0.7);
+        }
+
+        .clay-inset {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-pressed {
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1), inset -1px -1px 3px rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            background-color: #F0EDE8;
+        }
+
+        /* Fluid layout for mobile, max-width for desktop */
+        .page-canvas {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            padding-bottom: 120px; /* Space for bottom fixed elements if any */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#0d4978",
+                        "inverse-on-surface": "#f0efff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#9dcaff",
+                        "tertiary-container": "#c08f3e",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "on-tertiary-fixed": "#281800",
+                        "surface-dim": "#d5d8f9",
+                        "outline-variant": "#c2c7d0",
+                        "tertiary": "#7f5604",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#8af8c5",
+                        "on-background": "#161a32",
+                        "on-secondary-container": "#007350",
+                        "on-primary-fixed": "#001d35",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#432b00",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f4f2ff",
+                        "surface-bright": "#fbf8ff",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#6c9bcf",
+                        "primary": "#2f6192",
+                        "on-surface": "#161a32",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-container-high": "#e5e6ff",
+                        "secondary": "#006c4b",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dee0ff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-secondary-fixed": "#002114",
+                        "inverse-surface": "#2b2f48",
+                        "surface-variant": "#dee0ff",
+                        "inverse-primary": "#9dcaff",
+                        "outline": "#727780",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d1e4ff",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "on-surface-variant": "#42474f",
+                        "background": "#fbf8ff",
+                        "surface-container": "#ececff",
+                        "surface-tint": "#2f6192",
+                        "on-primary-container": "#003256",
+                        "secondary-fixed": "#8af8c5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "xs": "8px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "sm": "12px",
+                        "md": "20px",
+                        "xl": "48px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface">
+<div class="page-canvas px-container-padding">
+<!-- TopAppBar -->
+<header class="w-full pt-lg pb-md flex items-center justify-between">
+<button class="w-10 h-10 flex items-center justify-center rounded-full clay-elevation-1 hover:clay-elevation-2 active:scale-90 transition-all bg-surface">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<div class="flex items-center gap-sm">
+<span class="font-label-md text-on-surface-variant">Send to Priya</span>
+<div class="w-8 h-8 rounded-full overflow-hidden clay-elevation-1 bg-surface p-1">
+<img class="w-full h-full object-cover rounded-full" data-alt="A soft-focus close-up portrait of a young Indian woman with friendly features and warm lighting. The image has a clean, minimalist photographic style with a soft pastel pink background, perfectly centered and circular for a professional user avatar interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUVwRZSW9nbW3lxFdWSGYmHyEcAsKuKoFnvQ79indJXYUKggGyWdrIbPxqbDgNs6JhyEpV0WYuOFAX5TW6Nw4vEJvpFiVssvBO4TTP0edb9OWtEPowef4CSWqilu6rmo4EsfaQNBLgU4C9sylHiXNMFV4cJLtNIvkXLz0KLbxl5yLK3bnZSwOK1jMXTIlP4Y1qeD33fgkc-LVMrzo2aWKcwx8E21Ei7vUm29do7CH79tzzmyYQlBzG4r58gFd3VQRZgvtsMTI6_USO"/>
+</div>
+</div>
+<div class="w-10"></div> <!-- Spacer for center-aligned feel -->
+</header>
+<main class="flex-grow flex flex-col items-center justify-center py-xl">
+<!-- Recipient Info -->
+<div class="flex flex-col items-center mb-xl">
+<div class="w-[48px] h-[48px] rounded-full bg-[#f8bbd0] flex items-center justify-center clay-elevation-2 mb-md border-4 border-white">
+<span class="font-headline-md text-white">PS</span>
+</div>
+<h1 class="font-headline-md text-on-surface mb-xs">Priya Sharma</h1>
+<p class="font-body-md text-on-surface-variant">98765 43210</p>
+</div>
+<!-- Amount Entry Display -->
+<div class="flex items-baseline justify-center mb-xl gap-xs">
+<span class="font-headline-md text-on-surface-variant" style="font-size: 24px;">₹</span>
+<span class="font-display text-on-surface" style="font-size: 48px;">500</span>
+<div class="w-1 h-12 bg-primary rounded-full animate-pulse ml-1 opacity-60"></div>
+</div>
+<!-- Quick Amounts Chips -->
+<div class="flex gap-sm mb-xl w-full justify-center">
+<button class="px-md py-xs rounded-full bg-surface clay-elevation-1 font-label-md text-on-surface-variant hover:clay-elevation-2 transition-all">
+                    ₹100
+                </button>
+<button class="px-md py-xs rounded-full bg-surface clay-elevation-1 font-label-md text-on-surface-variant hover:clay-elevation-2 transition-all">
+                    ₹200
+                </button>
+<button class="px-md py-xs rounded-full bg-primary-container clay-pressed font-label-md text-on-primary-container transition-all">
+                    ₹500
+                </button>
+<button class="px-md py-xs rounded-full bg-surface clay-elevation-1 font-label-md text-on-surface-variant hover:clay-elevation-2 transition-all">
+                    ₹1,000
+                </button>
+</div>
+<!-- Note Input -->
+<div class="w-full max-w-sm">
+<div class="clay-inset bg-[#e8e6e1] rounded-lg h-[44px] flex items-center px-md w-full mb-xl">
+<span class="material-symbols-outlined text-outline mr-sm" style="font-size: 20px;">notes</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface placeholder:text-outline p-0" placeholder="Add a note..." type="text"/>
+</div>
+</div>
+</main>
+<!-- Bottom Action -->
+<div class="fixed bottom-lg left-0 right-0 px-container-padding flex justify-center w-full">
+<div class="w-full max-w-sm">
+<button class="w-full py-md rounded-full bg-primary clay-elevation-3 hover:clay-elevation-2 active:scale-95 active:clay-pressed transition-all duration-200">
+<span class="font-headline-md text-white">Pay ₹500</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        // Subtle haptic-like effect on amount chips
+        document.querySelectorAll('.clay-elevation-1').forEach(chip => {
+            chip.addEventListener('click', function() {
+                // Visual toggle for prototype demo
+                document.querySelectorAll('.bg-primary-container').forEach(active => {
+                    active.classList.remove('bg-primary-container', 'clay-pressed', 'text-on-primary-container');
+                    active.classList.add('bg-surface', 'clay-elevation-1', 'text-on-surface-variant');
+                });
+                this.classList.remove('bg-surface', 'clay-elevation-1', 'text-on-surface-variant');
+                this.classList.add('bg-primary-container', 'clay-pressed', 'text-on-primary-container');
+            });
+        });
+
+        // Soft scale animation on press
+        document.addEventListener('mousedown', (e) => {
+            const target = e.target.closest('button');
+            if (target) {
+                target.style.transform = 'scale(0.96)';
+            }
+        });
+        document.addEventListener('mouseup', (e) => {
+            const target = e.target.closest('button');
+            if (target) {
+                target.style.transform = 'scale(1)';
+            }
+        });
+    </script>
+</body></html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>PayClay - Scan &amp; Pay</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#0d4978",
+                        "inverse-on-surface": "#f0efff",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#9dcaff",
+                        "tertiary-container": "#c08f3e",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "on-tertiary-fixed": "#281800",
+                        "surface-dim": "#d5d8f9",
+                        "outline-variant": "#c2c7d0",
+                        "tertiary": "#7f5604",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#8af8c5",
+                        "on-background": "#161a32",
+                        "on-secondary-container": "#007350",
+                        "on-primary-fixed": "#001d35",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#432b00",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f4f2ff",
+                        "surface-bright": "#fbf8ff",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#6c9bcf",
+                        "primary": "#2f6192",
+                        "on-surface": "#161a32",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-container-high": "#e5e6ff",
+                        "secondary": "#006c4b",
+                        "on-error-container": "#93000a",
+                        "surface-container-highest": "#dee0ff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-secondary-fixed": "#002114",
+                        "inverse-surface": "#2b2f48",
+                        "surface-variant": "#dee0ff",
+                        "inverse-primary": "#9dcaff",
+                        "outline": "#727780",
+                        "on-error": "#ffffff",
+                        "primary-fixed": "#d1e4ff",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "on-surface-variant": "#42474f",
+                        "background": "#fbf8ff",
+                        "surface-container": "#ececff",
+                        "surface-tint": "#2f6192",
+                        "on-primary-container": "#003256",
+                        "secondary-fixed": "#8af8c5",
+                        "clay-off-white": "#F0EDE8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding": "24px",
+                        "xs": "8px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "sm": "12px",
+                        "md": "20px",
+                        "xl": "48px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Claymorphism Levels */
+        .clay-level-1 {
+            box-shadow: 
+                4px 4px 10px rgba(163, 177, 198, 0.3),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+                inset -2px -2px 5px rgba(163, 177, 198, 0.1);
+        }
+
+        .clay-level-2 {
+            box-shadow: 
+                8px 8px 20px rgba(163, 177, 198, 0.4),
+                inset 4px 4px 10px rgba(255, 255, 255, 0.6),
+                inset -4px -4px 10px rgba(163, 177, 198, 0.15);
+        }
+
+        .clay-level-3 {
+            box-shadow: 
+                15px 15px 30px rgba(163, 177, 198, 0.45),
+                inset 6px 6px 12px rgba(255, 255, 255, 0.7),
+                inset -6px -6px 12px rgba(163, 177, 198, 0.2);
+        }
+
+        .clay-inset {
+            box-shadow: 
+                inset 4px 4px 8px rgba(163, 177, 198, 0.4),
+                inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-press:active {
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1) !important;
+            transform: scale(0.95);
+        }
+
+        /* Scanner Animation */
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+        .scan-line {
+            height: 2px;
+            width: 100%;
+            background: linear-gradient(to right, transparent, #2f6192, transparent);
+            position: absolute;
+            animation: scan 3s linear infinite;
+            box-shadow: 0 0 8px #9dcaff;
+        }
+
+        body {
+            background-color: #000;
+            overflow: hidden;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- CAMERA BACKGROUND -->
+<div class="fixed inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center brightness-[0.3] contrast-[1.1]" data-alt="A blurry, cinematic first-person view of a high-tech modern checkout counter in a minimalist boutique. The scene is slightly out of focus with dark atmospheric lighting, featuring soft bokeh from warm overhead lights. The overall aesthetic is clean and professional, matching a premium finance app's dark mode camera feed." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA2OLIkqi_hpUyWgWcRnbA-IbaJyx1ayR0VLtXdkkm38TBDA9zzS53tDh4Uk5605SCwN1l2chiGHn2I54HmdPiYesbQZwKwJr1fXVx8GcLh7kzkHlq5fxZ5nRFZcJztOcK2HWHpErudTjhLOmnYDcvDL17bBq7ZMUzAx4XewSXl3UMlj2ZgwJ-FPHe-2BTEumn4rrxY7vBmQzlOcdq6mUH-iCUm2Cx746zpyZKP1X-Hnp_pqB9jaT7_Sv83dmLBMsEKKHSkPHmbdwgM')"></div>
+<!-- Scanning Glow Overlay -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
+</div>
+<!-- TOP BAR -->
+<header class="relative z-10 w-full px-container-padding py-md flex justify-between items-center">
+<!-- Back Button -->
+<button aria-label="Back" class="w-12 h-12 flex items-center justify-center bg-white rounded-full clay-level-2 clay-press transition-all duration-200">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'wght' 700;">arrow_back</span>
+</button>
+<!-- Screen Title -->
+<h1 class="font-headline-md text-headline-md-mobile text-white drop-shadow-md">Scan &amp; Pay</h1>
+<!-- Flash Toggle -->
+<button aria-label="Toggle Flash" class="w-12 h-12 flex items-center justify-center bg-white rounded-full clay-level-2 clay-press transition-all duration-200" id="flash-toggle">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'wght' 700;">flash_on</span>
+</button>
+</header>
+<!-- SCANNER AREA -->
+<main class="flex-grow flex flex-col items-center justify-start pt-xl relative z-10">
+<div class="relative w-[240px] h-[240px] mt-8">
+<!-- QR Frame -->
+<div class="absolute inset-0 bg-white/5 rounded-[20px] clay-level-3 border-4 border-white overflow-hidden">
+<!-- Scanning Line -->
+<div class="scan-line"></div>
+<!-- Internal Corner Accents (Decorative) -->
+<div class="absolute top-2 left-2 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-md"></div>
+<div class="absolute top-2 right-2 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-md"></div>
+<div class="absolute bottom-2 left-2 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-md"></div>
+<div class="absolute bottom-2 right-2 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-md"></div>
+</div>
+<!-- Outer Corner Accents (Blue Clay) -->
+<div class="absolute -top-3 -left-3 w-10 h-10 bg-primary-container rounded-full clay-level-2"></div>
+<div class="absolute -top-3 -right-3 w-10 h-10 bg-primary-container rounded-full clay-level-2"></div>
+<div class="absolute -bottom-3 -left-3 w-10 h-10 bg-primary-container rounded-full clay-level-2"></div>
+<div class="absolute -bottom-3 -right-3 w-10 h-10 bg-primary-container rounded-full clay-level-2"></div>
+</div>
+<p class="mt-xl font-body-md text-white text-center px-lg opacity-90 drop-shadow-sm">
+            Point camera at any QR code to pay
+        </p>
+</main>
+<!-- BOTTOM PANEL -->
+<section class="relative z-20 h-[35%] w-full bg-clay-off-white rounded-t-[28px] clay-level-3 flex flex-col items-center px-container-padding pb-xl pt-lg">
+<!-- Handlebar -->
+<div class="w-12 h-1.5 bg-outline-variant rounded-full mb-lg opacity-40"></div>
+<!-- Action Row -->
+<div class="flex justify-between w-full max-w-sm mb-lg">
+<!-- Gallery -->
+<div class="flex flex-col items-center gap-xs">
+<button class="w-[52px] h-[52px] bg-white rounded-full flex items-center justify-center clay-level-2 clay-press">
+<span class="material-symbols-outlined text-primary">image</span>
+</button>
+<span class="font-label-md text-label-md text-on-surface-variant">Gallery</span>
+</div>
+<!-- My QR -->
+<div class="flex flex-col items-center gap-xs">
+<button class="w-[52px] h-[52px] bg-white rounded-full flex items-center justify-center clay-level-2 clay-press">
+<span class="material-symbols-outlined text-primary">qr_code_2</span>
+</button>
+<span class="font-label-md text-label-md text-on-surface-variant">My QR</span>
+</div>
+<!-- Contacts -->
+<div class="flex flex-col items-center gap-xs">
+<button class="w-[52px] h-[52px] bg-white rounded-full flex items-center justify-center clay-level-2 clay-press">
+<span class="material-symbols-outlined text-primary">contacts</span>
+</button>
+<span class="font-label-md text-label-md text-on-surface-variant">Contacts</span>
+</div>
+</div>
+<!-- Secondary Information -->
+<div class="w-full bg-surface-container-low p-md rounded-lg clay-inset flex items-center gap-md">
+<div class="w-10 h-10 bg-secondary-container rounded-full flex items-center justify-center clay-level-1">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Secure Payment</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Encrypted by PayClay Protocol</span>
+</div>
+</div>
+</section>
+<!-- Script for interaction -->
+<script>
+        document.getElementById('flash-toggle').addEventListener('click', function() {
+            const icon = this.querySelector('.material-symbols-outlined');
+            if (icon.innerText === 'flash_on') {
+                icon.innerText = 'flash_off';
+                this.classList.add('bg-primary-container');
+                icon.classList.replace('text-primary', 'text-on-primary-container');
+            } else {
+                icon.innerText = 'flash_on';
+                this.classList.remove('bg-primary-container');
+                icon.classList.replace('text-on-primary-container', 'text-primary');
+            }
+        });
+
+        // Simple haptic-like vibration on button presses
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                if (window.navigator.vibrate) {
+                    window.navigator.vibrate(10);
+                }
+            });
+        });
+    </script>
+</body></html>

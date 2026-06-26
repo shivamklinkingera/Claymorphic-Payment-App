@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DTH Recharge - ClayPay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#ececff",
+                        "on-tertiary-fixed": "#281800",
+                        "background": "#fbf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-secondary-container": "#007350",
+                        "tertiary": "#7f5604",
+                        "primary": "#2f6192",
+                        "surface-variant": "#dee0ff",
+                        "surface-dim": "#d5d8f9",
+                        "tertiary-fixed": "#ffddaf",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "outline": "#727780",
+                        "on-primary-fixed": "#001d35",
+                        "inverse-surface": "#2b2f48",
+                        "on-primary-container": "#003256",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "surface": "#fbf8ff",
+                        "surface-tint": "#2f6192",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#161a32",
+                        "on-secondary-fixed-variant": "#005137",
+                        "on-background": "#161a32",
+                        "on-surface-variant": "#42474f",
+                        "secondary": "#006c4b",
+                        "secondary-fixed": "#8af8c5",
+                        "secondary-container": "#8af8c5",
+                        "on-secondary-fixed": "#002114",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "primary-fixed": "#d1e4ff",
+                        "primary-fixed-dim": "#9dcaff",
+                        "surface-container-highest": "#dee0ff",
+                        "tertiary-container": "#c08f3e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#9dcaff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f4f2ff",
+                        "outline-variant": "#c2c7d0",
+                        "surface-container-high": "#e5e6ff",
+                        "primary-container": "#6c9bcf",
+                        "on-tertiary-container": "#432b00",
+                        "inverse-on-surface": "#f0efff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "xs": "8px",
+                        "md": "20px",
+                        "container-padding": "24px",
+                        "xl": "48px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Claymorphism Elevation 2 (Standard) */
+        .clay-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 
+                15px 15px 30px rgba(163, 177, 198, 0.4),
+                inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Claymorphism Inset (Sunken) for Inputs */
+        .clay-input-container {
+            background: #f4f2ff;
+            border-radius: 1.5rem;
+            box-shadow: 
+                inset 6px 6px 12px rgba(163, 177, 198, 0.3),
+                inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Claymorphism Primary Button */
+        .clay-btn-primary {
+            background: #2f6192;
+            color: white;
+            box-shadow: 
+                10px 10px 20px rgba(47, 97, 146, 0.3),
+                inset 4px 4px 8px rgba(255, 255, 255, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .clay-btn-primary:active {
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(0.96);
+        }
+
+        /* Operator Chip Styles */
+        .clay-chip {
+            background: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 
+                8px 8px 16px rgba(163, 177, 198, 0.2),
+                inset 4px 4px 8px rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+        }
+
+        .clay-chip.active {
+            background: #d1e4ff;
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center">
+<!-- Top App Bar -->
+<header class="w-full max-w-[1200px] flex justify-between items-center px-container-padding py-sm z-50 sticky top-0 bg-[#F0EDE8]/80 backdrop-blur-md">
+<div class="flex items-center gap-md">
+<button class="p-xs active:scale-95 transition-transform" onclick="window.history.back()">
+<span class="material-symbols-outlined text-on-surface text-[28px]">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">DTH Recharge</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden clay-card flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A high-quality 3D rendered avatar of a friendly professional male with glasses and a soft blue sweater, set against a clean pastel background. The visual style is claymorphic, with soft shadows and rounded features, matching a modern fintech brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxQKfg593L5tQ5DiUf_bbnkbuCxXL4wmCWH57h6Ryli-3eFE2zDioDCKsVA0kzsyLwfv6XN-JrrJO8wiuBsQvG-fQqTBE10u06AV2-IzHPLACIBkbpGUh5Tofvywf_USUxU1y3I5RaGmeBimanCxquzatif3z4Dn6QFssl1DocaL25ym_S82aa8yPbiqXZwn6ZDlY6_Rlu7DZ_474zNdm1AZDAfyGyQPndGk26qUK8RixqxTlTS8Fu9utPA3j3u3tgXNlm4dbYd39i"/>
+</div>
+</header>
+<main class="w-full max-w-[600px] px-container-padding py-md flex flex-col gap-lg">
+<!-- Operator Selection Section -->
+<section class="flex flex-col gap-md">
+<label class="font-label-md text-label-md text-on-surface-variant px-xs">Select DTH Provider</label>
+<!-- Custom Clay Dropdown -->
+<div class="clay-input-container p-md flex justify-between items-center cursor-pointer group active:scale-[0.99] transition-transform">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">tv</span>
+<span class="font-body-md text-body-md text-on-surface">Select DTH Provider</span>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<!-- Fast Selection Chips -->
+<div class="flex gap-md overflow-x-auto no-scrollbar py-xs">
+<button class="clay-chip flex-shrink-0 px-md py-sm flex items-center gap-sm active:scale-95 transition-all">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist logo for Tata Play, featuring a vibrant pink and purple circular motif on a white circular background. The style is clean and modern, suitable for a mobile banking interface with soft lighting and professional finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwZn5yDEHAhYgqClPLs89nTVgBxiDbi7Ry8RBr4ZxpGJCzY3DXV_-0MjFLQUx0_ky-h5JJNTPUR0iGqHIPCWV2pfC0Ow2BwmalgD8Jnxax3PxLWnoBCswumo1hUKBZquzleBQFHUC23QDU2eFF3t4QbDFjypZrROIVglt6T-FxgxeYIIB0lmuHG-7W1Y96HkEV9PKb036Mz3Xak_VuaAazxZOjkKYoKdpeMWR6_F-uxN87liO1h7p2xfjYMvkw1MeHlrr37NBQE2Us"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Tata Play</span>
+</button>
+<button class="clay-chip flex-shrink-0 px-md py-sm flex items-center gap-sm active:scale-95 transition-all">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A sleek corporate logo for Airtel DTH, primarily red and white with smooth curved typography. The aesthetic is professional and high-definition, rendered with soft claymorphic depth to match a premium fintech application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADk6DSIQ-6hE3pntkKM2mY6ET7IChDSq1eTV3jelQp96xC8dzyXcbuh2VVJwB6ILc2MAL2LDMKZZsTcJ_VPiMpircGdJCpor5dcuHx_G-d98cVQpEAzxUFoQDArh0onrU6O20pAqVz9hSBkZ5zBrNkEGoLeHoF7kDtEn61ULW2JCRiABflDY8zF7p9BUF0VWT5511Q31hEorZ9yNylluUiVSBETiJFhmtLXP83C704FNW-Yu-7j5HYQHdO9DubaI57F6OTeVF_eodA"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Airtel DTH</span>
+</button>
+<button class="clay-chip flex-shrink-0 px-md py-sm flex items-center gap-sm active:scale-95 transition-all">
+<div class="w-8 h-8 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="The Dish TV logo, featuring its signature red and grey colors on a clean white background. The icon is rendered with subtle 3D lighting and soft edges to integrate seamlessly into a soft-clay UI design system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmNAbbgBNyGCqSpZ5eyeJXYZowA92PAUKaRi027w_3WHb5mBePs4_rWerAkLv6XiKFVNnxozUXbnygFIoKsm96Hmr_tHbpHdh5mOYA-C3Q1jDHYwoKn8JoadtTbpQPfM0ZIAseBijBx-I8RNx_nl9Hhkuss-fpTcNFlTO5bvHCu-5ELC0sVVY6-YMwugAnxIzv-XswHVsD2LiYOqurgZapzJ__30xkDN2qiRJ-Fxx6fiWslz7Yv7vejBtM_Q5g5zt8AF_gO5VfqfTq"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Dish TV</span>
+</button>
+</div>
+</section>
+<!-- Subscriber Details Section -->
+<section class="clay-card p-xl flex flex-col gap-xl">
+<div class="flex flex-col gap-md">
+<label class="font-label-md text-label-md text-on-surface-variant" for="subscriber_id">Subscriber ID</label>
+<div class="clay-input-container p-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">fingerprint</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-lg text-body-lg text-on-surface placeholder:text-outline-variant" id="subscriber_id" placeholder="Enter ID" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-md">
+<label class="font-label-md text-label-md text-on-surface-variant" for="amount">Recharge Amount</label>
+<div class="clay-input-container p-md flex items-center gap-sm">
+<span class="font-headline-md text-headline-md text-primary font-bold">₹</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-headline-md text-headline-md text-on-surface placeholder:text-outline-variant" id="amount" placeholder="0.00" type="number"/>
+</div>
+<div class="flex gap-xs mt-xs">
+<button class="px-sm py-unit bg-surface-variant/30 rounded-full text-primary font-label-sm text-label-sm border border-primary/10">₹399</button>
+<button class="px-sm py-unit bg-surface-variant/30 rounded-full text-primary font-label-sm text-label-sm border border-primary/10">₹549</button>
+<button class="px-sm py-unit bg-surface-variant/30 rounded-full text-primary font-label-sm text-label-sm border border-primary/10">₹999</button>
+</div>
+</div>
+</section>
+<!-- Recent Recharges Section -->
+<section class="flex flex-col gap-md">
+<h2 class="font-title-lg text-title-lg text-on-surface px-xs">Recent Recharges</h2>
+<div class="flex flex-col gap-md">
+<!-- Recent Item 1 -->
+<div class="clay-card p-md flex justify-between items-center group active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden clay-input-container flex items-center justify-center p-2">
+<img class="w-full h-full object-contain" data-alt="A small circular Tata Play logo with vibrant purple and pink colors, presented as a physical coin or token with soft rounded edges and a glossy clay finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBszisPvQp3EdV63F8dIx_43YmtEKgM9iP4Huwk704Y3-Q8GShBqB8i4Fl9e8okNIzkK_FX06x2JokSUmnu4Fi9TvBlongJIEyxkbZo0RMFdMlMT9oIIE7j33pbGnHlLUiLVzA0gz70VnO2HWVHxNaNdO_BcFRTcxd1sRZBxnLtFJHtAKHyz_Vn40gHBJpokw9Oava5oVmwg2gumxF6AedlMmcyBESKNnm-wN8LiMrwC5k5ujCP1bcxOw4BldwXo9p7AKjL3JMw_lM-"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-bold">Tata Play</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">••••4567</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-title-lg text-on-surface">₹399</p>
+<p class="font-label-sm text-label-sm text-secondary">Success</p>
+</div>
+</div>
+<!-- Recent Item 2 -->
+<div class="clay-card p-md flex justify-between items-center group active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden clay-input-container flex items-center justify-center p-2">
+<img class="w-full h-full object-contain" data-alt="A small circular Airtel logo in classic red and white, stylized as a soft 3D button icon with realistic claymorphic shadows and a smooth premium texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCInCEzyIdpKG6wF5Dhr_OygRbP_FNjABZ6-hXlBlGD5YOeMunQKcYNKTququ2Ej17zO5RlbJzMrPQ40UT2vOdMrC2XQNxhTNh2EwbgBmFzWGBKWiO22X0BOPwdNuKQMS6-cEmmN7_50UyDITGhf2n6QqeKyVrvkwj9Qf05eIHg8m0slZW4kIcn1dnyIMYic_K08gIsvihEFAfA7KBV2WTfoTTcAywkHIeUj_DzubN-2PWSTfwD_rXRp53Hag1-3hclge4MOh85ufBv"/>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-bold">Airtel DTH</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">••••8821</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-title-lg text-on-surface">₹549</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">12 Oct</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Spacer for FAB -->
+<div class="h-32"></div>
+</main>
+<!-- Bottom Action Button -->
+<div class="fixed bottom-0 left-0 w-full p-container-padding bg-gradient-to-t from-[#F0EDE8] via-[#F0EDE8] to-transparent pointer-events-none">
+<div class="max-w-[600px] mx-auto pointer-events-auto">
+<button class="w-full clay-btn-primary py-lg rounded-full font-display text-headline-md active:scale-95 transition-all">
+                Recharge
+            </button>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.clay-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                document.querySelectorAll('.clay-chip').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Simple animation for inputs on focus
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.style.boxShadow = 'inset 8px 8px 16px rgba(47, 97, 146, 0.2), inset -8px -8px 16px rgba(255, 255, 255, 0.9)';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.style.boxShadow = '';
+            });
+        });
+    </script>
+</body></html>

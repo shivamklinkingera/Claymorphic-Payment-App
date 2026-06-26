@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay - New Bill Split</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #fbf8ff;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Claymorphism Elevation 1: Sunken/Inset */
+        .clay-inset {
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.3), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Claymorphism Elevation 2: Standard Raised */
+        .clay-card {
+            box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.25), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.7),
+                        inset 4px 4px 6px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Claymorphism Elevation 3: High/FAB */
+        .clay-button-primary {
+            background-color: #6c9bcf;
+            box-shadow: 8px 8px 16px rgba(108, 155, 207, 0.3), 
+                        -8px -8px 16px rgba(255, 255, 255, 0.8),
+                        inset 6px 6px 12px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .clay-button-primary:active {
+            transform: scale(0.96);
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.1),
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .clay-avatar {
+            box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.2), 
+                        -6px -6px 12px rgba(255, 255, 255, 0.8),
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Soft progress/toggle track */
+        .clay-track {
+            background: #f4f2ff;
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.2), 
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.7);
+        }
+
+        .active-tab-clay {
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.15), 
+                        -4px -4px 8px rgba(255, 255, 255, 0.7),
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Custom Checkbox Clay */
+        .clay-checkbox {
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 8px;
+            background: #f4f2ff;
+            box-shadow: inset 2px 2px 5px rgba(163, 177, 198, 0.3), 
+                        inset -2px -2px 5px rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .clay-checkbox:checked {
+            background: #8af8c5;
+            box-shadow: 3px 3px 6px rgba(0, 108, 75, 0.15), 
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .clay-checkbox:checked::after {
+            content: 'check';
+            font-family: 'Material Symbols Outlined';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            color: #002114;
+        }
+
+        /* Smooth Hide/Show animation */
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "primary-container": "#6c9bcf",
+                        "surface-tint": "#2f6192",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#8af8c5",
+                        "surface-container-high": "#e5e6ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#007350",
+                        "surface-container": "#ececff",
+                        "inverse-on-surface": "#f0efff",
+                        "secondary-container": "#8af8c5",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "surface": "#fbf8ff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-surface": "#161a32",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "surface-dim": "#d5d8f9",
+                        "inverse-primary": "#9dcaff",
+                        "primary-fixed-dim": "#9dcaff",
+                        "on-surface-variant": "#42474f",
+                        "background": "#fbf8ff",
+                        "outline-variant": "#c2c7d0",
+                        "outline": "#727780",
+                        "on-tertiary-fixed": "#281800",
+                        "on-tertiary-container": "#432b00",
+                        "surface-container-highest": "#dee0ff",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#003256",
+                        "secondary": "#006c4b",
+                        "primary-fixed": "#d1e4ff",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#002114",
+                        "surface-container-low": "#f4f2ff",
+                        "on-primary-fixed": "#001d35",
+                        "on-background": "#161a32",
+                        "inverse-surface": "#2b2f48",
+                        "tertiary-container": "#c08f3e",
+                        "primary": "#2f6192",
+                        "on-secondary-fixed-variant": "#005137",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#dee0ff",
+                        "tertiary": "#7f5604"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "gutter": "20px",
+                        "xl": "48px",
+                        "md": "20px",
+                        "sm": "12px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "title-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-40">
+<!-- Top AppBar -->
+<header class="w-full pt-4 px-container-padding sticky top-0 z-50 bg-background/80 backdrop-blur-md">
+<div class="flex items-center justify-between h-20 max-w-[1200px] mx-auto">
+<button class="w-12 h-12 rounded-full clay-card flex items-center justify-center text-primary active:scale-95 transition-transform" onclick="window.history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-display text-headline-md text-primary tracking-tight">New Split</h1>
+<div class="w-12 h-12 rounded-full clay-card overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A friendly close-up portrait of a professional woman with a warm smile, set against a soft pastel blue studio background. The lighting is diffused and high-key, emphasizing a clean and approachable aesthetic consistent with a modern financial app's user profile photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKhHRjpfa_-O4-uIf0yseT6j_rKLm0WQiTkeV99sT4pUYiiyLIoIL25u1nf3H0-k0Hj5qpEnzm-Qmu3UFrlGWiXvPsqzalKoi8E_55oWfLxmB0zQH4N96a7DfUnMTmicgWfKJZ0mz3UFegZtuduvji2p6k_thsmWcfDSdr44BcmpXnUcR-d90nidt8PLMMEb7UNhBvhFGvVB2Kc7ZTapazb-5FZypce4yV-dr5eZ013E9rbdn1--VClQlY8Q2trJoGME6jBfxKumCa"/>
+</div>
+</div>
+</header>
+<main class="max-w-[600px] mx-auto px-container-padding mt-8 space-y-10 fade-in-up">
+<!-- Total Amount Section -->
+<section class="space-y-4">
+<label class="font-title-lg text-title-lg text-on-surface-variant block ml-2">How much is the bill?</label>
+<div class="clay-inset rounded-xl p-lg flex items-center justify-center group focus-within:ring-4 ring-primary-fixed/30 transition-all">
+<span class="text-primary font-display text-display mr-2">$</span>
+<input class="bg-transparent border-none text-display font-display text-primary placeholder:text-primary/30 focus:ring-0 w-full text-center outline-none" placeholder="0.00" step="0.01" type="number"/>
+</div>
+</section>
+<!-- Split Method Toggle -->
+<section class="space-y-4">
+<label class="font-title-lg text-title-lg text-on-surface-variant block ml-2">Split strategy</label>
+<div class="clay-track p-2 rounded-xl flex">
+<button class="flex-1 py-3 px-4 rounded-lg font-label-md text-label-md active-tab-clay bg-surface transition-all text-primary" id="split-equally" onclick="toggleSplit('equal')">
+                    Equally
+                </button>
+<button class="flex-1 py-3 px-4 rounded-lg font-label-md text-label-md text-outline hover:text-primary transition-all" id="split-amount" onclick="toggleSplit('amount')">
+                    By Amount
+                </button>
+</div>
+</section>
+<!-- Friends List -->
+<section class="space-y-4">
+<div class="flex items-center justify-between ml-2">
+<label class="font-title-lg text-title-lg text-on-surface-variant">Select friends</label>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">group_add</span> Add New
+                </button>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Friend 1 -->
+<div class="clay-card rounded-lg p-md flex items-center gap-4 group cursor-pointer active:scale-98 transition-all" onclick="this.querySelector('input').click()">
+<div class="w-14 h-14 rounded-full clay-avatar flex-shrink-0 overflow-hidden ring-4 ring-surface-container">
+<img class="w-full h-full object-cover" data-alt="A young man with glasses and a friendly expression, outdoor urban setting with soft morning sunlight. The portrait is high-quality with a shallow depth of field, reflecting a high-end social fin-tech app aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCudCLgcYckJEb2fy-9s7HiQCPZ3DmZCnbvWvWkf-9I547aVxecFx3g4kGJOZRjj1KfZOHAFg4ZaJ7sNjKlWZyHPNpQlslWWFH6J8qXsJSocE0s9DSTSpXVRyClmIeQooj1uV_o_Ua5IvkvIaDkkPk33--oLJSgYSUC4TzcH67a-EF2_z3edZZgv0uNx68FYPP8chRCfhr9HZhzUxyylgv0NL15W950Nu4QE1YOc-F0T21mUJEewpL2mkoiaIlPNnnEIMxvtpfBXp0i"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-title-lg text-title-lg text-on-surface">Marcus Chen</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">@marcus_c</p>
+</div>
+<input checked="" class="clay-checkbox" type="checkbox"/>
+</div>
+<!-- Friend 2 -->
+<div class="clay-card rounded-lg p-md flex items-center gap-4 group cursor-pointer active:scale-98 transition-all" onclick="this.querySelector('input').click()">
+<div class="w-14 h-14 rounded-full clay-avatar flex-shrink-0 overflow-hidden ring-4 ring-surface-container">
+<img class="w-full h-full object-cover" data-alt="A smiling woman with curly hair wearing a yellow sweater, cozy indoor cafe background with soft bokeh. Modern and diverse representation for a friendly financial application user list." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-8qWHaVSnYPo8XT6NI8OXr4V0V_Zj84HiLhxr0VBPa5NFEoCD_naf1HbLHgzVkVb_42BqqBFygM2hePpzysmcFkWrdN9g5C3_zSIf9IxvvX2x8oFNFDBGBwasKCLF8hsplVRndxQveRvr1LcGRcvzYfJJ388aYi-swdb1dc0Fu5ipn03JMByUkuZRHh5kKl1Rz7gcIJZjzMMJ0RoBN1tMdTuHvGkxKNBHmbivliCgYsKYQNIfVztQ2LAn7qVWi6uYOvq8d8cD0G1A"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-title-lg text-title-lg text-on-surface">Sarah Miller</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">@sarah_m</p>
+</div>
+<input checked="" class="clay-checkbox" type="checkbox"/>
+</div>
+<!-- Friend 3 -->
+<div class="clay-card rounded-lg p-md flex items-center gap-4 group cursor-pointer active:scale-98 transition-all" onclick="this.querySelector('input').click()">
+<div class="w-14 h-14 rounded-full clay-avatar flex-shrink-0 overflow-hidden ring-4 ring-surface-container">
+<img class="w-full h-full object-cover" data-alt="A person with a cheerful expression and trendy hat, vibrant minimalist orange background. Studio lighting, high quality, soft shadows, visually appealing for a premium UI friend selection list." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2niSEGpEKM7aX7zJY827mCPBgfCvFA8rRcB9OCxtAIfOJiq9uqAZneBiXtJJqv2rfV6g-QTQFZb2LbX0lX-IGnHHwVGZMIEGOZvsHzq-DlbLgzIz0O-JT8tUrPjhTLybPcPPxRnlN1TkNSylGWxiJP_-PaUzXZE3_qeUJ7I71QU2BYZcynWPgjEwEmlTwDWRENXUTcuzdu_16naQbsdCAy5cNdZi8w3hcUoX8HU9Kn5nXPDxv6rR9moCDCec80-xqGAc8saS_8m2M"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-title-lg text-title-lg text-on-surface">Jordan Lex</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">@jordan_vibe</p>
+</div>
+<input class="clay-checkbox" type="checkbox"/>
+</div>
+<!-- Friend 4 -->
+<div class="clay-card rounded-lg p-md flex items-center gap-4 group cursor-pointer active:scale-98 transition-all" onclick="this.querySelector('input').click()">
+<div class="w-14 h-14 rounded-full clay-avatar flex-shrink-0 overflow-hidden ring-4 ring-surface-container">
+<img class="w-full h-full object-cover" data-alt="Mature professional man with a friendly gaze, grey hair, soft natural lighting in a modern home office. Warm and trustworthy feel for a financial services platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFSD2gyna49hWy3Z_v_rLTdx0trJ9APBcRumUY19A9knbWtPRHUFSdJeCa7ng276ctri8ddNF3hJotwFP24jYXiB8aLRRahvDX3TsccyIkC_t3ImnNkjJonZ3mEnNLxKIb2y1dAkdwIREZg_TekORlfePBCNwpY02C242UllIOafJeYkOf_O3SuaZHK48Jt1g1yxn7brG0TI19xnhCkd9sqILuU-MGr3rpCLz9u0tlIBPisu7l5GtTq37FvfLZaDI1nnQaj8RK6Njd"/>
+</div>
+<div class="flex-grow">
+<h4 class="font-title-lg text-title-lg text-on-surface">Robert D.</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">@rob_clay</p>
+</div>
+<input class="clay-checkbox" type="checkbox"/>
+</div>
+</div>
+</section>
+<!-- Summary Note (Optional) -->
+<section class="space-y-4">
+<label class="font-title-lg text-title-lg text-on-surface-variant block ml-2">What's it for?</label>
+<div class="clay-inset rounded-xl p-md">
+<input class="bg-transparent border-none w-full font-body-md text-body-md text-on-surface focus:ring-0" placeholder="Add a note (e.g. Dinner at Luca's)" type="text"/>
+</div>
+</section>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 right-0 p-container-padding z-50 pointer-events-none">
+<div class="max-w-[600px] mx-auto pointer-events-auto">
+<button class="w-full py-6 rounded-xl clay-button-primary text-on-primary font-headline-md text-headline-md flex items-center justify-center gap-3 active:scale-95">
+<span class="material-symbols-outlined">receipt_long</span>
+                Create Split
+            </button>
+</div>
+</div>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-gutter left-gutter right-gutter h-20 bg-surface-container-low/90 backdrop-blur-md rounded-xl z-40 flex justify-around items-center px-4 max-w-[600px] mx-auto shadow-[0_20px_40px_rgba(163,177,198,0.4),inset_0_10px_10px_rgba(255,255,255,0.6)]">
+<a class="flex flex-col items-center justify-center text-outline px-4 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-label-sm text-label-sm">Bank</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline px-4 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label-sm text-label-sm">Wealth</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary bg-primary-container rounded-full px-4 py-2 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05)] active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Pay</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline px-4 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline px-4 py-2 hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-sm text-label-sm">Help</span>
+</a>
+</nav>
+<script>
+        function toggleSplit(type) {
+            const equalBtn = document.getElementById('split-equally');
+            const amountBtn = document.getElementById('split-amount');
+            
+            if (type === 'equal') {
+                equalBtn.classList.add('active-tab-clay', 'bg-surface', 'text-primary');
+                equalBtn.classList.remove('text-outline');
+                amountBtn.classList.remove('active-tab-clay', 'bg-surface', 'text-primary');
+                amountBtn.classList.add('text-outline');
+            } else {
+                amountBtn.classList.add('active-tab-clay', 'bg-surface', 'text-primary');
+                amountBtn.classList.remove('text-outline');
+                equalBtn.classList.remove('active-tab-clay', 'bg-surface', 'text-primary');
+                equalBtn.classList.add('text-outline');
+            }
+        }
+
+        // Tactile vibration simulation on button presses for mobile
+        document.querySelectorAll('button, .clay-card').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                if (navigator.vibrate) navigator.vibrate(5);
+            });
+        });
+    </script>
+</body></html>

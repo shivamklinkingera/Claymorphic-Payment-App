@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Electricity Bill Payment - ClayPay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ececff",
+                    "on-tertiary-fixed": "#281800",
+                    "background": "#fbf8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-secondary-container": "#007350",
+                    "tertiary": "#7f5604",
+                    "primary": "#2f6192",
+                    "surface-variant": "#dee0ff",
+                    "surface-dim": "#d5d8f9",
+                    "tertiary-fixed": "#ffddaf",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fbf8ff",
+                    "outline": "#727780",
+                    "on-primary-fixed": "#001d35",
+                    "inverse-surface": "#2b2f48",
+                    "on-primary-container": "#003256",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface": "#fbf8ff",
+                    "surface-tint": "#2f6192",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#161a32",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-background": "#161a32",
+                    "on-surface-variant": "#42474f",
+                    "secondary": "#006c4b",
+                    "secondary-fixed": "#8af8c5",
+                    "secondary-container": "#8af8c5",
+                    "on-secondary-fixed": "#002114",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "primary-fixed": "#d1e4ff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "surface-container-highest": "#dee0ff",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#9dcaff",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f4f2ff",
+                    "outline-variant": "#c2c7d0",
+                    "surface-container-high": "#e5e6ff",
+                    "primary-container": "#6c9bcf",
+                    "on-tertiary-container": "#432b00",
+                    "inverse-on-surface": "#f0efff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "20px",
+                    "unit": "4px",
+                    "lg": "32px",
+                    "xs": "8px",
+                    "md": "20px",
+                    "container-padding": "24px",
+                    "xl": "48px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            color: #161a32;
+        }
+
+        /* Claymorphism Utilities */
+        .clay-level-1 {
+            background: #F0EDE8;
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), 
+                        inset 6px 6px 12px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-level-2 {
+            background: #fbf8ff;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-button-primary {
+            background: #2f6192;
+            box-shadow: 10px 10px 20px rgba(47, 97, 146, 0.3), 
+                        inset 6px 6px 12px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .clay-button-primary:active {
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.2);
+            transform: scale(0.96);
+        }
+
+        .clay-input-inset {
+            background: #e8e5df;
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.5), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+            border: none;
+        }
+
+        .clay-chip {
+            background: #fbf8ff;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.5);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center">
+<!-- Top Navigation -->
+<header class="w-full max-w-[1200px] flex items-center justify-between px-container-padding py-md z-50">
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 rounded-full clay-level-1 flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">Electricity Bill</h1>
+</div>
+<div class="w-10 h-10 rounded-full clay-level-1 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A high-quality 3D rendered avatar of a friendly professional person, soft lighting, pastel background, claymorphic style to match the UI theme." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwlb5-VnWjzhO97Dljs3T8zC09ow2SxlxWk3unHOPJ6K7IRsadTSB-cc0ZEUdVx9geI3rhcKIfLPayw-4Misvum7QywxRsXQ2BYW99d_cEY0S9VbpobIGyHn71oPV2MSYmsi-K8SOaPqWnjm-2QHD5XgUs_yQfRCKRXvgEthtb5WfU9bY9LUhAYQdGwiVKqoL1BSTL1Ldblgc3utwzXJ80N7xumx97Zww6VchWKiaHK6qWENEG20kd5MKzZda4DRFFuwmpymCCMeLG"/>
+</div>
+</header>
+<main class="w-full max-w-md px-container-padding flex flex-col gap-lg pb-32">
+<!-- Operator Selection Section -->
+<section class="flex flex-col gap-md">
+<label class="font-label-md text-on-surface-variant px-sm">Select Electricity Board</label>
+<div class="relative group">
+<div class="clay-level-1 rounded-lg p-md flex items-center justify-between cursor-pointer group-active:scale-[0.98] transition-transform">
+<span class="text-on-surface-variant font-body-md">Choose your provider</span>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-sm pt-xs">
+<span class="font-label-sm text-on-surface-variant w-full mb-1">Recently Used</span>
+<button class="clay-chip rounded-full px-md py-xs flex items-center gap-xs active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm text-secondary">bolt</span>
+<span class="font-label-md text-on-surface">MAHADISCOM</span>
+</button>
+<button class="clay-chip rounded-full px-md py-xs flex items-center gap-xs active:scale-95 transition-all">
+<span class="material-symbols-outlined text-sm text-secondary">bolt</span>
+<span class="font-label-md text-on-surface">BESCOM</span>
+</button>
+</div>
+</section>
+<!-- Consumer Details Form -->
+<section class="flex flex-col gap-lg">
+<div class="flex flex-col gap-sm">
+<label class="font-label-md text-on-surface-variant px-sm">Consumer Number</label>
+<div class="clay-level-2 rounded-lg p-xs">
+<input class="w-full clay-input-inset rounded-md px-md py-md font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="e.g. 1234567890" type="text"/>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-md text-on-surface-variant px-sm">Bill Amount (Optional)</label>
+<div class="clay-level-2 rounded-lg p-xs">
+<input class="w-full clay-input-inset rounded-md px-md py-md font-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all" placeholder="₹ Enter Amount" type="number"/>
+</div>
+</div>
+</section>
+<!-- Bill Preview Card -->
+<section class="mt-xs">
+<div class="clay-level-2 rounded-lg p-lg relative overflow-hidden">
+<!-- Atmospheric background element -->
+<div class="absolute -right-8 -top-8 w-24 h-24 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="flex justify-between items-start mb-md">
+<div>
+<h3 class="font-title-lg text-primary mb-1">MAHADISCOM</h3>
+<p class="font-label-md text-on-surface-variant">Consumer: 1234567890</p>
+</div>
+<div class="w-12 h-12 clay-level-1 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">electric_bolt</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs border-t border-surface-variant pt-md">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Due Date</span>
+<span class="font-label-md text-on-surface">25 Dec 2024</span>
+</div>
+<div class="flex justify-between items-end mt-sm">
+<span class="font-body-md text-on-surface-variant">Bill Amount</span>
+<span class="font-headline-md text-on-surface text-[24px]">₹847</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Anchor: Map of Utility Hub (Optional Decorative) -->
+<div class="w-full h-32 clay-level-1 rounded-lg overflow-hidden mt-md opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+<div class="w-full h-full bg-cover bg-center" data-alt="A soft, stylized digital map showing a residential neighborhood with glowing nodes representing utility service points. The color palette is light warm off-white and soft blues, maintaining a clean claymorphic aesthetic without distracting details." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBcbyzcaqJHEdpKt7WHjg3ykg502yfzBTa8aXo5v-LnPH5KRV8BF0Lt0IxNw0AZ0oAUtxKDmErWY6vAhguTGkAh_oqPmk2hYfZp7g0RfeY0bnPl-VmaVl-NWUmP1dM9T4GI4lOrJMYfBQL2bXmDk6kijmb8xVabqB_yMCBmy5VyttUMO43it6xchTc_XBwV34btECKv0PS3wqk48AEnrS4mFpQpRg45ReEmB2yiSQEsLJ2T7VUmJwfbxAXAdNvOCYLo5wEwTELtRP-E')"></div>
+</div>
+</main>
+<!-- Bottom Action Button -->
+<div class="fixed bottom-0 left-0 w-full p-container-padding flex justify-center items-end pointer-events-none">
+<div class="w-full max-w-md pointer-events-auto">
+<button class="w-full clay-button-primary rounded-full py-lg text-on-primary font-headline-md flex items-center justify-center gap-md group">
+<span>Pay ₹847</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('button, .clay-level-1, .clay-level-2').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.98)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = 'scale(1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple floating animation for the card
+        const card = document.querySelector('.clay-level-2');
+        if(card) {
+            let angle = 0;
+            function animate() {
+                angle += 0.02;
+                const y = Math.sin(angle) * 3;
+                card.style.transform = `translateY(${y}px)`;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+    </script>
+</body></html>

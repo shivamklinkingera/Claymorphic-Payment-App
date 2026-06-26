@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #fbf8ff;
+            overflow-x: hidden;
+        }
+
+        .clay-card {
+            box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.4), -10px -10px 15px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-card-high {
+            box-shadow: 20px 20px 40px rgba(163, 177, 198, 0.4), -10px -10px 20px rgba(255, 255, 255, 0.7);
+        }
+
+        .clay-inset {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.05), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-bubble-user {
+            background-color: #2f6192;
+            color: #ffffff;
+            box-shadow: 8px 8px 16px rgba(47, 97, 146, 0.2), inset 4px 4px 8px rgba(255, 255, 255, 0.3);
+            border-radius: 24px 24px 4px 24px;
+        }
+
+        .clay-bubble-agent {
+            background-color: #ececff;
+            color: #161a32;
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.2), inset 4px 4px 8px rgba(255, 255, 255, 0.6);
+            border-radius: 24px 24px 24px 4px;
+        }
+
+        .clay-input-container {
+            background-color: #f4f2ff;
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.3), inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-button-pill {
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .clay-button-pill:active {
+            transform: scale(0.95);
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .soft-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#7f5604",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#d5d8f9",
+                        "outline-variant": "#c2c7d0",
+                        "on-tertiary-fixed": "#281800",
+                        "tertiary-container": "#c08f3e",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "primary-fixed-dim": "#9dcaff",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f0efff",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "surface-container-low": "#f4f2ff",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#432b00",
+                        "on-secondary-container": "#007350",
+                        "on-primary-fixed": "#001d35",
+                        "error": "#ba1a1a",
+                        "on-background": "#161a32",
+                        "secondary-container": "#8af8c5",
+                        "surface-variant": "#dee0ff",
+                        "inverse-primary": "#9dcaff",
+                        "inverse-surface": "#2b2f48",
+                        "on-secondary-fixed": "#002114",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "surface-container-highest": "#dee0ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-high": "#e5e6ff",
+                        "secondary": "#006c4b",
+                        "primary-container": "#6c9bcf",
+                        "primary": "#2f6192",
+                        "on-surface": "#161a32",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fbf8ff",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "secondary-fixed": "#8af8c5",
+                        "surface-tint": "#2f6192",
+                        "on-primary-container": "#003256",
+                        "surface-container": "#ececff",
+                        "background": "#fbf8ff",
+                        "on-surface-variant": "#42474f",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "primary-fixed": "#d1e4ff",
+                        "outline": "#727780",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "48px",
+                        "gutter": "20px",
+                        "sm": "12px",
+                        "md": "20px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "container-padding": "24px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "title-lg": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+<!-- Top AppBar (from Shared Components) -->
+<header class="flex justify-between items-center w-full sticky top-0 z-50 bg-surface dark:bg-surface-container-high w-full top-0 px-gutter pt-4 pb-4 clay-card">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:scale-105 transition-transform active:scale-95" data-icon="arrow_back">arrow_back</button>
+<div class="flex items-center gap-3">
+<div class="relative">
+<img class="w-10 h-10 rounded-full border-2 border-white shadow-sm object-cover" data-alt="A high-quality portrait of a friendly female support specialist named Sarah, wearing a professional headset, smiling warmly. The lighting is soft and flattering with a clean, pastel blue background. The overall aesthetic is polished, trustworthy, and modern, fitting a high-end fintech brand with soft rounded edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7NzmdVaFjDP5b8U1XH3LUID4A348hJD0zDt4gVR4DeYaZdeKN4IgMAk6WpfyoqffHBOz-BU7MO-wAzARHfP8n707VARHNloOyHJ7hM8yfyHImhg0XH05eY2XgN_Oeoh6mcrvyYDOxjn1XIXqf_SS7YUKOOxlAqZ1-7cnIJBBO64iM_avVPyvMIU_ABppqd0uzhXPhidDw0qUDy--lpO4vePqTZ9gTQZqVTOxdfmosjULBPgLay0h4ucIN4_pd-KgNRtUCDzHvEgkH"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary rounded-full border-2 border-white shadow-sm"></div>
+</div>
+<div class="flex flex-col">
+<span class="font-title-lg text-title-lg text-primary">Sarah</span>
+<span class="text-label-sm font-label-sm text-secondary">Online</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:scale-105 transition-transform" data-icon="videocam">videocam</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:scale-105 transition-transform" data-icon="call">call</button>
+</div>
+</header>
+<main class="flex flex-col min-h-[calc(100vh-180px)] px-gutter py-lg relative overflow-hidden">
+<!-- Subtle Animated Background Elements -->
+<div class="absolute -top-20 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl soft-float"></div>
+<div class="absolute top-1/2 -right-32 w-80 h-80 bg-secondary/5 rounded-full blur-3xl soft-float" style="animation-delay: -2s;"></div>
+<!-- Chat History -->
+<div class="flex-1 space-y-lg mb-xl z-10">
+<!-- Date Divider -->
+<div class="flex justify-center">
+<span class="px-md py-xs bg-surface-container rounded-full text-label-sm font-label-sm text-on-surface-variant clay-inset">Today</span>
+</div>
+<!-- Agent Message -->
+<div class="flex flex-col items-start gap-2 max-w-[85%]">
+<div class="clay-bubble-agent p-md">
+<p class="font-body-md text-body-md">Hello Alex! I'm Sarah from the PayClay support team. How can I help you with your account today? 👋</p>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant ml-xs">09:41 AM</span>
+</div>
+<!-- User Message -->
+<div class="flex flex-col items-end gap-2 max-w-[85%] ml-auto">
+<div class="clay-bubble-user p-md">
+<p class="font-body-md text-body-md">Hi Sarah, I'm trying to set up a new ClayCard but it says 'Verification Pending'.</p>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mr-xs">09:42 AM</span>
+</div>
+<!-- Agent Message -->
+<div class="flex flex-col items-start gap-2 max-w-[85%]">
+<div class="clay-bubble-agent p-md">
+<p class="font-body-md text-body-md">I see the issue. It looks like the document photo was a bit blurry. Would you like to re-upload it here or via the app settings?</p>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant ml-xs">09:43 AM</span>
+</div>
+<!-- Agent Typing Indicator -->
+<div class="flex items-center gap-2 px-md py-sm bg-surface-container-low rounded-full w-24 clay-inset">
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0s"></div>
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+<div class="w-2 h-2 bg-primary rounded-full animate-bounce" style="animation-delay: 0.4s"></div>
+</div>
+</div>
+</main>
+<!-- Chat Input Area -->
+<div class="fixed bottom-0 left-0 right-0 p-gutter pb-xl z-50">
+<div class="max-w-md mx-auto flex items-center gap-md">
+<!-- Attachment Button -->
+<button class="w-12 h-12 flex items-center justify-center bg-surface-container text-primary rounded-2xl clay-card clay-button-pill hover:bg-surface-container-high">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<!-- Input Field -->
+<div class="flex-1 clay-input-container rounded-3xl flex items-center px-md py-xs">
+<input class="bg-transparent border-none focus:ring-0 w-full py-md font-body-md text-body-md text-on-surface placeholder:text-on-surface-variant/50" placeholder="Type a message..." type="text"/>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors ml-xs" data-icon="sentiment_satisfied">sentiment_satisfied</button>
+</div>
+<!-- Send Button -->
+<button class="w-12 h-12 flex items-center justify-center bg-primary text-on-primary rounded-2xl clay-card clay-button-pill shadow-[6px_6px_12px_rgba(47,97,146,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3)]">
+<span class="material-symbols-outlined" data-icon="send" style="font-variation-settings: 'FILL' 1;">send</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Suppressed as per Task Rules for Focused Task Screens) -->
+<!-- The user is in a focused support journey, so we suppress the main global navigation to maintain focus on the chat. -->
+<script>
+        // Micro-interaction for input focus
+        const input = document.querySelector('input');
+        const inputContainer = document.querySelector('.clay-input-container');
+        
+        input.addEventListener('focus', () => {
+            inputContainer.style.boxShadow = "inset 8px 8px 16px rgba(163, 177, 198, 0.4), inset -8px -8px 16px rgba(255, 255, 255, 0.9)";
+            inputContainer.style.transform = "scale(1.02)";
+            inputContainer.style.transition = "all 0.3s ease";
+        });
+
+        input.addEventListener('blur', () => {
+            inputContainer.style.boxShadow = "inset 6px 6px 12px rgba(163, 177, 198, 0.3), inset -6px -6px 12px rgba(255, 255, 255, 0.8)";
+            inputContainer.style.transform = "scale(1)";
+        });
+
+        // Simple message append simulation for interactivity demo
+        const sendBtn = document.querySelector('button .material-symbols-outlined[data-icon="send"]').parentElement;
+        sendBtn.addEventListener('click', () => {
+            if (input.value.trim() !== '') {
+                const message = input.value;
+                input.value = '';
+                console.log('Sending message:', message);
+                // Real implementation would append a new bubble here
+            }
+        });
+    </script>
+</body></html>

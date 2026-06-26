@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Change UPI PIN | ClayPay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#d1e4ff",
+                    "surface-bright": "#fbf8ff",
+                    "tertiary-container": "#c08f3e",
+                    "on-surface": "#161a32",
+                    "on-secondary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2b2f48",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddaf",
+                    "on-tertiary-fixed": "#281800",
+                    "on-secondary-container": "#007350",
+                    "primary-container": "#6c9bcf",
+                    "inverse-primary": "#9dcaff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-tertiary-container": "#432b00",
+                    "secondary-container": "#8af8c5",
+                    "primary-fixed-dim": "#9dcaff",
+                    "on-secondary-fixed-variant": "#005137",
+                    "surface-container-highest": "#dee0ff",
+                    "background": "#fbf8ff",
+                    "on-primary-container": "#003256",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "secondary": "#006c4b",
+                    "surface-variant": "#dee0ff",
+                    "primary": "#2f6192",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "on-background": "#161a32",
+                    "surface-tint": "#2f6192",
+                    "on-secondary-fixed": "#002114",
+                    "outline-variant": "#c2c7d0",
+                    "tertiary": "#7f5604",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "on-primary-fixed": "#001d35",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f4f2ff",
+                    "surface-container": "#ececff",
+                    "secondary-fixed": "#8af8c5",
+                    "surface-dim": "#d5d8f9",
+                    "outline": "#727780",
+                    "on-surface-variant": "#42474f",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f0efff",
+                    "surface": "#fbf8ff",
+                    "surface-container-high": "#e5e6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "32px",
+                    "container-padding": "24px",
+                    "sm": "12px",
+                    "unit": "4px",
+                    "xs": "8px",
+                    "xl": "48px",
+                    "md": "20px",
+                    "gutter": "20px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Claymorphism Elevation 1 (Level 1) */
+        .clay-low {
+            background: #F0EDE8;
+            box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.4), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.7),
+                        inset 4px 4px 8px rgba(255, 255, 255, 0.5),
+                        inset -4px -4px 8px rgba(163, 177, 198, 0.2);
+        }
+
+        /* Claymorphism Elevation 2 (Level 2) */
+        .clay-standard {
+            background: #F0EDE8;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.8),
+                        inset 6px 6px 12px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Sunken / Inset for Active/Input States */
+        .clay-sunken {
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.4), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .dot-indicator {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .dot-empty {
+            background: #E0DCD6;
+            box-shadow: inset 2px 2px 4px rgba(0,0,0,0.1), inset -2px -2px 4px rgba(255,255,255,0.5);
+        }
+
+        .dot-filled {
+            background: var(--primary); /* Injected via tailwind usually */
+            background-color: #2f6192;
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.5), inset 2px 2px 4px rgba(255,255,255,0.4);
+        }
+
+        .keypad-button {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.15s ease;
+        }
+
+        .keypad-button:active {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.6), 
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+            transform: scale(0.95);
+        }
+
+        .step-completed { color: #2f6192; }
+        .step-current { color: #2f6192; font-weight: 800; }
+        .step-future { color: #727780; }
+
+        .progress-line {
+            height: 4px;
+            flex-grow: 1;
+            background: #E0DCD6;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+            border-radius: 2px;
+            margin: 0 12px;
+        }
+
+        .progress-line-active {
+            background: #2f6192;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center overflow-x-hidden">
+<!-- Top AppBar -->
+<header class="w-full flex justify-between items-center px-container-padding py-md sticky top-0 z-50">
+<button class="w-10 h-10 rounded-full clay-standard flex items-center justify-center text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">Change UPI PIN</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 w-full max-w-[480px] px-container-padding flex flex-col items-center justify-center gap-xl py-lg">
+<!-- Bank Selector Dropdown -->
+<div class="w-full">
+<button class="w-full flex items-center justify-between px-md py-sm clay-low rounded-lg active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center overflow-hidden">
+<img class="w-8 h-8 object-contain" data-alt="A stylized logo of State Bank of India with its characteristic circular blue emblem on a clean white background, designed for a modern fintech app interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ7ahltrr05MlEsdrgSkZ0ER4piZAcqAbBvNZZYMrDNRcQ_-_6_lRm0QcY5HZSldjkmJSRGTHcOW0m-zoDNnilrsd-ydU-yWVnatkiGdYywqajmtOD5vh967aP_qaHdrqJWDJF5Yl-p4qfES4NeyC-UkuV1_aBJ9sQwKrQ29uxaA9RpbzjtZS0t5MQJHOuRhNOLhLD8qLR0J_X7slN_Nh2jmI2OOONzSlvaPeJcrbX7ymU4rdPxA8XUp7xyemZUhaLXija_lLOHu0Z"/>
+</div>
+<div class="text-left">
+<p class="font-label-md text-label-md text-on-surface">SBI •••• 4521</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Savings Account</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary">keyboard_arrow_down</span>
+</button>
+</div>
+<!-- Step Indicator -->
+<div class="w-full flex items-center justify-between px-xs">
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined step-completed mb-xs" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-sm text-label-sm step-completed">Old PIN</span>
+</div>
+<div class="progress-line progress-line-active"></div>
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full border-4 border-primary bg-primary-fixed mb-xs flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<span class="font-label-sm text-label-sm step-current">New PIN</span>
+</div>
+<div class="progress-line"></div>
+<div class="flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-outline-variant mb-xs"></div>
+<span class="font-label-sm text-label-sm step-future">Confirm</span>
+</div>
+</div>
+<!-- PIN Entry Section -->
+<div class="flex flex-col items-center gap-lg">
+<p class="font-body-md text-body-md text-outline">Enter new UPI PIN</p>
+<div class="flex gap-md items-center justify-center">
+<div class="dot-indicator dot-empty" id="dot-1"></div>
+<div class="dot-indicator dot-empty" id="dot-2"></div>
+<div class="dot-indicator dot-empty" id="dot-3"></div>
+<div class="dot-indicator dot-empty" id="dot-4"></div>
+</div>
+</div>
+<!-- Security Note Card -->
+<div class="w-full px-md py-sm rounded-lg clay-low bg-tertiary-fixed/10 flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">warning</span>
+<p class="font-label-sm text-label-sm text-on-tertiary-container">Never share your UPI PIN with anyone</p>
+</div>
+<!-- Numeric Keypad -->
+<div class="grid grid-cols-3 gap-y-lg gap-x-xl mt-md">
+<!-- Row 1 -->
+<button class="keypad-button clay-standard" onclick="tapKey('1')">
+<span class="font-headline-md text-headline-md text-primary">1</span>
+</button>
+<button class="keypad-button clay-standard" onclick="tapKey('2')">
+<span class="font-headline-md text-headline-md text-primary">2</span>
+</button>
+<button class="keypad-button clay-standard" onclick="tapKey('3')">
+<span class="font-headline-md text-headline-md text-primary">3</span>
+</button>
+<!-- Row 2 -->
+<button class="keypad-button clay-standard" onclick="tapKey('4')">
+<span class="font-headline-md text-headline-md text-primary">4</span>
+</button>
+<button class="keypad-button clay-standard" onclick="tapKey('5')">
+<span class="font-headline-md text-headline-md text-primary">5</span>
+</button>
+<button class="keypad-button clay-standard" onclick="tapKey('6')">
+<span class="font-headline-md text-headline-md text-primary">6</span>
+</button>
+<!-- Row 3 -->
+<button class="keypad-button clay-standard" onclick="tapKey('7')">
+<span class="font-headline-md text-headline-md text-primary">7</span>
+</button>
+<button class="keypad-button clay-standard" onclick="tapKey('8')">
+<span class="font-headline-md text-headline-md text-primary">8</span>
+</button>
+<button class="keypad-button clay-standard" onclick="tapKey('9')">
+<span class="font-headline-md text-headline-md text-primary">9</span>
+</button>
+<!-- Row 4 -->
+<button class="keypad-button active:opacity-60" onclick="tapKey('clear')">
+<span class="material-symbols-outlined text-outline">backspace</span>
+</button>
+<button class="keypad-button clay-standard" onclick="tapKey('0')">
+<span class="font-headline-md text-headline-md text-primary">0</span>
+</button>
+<button class="keypad-button clay-standard bg-primary text-white" onclick="submitPin()">
+<span class="material-symbols-outlined">check</span>
+</button>
+</div>
+</main>
+<script>
+        let currentPin = "";
+        const dots = [
+            document.getElementById('dot-1'),
+            document.getElementById('dot-2'),
+            document.getElementById('dot-3'),
+            document.getElementById('dot-4')
+        ];
+
+        function tapKey(val) {
+            if (val === 'clear') {
+                if (currentPin.length > 0) {
+                    currentPin = currentPin.slice(0, -1);
+                }
+            } else if (currentPin.length < 4) {
+                currentPin += val;
+                // Add physical feedback sensation
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate(20);
+                }
+            }
+            updateDots();
+        }
+
+        function updateDots() {
+            dots.forEach((dot, index) => {
+                if (index < currentPin.length) {
+                    dot.classList.remove('dot-empty');
+                    dot.classList.add('dot-filled');
+                    dot.style.transform = "scale(1.2)";
+                } else {
+                    dot.classList.add('dot-empty');
+                    dot.classList.remove('dot-filled');
+                    dot.style.transform = "scale(1)";
+                }
+            });
+        }
+
+        function submitPin() {
+            if (currentPin.length === 4) {
+                // Mock success animation
+                const main = document.querySelector('main');
+                main.style.transition = "opacity 0.3s ease";
+                main.style.opacity = "0.5";
+                setTimeout(() => {
+                    alert("Proceeding to Confirmation...");
+                    currentPin = "";
+                    updateDots();
+                    main.style.opacity = "1";
+                }, 400);
+            }
+        }
+    </script>
+</body></html>

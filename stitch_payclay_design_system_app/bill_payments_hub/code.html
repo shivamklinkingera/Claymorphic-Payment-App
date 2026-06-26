@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bill Payments Hub - ClayPay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ececff",
+                    "on-tertiary-fixed": "#281800",
+                    "background": "#fbf8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-secondary-container": "#007350",
+                    "tertiary": "#7f5604",
+                    "primary": "#2f6192",
+                    "surface-variant": "#dee0ff",
+                    "surface-dim": "#d5d8f9",
+                    "tertiary-fixed": "#ffddaf",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fbf8ff",
+                    "outline": "#727780",
+                    "on-primary-fixed": "#001d35",
+                    "inverse-surface": "#2b2f48",
+                    "on-primary-container": "#003256",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface": "#fbf8ff",
+                    "surface-tint": "#2f6192",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#161a32",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-background": "#161a32",
+                    "on-surface-variant": "#42474f",
+                    "secondary": "#006c4b",
+                    "secondary-fixed": "#8af8c5",
+                    "secondary-container": "#8af8c5",
+                    "on-secondary-fixed": "#002114",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "primary-fixed": "#d1e4ff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "surface-container-highest": "#dee0ff",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#9dcaff",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f4f2ff",
+                    "outline-variant": "#c2c7d0",
+                    "surface-container-high": "#e5e6ff",
+                    "primary-container": "#6c9bcf",
+                    "on-tertiary-container": "#432b00",
+                    "inverse-on-surface": "#f0efff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "20px",
+                    "unit": "4px",
+                    "lg": "32px",
+                    "xs": "8px",
+                    "md": "20px",
+                    "container-padding": "24px",
+                    "xl": "48px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            color: #161a32;
+        }
+
+        /* Claymorphism Levels */
+        .clay-level-1 {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.3), 
+                        inset 6px 6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-level-2 {
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-inset {
+            background: #e5e2dd;
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.5), 
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-btn {
+            transition: all 0.2s ease;
+        }
+        .clay-btn:active {
+            transform: scale(0.95);
+            box-shadow: inset 4px 4px 8px rgba(0,0,0,0.1) !important;
+        }
+
+        .clay-circle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            border-radius: 9999px;
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), 
+                        inset 4px 4px 8px rgba(255, 255, 255, 0.6);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Specific Icon Colors for Clay Circles */
+        .clay-circle-blue { background-color: #d1e4ff; color: #2f6192; }
+        .clay-circle-green { background-color: #8af8c5; color: #006c4b; }
+        .clay-circle-amber { background-color: #ffddaf; color: #7f5604; }
+        .clay-circle-coral { background-color: #ffdad6; color: #ba1a1a; }
+        .clay-circle-teal { background-color: #b2ebf2; color: #006064; }
+        .clay-circle-purple { background-color: #e1bee7; color: #4a148c; }
+        .clay-circle-pink { background-color: #fce4ec; color: #880e4f; }
+        .clay-circle-grey { background-color: #eceff1; color: #455a64; }
+        .clay-circle-red { background-color: #ffebee; color: #c62828; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center px-container-padding py-sm w-full sticky top-0 bg-[#F0EDE8]/80 backdrop-blur-md z-50">
+<div class="flex items-center gap-md">
+<button aria-label="Go back" class="clay-circle w-10 h-10 clay-btn bg-white">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary">Bill Payments</h1>
+</div>
+<div class="w-10 h-10 rounded-full clay-level-1 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a smiling young woman with glasses, soft studio lighting, high-end commercial photography style, clean white background, friendly financial expert aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCGQTaN6C03-1DB3k2Z3NmRHG2zH29r-dlkUxVSbOuDlNuFTJdyaA_AySrSa2fWrqbZ4fnimIvJcc__OeUHJwgSnkWLtNAPdH9p-x1ySVwsdmH8rXRgpSNHglXXck9xdn-yzZAlWaDiOykhtFXbXP5chGC_JIjiO2AEglMscyP9MTrAik2Qs278gOsPjTDc_EjiWwNxLDDWNtx6vvJlfxPHodn4mkvszxIk4mNwXCRd157dLZHenIOc1K4tC_8wRjN5_oteEMpTBvv"/>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-padding">
+<!-- Search Section -->
+<section class="mt-md">
+<div class="clay-inset rounded-full px-md py-sm flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface-variant" placeholder="Search billers or categories" type="text"/>
+</div>
+</section>
+<!-- Main Grid Categories -->
+<section class="mt-xl">
+<div class="grid grid-cols-3 gap-y-xl gap-x-gutter text-center">
+<!-- Row 1 -->
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-blue group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="smartphone">smartphone</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Mobile</span>
+</div>
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-green group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="settings_input_antenna">settings_input_antenna</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">DTH</span>
+</div>
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-amber group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Electricity</span>
+</div>
+<!-- Row 2 -->
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-coral group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="gas_meter">gas_meter</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Gas</span>
+</div>
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-teal group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="water_drop">water_drop</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Water</span>
+</div>
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-purple group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="language">language</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Broadband</span>
+</div>
+<!-- Row 3 -->
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-pink group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="deskphone">deskphone</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Landline</span>
+</div>
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-grey group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="minor_crash">minor_crash</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">FASTag</span>
+</div>
+<div class="flex flex-col items-center gap-xs cursor-pointer group">
+<div class="clay-circle clay-circle-red group-active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="health_and_safety">health_and_safety</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Insurance</span>
+</div>
+</div>
+</section>
+<!-- Pending Bills Section -->
+<section class="mt-xl">
+<div class="flex items-center gap-sm mb-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Pending Bills</h2>
+<span class="bg-error text-on-error w-6 h-6 flex items-center justify-center rounded-full font-label-sm text-label-sm shadow-md">2</span>
+</div>
+<div class="flex flex-col gap-md">
+<!-- Bill Card 1 -->
+<div class="clay-level-1 p-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="clay-circle w-12 h-12 clay-circle-amber">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<p class="font-title-lg text-title-lg text-on-surface">Electricity — MAHADISCOM</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Due: 25 Dec</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<span class="font-headline-md text-headline-md text-error">₹847</span>
+<button class="bg-primary text-white font-label-md text-label-md px-sm py-unit rounded-full clay-btn shadow-lg">Pay Now</button>
+</div>
+</div>
+<!-- Bill Card 2 -->
+<div class="clay-level-1 p-md flex items-center justify-between">
+<div class="flex items-center gap-md">
+<div class="clay-circle w-12 h-12 clay-circle-blue">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<div>
+<p class="font-title-lg text-title-lg text-on-surface">Jio Mobile</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Due: 28 Dec</p>
+</div>
+</div>
+<div class="flex flex-col items-end gap-xs">
+<span class="font-headline-md text-headline-md text-error">₹299</span>
+<button class="bg-primary text-white font-label-md text-label-md px-sm py-unit rounded-full clay-btn shadow-lg">Pay Now</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Offers/Ads (Bento Style Suggestion) -->
+<section class="mt-xl">
+<div class="clay-level-2 p-xl bg-gradient-to-br from-primary-container to-surface-bright relative overflow-hidden group">
+<div class="relative z-10 flex flex-col gap-sm">
+<span class="bg-secondary text-white w-fit px-sm py-xs rounded-full font-label-sm text-label-sm">NEW OFFER</span>
+<h3 class="font-display text-headline-md text-on-primary-container max-w-[200px]">Get 5% Clayback on Gas</h3>
+<p class="font-body-md text-body-md text-on-primary-fixed-variant">Limited time only. Applied on first payment.</p>
+</div>
+<div class="absolute -right-4 -bottom-4 w-32 h-32 clay-circle bg-white/20 blur-xl group-hover:scale-125 transition-transform"></div>
+<span class="material-symbols-outlined absolute right-8 top-1/2 -translate-y-1/2 text-primary/20 text-[120px] pointer-events-none" style="font-variation-settings: 'FILL' 1;">gas_meter</span>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Contextual Filter: Relevant for Top-level) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg pb-lg pt-xs bg-surface-bright/90 backdrop-blur-md">
+<!-- Payments Tab (Active) -->
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-4 py-2 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)]" href="#">
+<span class="material-symbols-outlined" data-icon="payments" style="font-variation-settings: 'FILL' 1;">payments</span>
+<span class="font-label-sm text-label-sm">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center p-2 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction: Ripple effect on clay items
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('click', () => {
+                item.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    item.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+    </script>
+</body></html>

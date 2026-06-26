@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClayPay - Bank Account Linked List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #F0EDE8; /* Specific warm off-white requested */
+        }
+
+        .clay-card-l2 {
+            background: #ffffff;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+            border-radius: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .clay-card-l2:active {
+            transform: scale(0.98);
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .clay-card-dashed {
+            background: transparent;
+            border: 2px dashed #727780;
+            box-shadow: inset 5px 5px 10px rgba(255, 255, 255, 0.8);
+            border-radius: 2rem;
+        }
+
+        .clay-chip-primary {
+            background: #8af8c5; /* secondary-fixed */
+            color: #002114; /* on-secondary-fixed */
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-chip-pending {
+            background: #ffddaf; /* tertiary-fixed */
+            color: #281800; /* on-tertiary-fixed */
+            box-shadow: 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                        inset 2px 2px 4px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-btn-danger {
+            background: #ffffff;
+            color: #EF6461;
+            box-shadow: 10px 10px 20px rgba(239, 100, 97, 0.2), 
+                        inset 5px 5px 10px rgba(255, 255, 255, 0.8);
+            border-radius: 1rem;
+        }
+
+        .clay-btn-danger:active {
+            box-shadow: inset 4px 4px 8px rgba(239, 100, 97, 0.1);
+            transform: scale(0.95);
+        }
+
+        .sunken-icon {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4), 
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+            background: #F0EDE8;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d1e4ff",
+                        "surface-bright": "#fbf8ff",
+                        "tertiary-container": "#c08f3e",
+                        "on-surface": "#161a32",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2b2f48",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-tertiary-fixed": "#281800",
+                        "on-secondary-container": "#007350",
+                        "primary-container": "#6c9bcf",
+                        "inverse-primary": "#9dcaff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-tertiary-container": "#432b00",
+                        "secondary-container": "#8af8c5",
+                        "primary-fixed-dim": "#9dcaff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-container-highest": "#dee0ff",
+                        "background": "#fbf8ff",
+                        "on-primary-container": "#003256",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "secondary": "#006c4b",
+                        "surface-variant": "#dee0ff",
+                        "primary": "#2f6192",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "on-background": "#161a32",
+                        "surface-tint": "#2f6192",
+                        "on-secondary-fixed": "#002114",
+                        "outline-variant": "#c2c7d0",
+                        "tertiary": "#7f5604",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "on-primary-fixed": "#001d35",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f2ff",
+                        "surface-container": "#ececff",
+                        "secondary-fixed": "#8af8c5",
+                        "surface-dim": "#d5d8f9",
+                        "outline": "#727780",
+                        "on-surface-variant": "#42474f",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0efff",
+                        "surface": "#fbf8ff",
+                        "surface-container-high": "#e5e6ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "32px",
+                        "container-padding": "24px",
+                        "sm": "12px",
+                        "unit": "4px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "md": "20px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen pb-32">
+<!-- Top App Bar (Back Arrow + Heading) -->
+<header class="flex items-center px-container-padding py-md sticky top-0 bg-[#F0EDE8]/80 backdrop-blur-md z-50">
+<button class="sunken-icon w-10 h-10 rounded-full flex items-center justify-center mr-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">Bank Accounts</h1>
+</header>
+<main class="px-container-padding space-y-lg max-w-2xl mx-auto">
+<!-- UPI Section Header -->
+<div class="flex justify-between items-center mt-sm">
+<h2 class="font-title-lg text-title-lg text-on-surface-variant">UPI Linked Accounts</h2>
+<button class="sunken-icon w-10 h-10 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+</div>
+<!-- Bank List -->
+<div class="space-y-md">
+<!-- Bank Item 1: SBI -->
+<div class="clay-card-l2 p-md flex items-center gap-md h-[100px]">
+<div class="w-14 h-14 rounded-xl flex-shrink-0 overflow-hidden clay-card-l2 flex items-center justify-center bg-white">
+<img class="w-10 h-10 object-contain" data-alt="A clean and professional logo for State Bank of India, featuring a blue circular emblem with a keyhole-like cutout in the center, set against a pristine white studio background with soft clay-style lighting. The aesthetic is high-end fintech, focusing on reliability and traditional banking trust within a modern digital context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcjWfo0-bzLx9__8RpsKr3mG2RaqFGi7KDqVWvLKHjgUZEhdIlZcVlfCL7uA3diLTUMyhwcCajdN15eSNbziMXM9YkpNQwoHiK-U9uOvjNecUAoBaVWvJdNX-nW8RYLsiOV5x7c6-kpR8Z4uNg-1ywX4of5Y-iIyP20D8aTVfWBkd-lfh61nKtSy7A3zQFX82NMKvkDkncLsOYbffIfENkk3-cohs_0LDj9n1_EKrBpV6eHsqF4478isvGE2Oy91MPEWMvUoE8vMZ0"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md text-on-surface">State Bank of India</p>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-70">AC •••• 4521</p>
+</div>
+<div class="clay-chip-primary px-sm py-1 rounded-full">
+<span class="font-label-sm text-label-sm">Primary</span>
+</div>
+</div>
+<!-- Bank Item 2: HDFC -->
+<div class="clay-card-l2 p-md flex items-center gap-md h-[100px]">
+<div class="w-14 h-14 rounded-xl flex-shrink-0 overflow-hidden clay-card-l2 flex items-center justify-center bg-white">
+<img class="w-10 h-10 object-contain" data-alt="A modern and sleek HDFC Bank logo displayed on a small square card with rounded corners. The logo's blue and red accents are vibrant against a soft white background. The scene is lit with professional soft-box lighting, creating gentle highlights and shadows that emphasize a clean, organic, and friendly UI design style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjw4XoE07kt-4UgasQUo6wYgo4VSvvp6Eowz70gg4NKYv3fJl03vVsNiuoRlrSuNMC8jaErPXVZB6w6yTaFJMaOXywVidEg-Dy59vxhaipz6N28fX2_RRaJK_lrdM0NBzp8XNFCDOWmpv9hqGVa6floM2iPkN48eY6jh68FS8U9Lgsm5ihPmW4gXtvuYQFXJfm6bv5Gmqlq7v6zImYkfLl-nvMVcVJuQoUA32ezdzaqy9spUhR2Xbr1QUhzaHBBNdHuHL9XaGKs6kC"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md text-on-surface">HDFC Bank</p>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-70">AC •••• 7890</p>
+</div>
+<div class="flex items-center gap-xs text-secondary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-sm text-label-sm">Active</span>
+</div>
+</div>
+<!-- Bank Item 3: ICICI -->
+<div class="clay-card-l2 p-md flex items-center gap-md h-[100px]">
+<div class="w-14 h-14 rounded-xl flex-shrink-0 overflow-hidden clay-card-l2 flex items-center justify-center bg-white">
+<img class="w-10 h-10 object-contain" data-alt="An ICICI Bank logo with its signature orange and maroon palette, rendered on a soft-textured digital card. The lighting is bright and cheerful, matching a light-mode financial application theme. The composition is centered and minimalist, highlighting the bank's identity in a friendly, approachable way for a soft clay UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuhsxma6uFDdyyDvNqlSVlb-4a5Qfj9BCuFSiOuTnYZoyf3fQSwnwPsu9I1uppK8s_Om75fjOkSERrrHufCEVh8S4_eaB5vC2AjkqEKBIpZS9HyHrlluou7VxLmOVwSquqGADl00SXllpXyEQoPqrcsBd-BQWktmyE95MWk9yWN9ZOjSQKnUUOAv3VX4mN1EuC6MTTI4Uz3HvY1J8Rux1vV30wjs6azTqqEVNhalUMITRPhOT61VeMQRG1t75dlC1KuwRZlxC5MI8E"/>
+</div>
+<div class="flex-grow">
+<p class="font-label-md text-label-md text-on-surface">ICICI Bank</p>
+<p class="font-body-md text-body-md text-on-surface-variant opacity-70">AC •••• 2345</p>
+</div>
+<div class="clay-chip-pending px-sm py-1 rounded-full">
+<span class="font-label-sm text-label-sm">Pending</span>
+</div>
+</div>
+<!-- Add Bank Button -->
+<button class="w-full clay-card-dashed p-md flex flex-col items-center justify-center gap-xs active:scale-95 transition-transform hover:bg-white/30">
+<span class="material-symbols-outlined text-outline text-[32px]">add_circle</span>
+<span class="font-label-md text-label-md text-outline">Add New Bank Account</span>
+</button>
+</div>
+<!-- Footer Actions -->
+<div class="pt-xl space-y-md text-center">
+<button class="clay-btn-danger w-full py-md flex items-center justify-center gap-sm transition-all">
+<span class="material-symbols-outlined">delete</span>
+<span class="font-label-md text-label-md">Remove Bank</span>
+</button>
+<p class="text-[12px] font-body-md text-on-surface-variant opacity-60">
+                Note: You can link up to 5 bank accounts
+            </p>
+</div>
+</main>
+<!-- Bottom Navigation (Shared Component Integration) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg pb-lg pt-xs bg-surface-bright/90 dark:bg-surface-container-highest/90 backdrop-blur-md">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-sm text-label-sm">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-4 py-2 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)] active:shadow-inner scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for list items
+        document.querySelectorAll('.clay-card-l2').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.boxShadow = '20px 20px 40px rgba(163, 177, 198, 0.5), inset 10px 10px 20px rgba(255, 255, 255, 0.7)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '15px 15px 30px rgba(163, 177, 198, 0.4), inset 10px 10px 20px rgba(255, 255, 255, 0.6)';
+            });
+        });
+    </script>
+</body></html>

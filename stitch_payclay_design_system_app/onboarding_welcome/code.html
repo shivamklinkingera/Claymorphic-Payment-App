@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay - Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#2f6192",
+                    "on-primary-fixed": "#001d35",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "on-secondary-fixed": "#002114",
+                    "secondary-fixed": "#8af8c5",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#727780",
+                    "on-surface": "#161a32",
+                    "inverse-on-surface": "#f0efff",
+                    "on-background": "#161a32",
+                    "tertiary-fixed": "#ffddaf",
+                    "surface-variant": "#dee0ff",
+                    "tertiary": "#7f5604",
+                    "background": "#fbf8ff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface": "#fbf8ff",
+                    "surface-dim": "#d5d8f9",
+                    "primary-fixed": "#d1e4ff",
+                    "surface-container": "#ececff",
+                    "on-primary-container": "#003256",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f4f2ff",
+                    "inverse-surface": "#2b2f48",
+                    "secondary": "#006c4b",
+                    "on-tertiary-fixed": "#281800",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#8af8c5",
+                    "on-primary": "#ffffff",
+                    "primary": "#2f6192",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "inverse-primary": "#9dcaff",
+                    "surface-bright": "#fbf8ff",
+                    "primary-container": "#6c9bcf",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#42474f",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#007350",
+                    "outline-variant": "#c2c7d0",
+                    "on-secondary-fixed-variant": "#005137",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e5e6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "lg": "32px",
+                    "container-padding": "24px",
+                    "gutter": "20px",
+                    "xl": "48px",
+                    "md": "20px",
+                    "xs": "8px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .clay-card {
+            box-shadow: 12px 12px 24px rgba(163, 177, 198, 0.4), 
+                        inset 6px 6px 12px rgba(255, 255, 255, 0.8);
+            border-radius: 3rem;
+        }
+
+        .clay-button {
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), 
+                        inset 4px 4px 8px rgba(255, 255, 255, 0.4);
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .clay-button:active {
+            box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.15);
+            transform: scale(0.96);
+        }
+
+        .clay-dot {
+            box-shadow: 2px 2px 4px rgba(163, 177, 198, 0.4), 
+                        inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-dot.active {
+            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .floating-coin {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex items-center justify-center min-h-screen p-container-padding">
+<!-- Onboarding Container -->
+<main class="w-full max-w-md flex flex-col items-center justify-between min-h-[751px]">
+<!-- Top: Illustration Section -->
+<section class="w-full relative px-sm flex flex-col items-center">
+<div class="clay-card bg-surface-container-lowest w-full aspect-[4/5] flex items-center justify-center overflow-hidden relative">
+<!-- Abstract Clay Background Blobs -->
+<div class="absolute -top-10 -right-10 w-48 h-48 bg-secondary-container rounded-full opacity-30 blur-3xl"></div>
+<div class="absolute -bottom-10 -left-10 w-48 h-48 bg-primary-container rounded-full opacity-20 blur-3xl"></div>
+<!-- Central Illustration Content -->
+<div class="relative w-full h-full flex items-center justify-center">
+<!-- Main Clay Phone -->
+<div class="w-48 h-80 bg-surface rounded-[2.5rem] clay-card relative flex flex-col items-center p-md z-10">
+<div class="w-16 h-1.5 bg-outline-variant rounded-full mb-8"></div>
+<!-- QR Code Area -->
+<div class="w-32 h-32 bg-surface-container-high rounded-xl clay-dot flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-[64px] text-primary" data-icon="qr_code_2">qr_code_2</span>
+</div>
+<!-- Mini Balance Card -->
+<div class="w-full h-12 bg-primary-container rounded-lg flex items-center px-sm">
+<div class="w-6 h-6 bg-surface rounded-full mr-sm"></div>
+<div class="w-16 h-2 bg-on-primary-container/20 rounded-full"></div>
+</div>
+</div>
+<!-- Floating Coins -->
+<div class="absolute top-12 left-12 floating-coin" style="animation-delay: 0s;">
+<div class="w-16 h-16 bg-tertiary-fixed rounded-full clay-card flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="currency_exchange">currency_exchange</span>
+</div>
+</div>
+<div class="absolute bottom-20 right-8 floating-coin" style="animation-delay: 0.5s;">
+<div class="w-12 h-12 bg-secondary-container rounded-full clay-card flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container text-2xl" data-icon="payments">payments</span>
+</div>
+</div>
+<div class="absolute top-1/2 -right-4 floating-coin" style="animation-delay: 1s;">
+<div class="w-14 h-14 bg-primary-fixed rounded-full clay-card flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="savings">savings</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Middle: Typography Section -->
+<section class="text-center w-full px-md mt-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">
+                Welcome to PayClay
+            </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Your all-in-one payment companion
+            </p>
+<!-- Dot Indicator -->
+<div class="flex justify-center gap-xs mt-lg">
+<div class="w-8 h-3 rounded-full bg-primary clay-dot active"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant clay-dot"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant clay-dot"></div>
+</div>
+</section>
+<!-- Bottom: Action Section -->
+<section class="w-full px-md pb-lg mt-xl flex flex-col items-center gap-md">
+<button class="w-full py-md px-xl bg-primary text-on-primary font-label-md text-label-md rounded-full clay-button flex items-center justify-center gap-sm">
+                Get Started
+                <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<div class="flex items-center gap-xs">
+<span class="font-body-md text-body-md text-on-surface-variant">Already have an account?</span>
+<a class="font-label-md text-label-md text-primary hover:underline transition-all" href="#">Log in</a>
+</div>
+</section>
+</main>
+<script>
+        // Simple Interaction to simulate clay squash on button click
+        document.querySelectorAll('.clay-button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.95) translateY(2px)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1) translateY(0px)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1) translateY(0px)';
+            });
+        });
+
+        // Background parallax effect for blobs
+        document.addEventListener('mousemove', (e) => {
+            const blobs = document.querySelectorAll('.blur-3xl');
+            const x = (window.innerWidth - e.pageX) / 50;
+            const y = (window.innerHeight - e.pageY) / 50;
+            
+            blobs.forEach((blob, index) => {
+                const modifier = index === 0 ? 1 : -1;
+                blob.style.transform = `translate(${x * modifier}px, ${y * modifier}px)`;
+            });
+        });
+    </script>
+</body></html>

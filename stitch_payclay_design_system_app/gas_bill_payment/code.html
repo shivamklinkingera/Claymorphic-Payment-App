@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gas Bill Payment - ClayPay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #F0EDE8; /* Overriding with user requested background */
+            overflow-x: hidden;
+        }
+
+        .clay-card {
+            background: #ffffff;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-button-primary {
+            background-color: #2f6192;
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), 
+                        inset 4px 4px 8px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .clay-button-primary:active {
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(0.96);
+        }
+
+        .clay-chip {
+            background: #f4f2ff;
+            box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.3), 
+                        inset 4px 4px 8px rgba(255, 255, 255, 0.8);
+            transition: all 0.2s ease;
+        }
+
+        .clay-chip.active {
+            background: #6c9bcf;
+            color: #ffffff;
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .clay-input-container {
+            background: #f4f2ff;
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.3), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .soft-animate-in {
+            animation: softSlideUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes softSlideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#ececff",
+                        "on-tertiary-fixed": "#281800",
+                        "background": "#fbf8ff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-secondary-container": "#007350",
+                        "tertiary": "#7f5604",
+                        "primary": "#2f6192",
+                        "surface-variant": "#dee0ff",
+                        "surface-dim": "#d5d8f9",
+                        "tertiary-fixed": "#ffddaf",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "outline": "#727780",
+                        "on-primary-fixed": "#001d35",
+                        "inverse-surface": "#2b2f48",
+                        "on-primary-container": "#003256",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "surface": "#fbf8ff",
+                        "surface-tint": "#2f6192",
+                        "error-container": "#ffdad6",
+                        "on-surface": "#161a32",
+                        "on-secondary-fixed-variant": "#005137",
+                        "on-background": "#161a32",
+                        "on-surface-variant": "#42474f",
+                        "secondary": "#006c4b",
+                        "secondary-fixed": "#8af8c5",
+                        "secondary-container": "#8af8c5",
+                        "on-secondary-fixed": "#002114",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "primary-fixed": "#d1e4ff",
+                        "primary-fixed-dim": "#9dcaff",
+                        "surface-container-highest": "#dee0ff",
+                        "tertiary-container": "#c08f3e",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#9dcaff",
+                        "on-secondary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f4f2ff",
+                        "outline-variant": "#c2c7d0",
+                        "surface-container-high": "#e5e6ff",
+                        "primary-container": "#6c9bcf",
+                        "on-tertiary-container": "#432b00",
+                        "inverse-on-surface": "#f0efff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "20px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "xs": "8px",
+                        "md": "20px",
+                        "container-padding": "24px",
+                        "xl": "48px",
+                        "sm": "12px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "display": ["Nunito Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+<!-- Top App Bar (Suppressing shared component structure to focus on back navigation) -->
+<header class="flex justify-between items-center px-container-padding py-sm w-full z-50 sticky top-0 bg-[#F0EDE8]/80 backdrop-blur-md">
+<button class="w-12 h-12 flex items-center justify-center clay-card rounded-full active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface tracking-tight">Gas Bill</h1>
+<div class="w-12 h-12"></div> <!-- Spacer -->
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[600px] px-container-padding py-lg flex flex-col gap-xl overflow-y-auto pb-40">
+<!-- Animated Visual Section -->
+<section class="soft-animate-in" style="animation-delay: 0.1s;">
+<div class="w-full h-48 rounded-lg overflow-hidden clay-card relative bg-primary-container/20 border border-white/40">
+<!-- Background decoration -->
+
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-24 h-24 clay-card rounded-full flex items-center justify-center bg-white">
+<span class="material-symbols-outlined text-primary text-5xl" style="font-variation-settings: 'FILL' 1;">propane_tank</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Provider Selection Section -->
+<section class="flex flex-col gap-md soft-animate-in" style="animation-delay: 0.2s;">
+<label class="font-label-md text-label-md text-on-surface-variant ml-sm">Select Gas Provider</label>
+<!-- Dropdown-like Select -->
+<div class="relative">
+<button class="w-full flex items-center justify-between px-container-padding py-md clay-card rounded-lg bg-white group active:scale-[0.99] transition-all" id="provider-select" onclick="toggleDropdown()">
+<span class="font-body-md text-body-md text-on-surface-variant" id="selected-provider-text">Choose a provider...</span>
+<span class="material-symbols-outlined text-primary transition-transform" id="dropdown-icon">expand_more</span>
+</button>
+<!-- Hidden list simulated by chips below -->
+</div>
+<!-- Quick Access Chips -->
+<div class="flex flex-wrap gap-sm mt-xs">
+<button class="clay-chip px-md py-sm rounded-full font-label-md text-label-md text-primary active:scale-95 transition-all" onclick="selectProvider('HP Gas', this)">HP Gas</button>
+<button class="clay-chip px-md py-sm rounded-full font-label-md text-label-md text-primary active:scale-95 transition-all" onclick="selectProvider('Bharat Gas', this)">Bharat Gas</button>
+<button class="clay-chip px-md py-sm rounded-full font-label-md text-label-md text-primary active:scale-95 transition-all" onclick="selectProvider('Indane', this)">Indane</button>
+</div>
+</section>
+<!-- Consumer Details Section -->
+<section class="flex flex-col gap-lg soft-animate-in" style="animation-delay: 0.3s;">
+<!-- Consumer Number Input -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-sm">Consumer Number</label>
+<div class="clay-input-container rounded-lg px-container-padding py-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">person_search</span>
+<input class="bg-transparent border-none outline-none w-full font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:ring-0" placeholder="Enter 10-17 digit number" type="text"/>
+</div>
+<p class="font-label-sm text-label-sm text-outline ml-sm">You can find this on your physical bill</p>
+</div>
+<!-- Amount Input -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant ml-sm">Amount (Optional)</label>
+<div class="clay-input-container rounded-lg px-container-padding py-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">currency_rupee</span>
+<input class="bg-transparent border-none outline-none w-full font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:ring-0" placeholder="Enter amount to pay" type="number"/>
+</div>
+</div>
+</section>
+<!-- Promotion/Banner Section (Claymorphic Style) -->
+<section class="soft-animate-in" style="animation-delay: 0.4s;">
+<div class="clay-card rounded-lg p-md bg-secondary-container/10 border-2 border-white/50 flex gap-md items-center">
+<div class="w-16 h-16 rounded-lg clay-card bg-white flex-shrink-0 flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A macro shot of a blue gas flame burning smoothly on a modern stove top, with soft atmospheric lighting, representing energy and efficiency. High end photography style with shallow depth of field, using the brand's primary blues and warm off-white tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5KFnu7biAPIom6kN363ujctdDGFFdEbZBiazJ21WAQUQPfocEiiuZKImGUmKBojMRAbewRZP2MqUSmoyiz2klpM_qdP1T92KR2KgrvltAIvOD_n9ypIXz6_eMyYv-ul3pjR70jQIIfpa3K6VXjJK3jHF1HDfbUDBSaCotRu45YLyYo19E5gbmTtaKFnZckTFKlKFUp6vKq7r6yjlWZote6Fp4QBr5CejjHca1XNjPJ94CeYeOXQPt5izO0VyhwJc_nt_pGkKo2UPP"/>
+</div>
+<div class="flex flex-col">
+<h4 class="font-title-lg text-title-lg text-secondary">Save 5% on Gas</h4>
+<p class="font-body-md text-body-md text-on-surface-variant leading-tight">Pay your first gas bill through ClayPay and get instant cashback.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 w-full p-container-padding z-[100] flex justify-center pointer-events-none">
+<div class="w-full max-w-[552px] pointer-events-auto">
+<button class="w-full clay-button-primary rounded-full py-lg flex items-center justify-center gap-md group" onclick="processPayment()">
+<span class="font-display text-headline-md text-white">Pay Bill</span>
+<span class="material-symbols-outlined text-white text-3xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</footer>
+<!-- Success Modal Overlay (Hidden by default) -->
+<div class="fixed inset-0 z-[200] hidden flex items-center justify-center px-container-padding bg-[#F0EDE8]/80 backdrop-blur-xl" id="success-modal">
+<div class="clay-card rounded-xl w-full max-w-sm p-xl flex flex-col items-center gap-lg text-center">
+<div class="w-24 h-24 rounded-full bg-secondary-container flex items-center justify-center clay-card shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)]">
+<span class="material-symbols-outlined text-secondary text-5xl" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Payment Sent!</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-sm">Your gas bill payment is being processed. You'll be notified shortly.</p>
+</div>
+<button class="w-full py-md clay-card bg-white rounded-lg font-label-md text-label-md text-primary active:scale-95 transition-all" onclick="closeModal()">Back to Home</button>
+</div>
+</div>
+<script>
+        function selectProvider(name, element) {
+            // Update the display text
+            document.getElementById('selected-provider-text').innerText = name;
+            document.getElementById('selected-provider-text').classList.remove('text-on-surface-variant');
+            document.getElementById('selected-provider-text').classList.add('text-on-surface', 'font-bold');
+
+            // Handle chip visual state
+            const chips = document.querySelectorAll('.clay-chip');
+            chips.forEach(chip => chip.classList.remove('active'));
+            element.classList.add('active');
+
+            // Feedback pulse
+            element.classList.add('scale-95');
+            setTimeout(() => element.classList.remove('scale-95'), 100);
+        }
+
+        function toggleDropdown() {
+            const icon = document.getElementById('dropdown-icon');
+            icon.style.transform = icon.style.transform === 'rotate(180deg)' ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        function processPayment() {
+            const btn = document.querySelector('.clay-button-primary');
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-3xl">progress_activity</span>';
+            
+            setTimeout(() => {
+                document.getElementById('success-modal').classList.remove('hidden');
+                document.getElementById('success-modal').classList.add('flex');
+            }, 1500);
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            location.reload(); // Reset for demo
+        }
+
+        // Add tactile feedback to input containers
+        const inputs = document.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.style.boxShadow = 'inset 8px 8px 16px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.8)';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.style.boxShadow = '';
+            });
+        });
+    </script>
+</body></html>

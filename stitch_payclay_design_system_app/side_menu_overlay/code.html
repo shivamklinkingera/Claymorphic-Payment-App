@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "primary-fixed": "#d1e4ff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-highest": "#dee0ff",
+                    "inverse-primary": "#9dcaff",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f4f2ff",
+                    "outline-variant": "#c2c7d0",
+                    "surface-container-high": "#e5e6ff",
+                    "primary-container": "#6c9bcf",
+                    "on-tertiary-container": "#432b00",
+                    "inverse-on-surface": "#f0efff",
+                    "on-error-container": "#93000a",
+                    "primary": "#2f6192",
+                    "surface-variant": "#dee0ff",
+                    "surface-dim": "#d5d8f9",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#ececff",
+                    "on-tertiary-fixed": "#281800",
+                    "background": "#fbf8ff",
+                    "tertiary": "#7f5604",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-secondary-container": "#007350",
+                    "surface-bright": "#fbf8ff",
+                    "outline": "#727780",
+                    "on-primary-fixed": "#001d35",
+                    "inverse-surface": "#2b2f48",
+                    "on-primary": "#ffffff",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "on-primary-container": "#003256",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed": "#ffddaf",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "surface-tint": "#2f6192",
+                    "error-container": "#ffdad6",
+                    "surface": "#fbf8ff",
+                    "on-surface-variant": "#42474f",
+                    "secondary-fixed": "#8af8c5",
+                    "secondary-container": "#8af8c5",
+                    "on-secondary-fixed": "#002114",
+                    "secondary": "#006c4b",
+                    "on-surface": "#161a32",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-background": "#161a32"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "lg": "32px",
+                    "gutter": "20px",
+                    "md": "20px",
+                    "container-padding": "24px",
+                    "xs": "8px",
+                    "xl": "48px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .clay-level-1 {
+            box-shadow: 4px 4px 10px rgba(163, 177, 198, 0.3), inset 2px 2px 5px rgba(255, 255, 255, 0.7);
+        }
+        .clay-level-2 {
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.6);
+        }
+        .clay-level-3 {
+            box-shadow: 12px 12px 24px rgba(163, 177, 198, 0.5), inset 6px 6px 12px rgba(255, 255, 255, 0.7);
+        }
+        .clay-sunken {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+        }
+        .clay-line {
+            height: 4px;
+            background: #ececff;
+            box-shadow: inset 1px 1px 2px rgba(0,0,0,0.05);
+            border-radius: 9999px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Slide in animation */
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        .animate-slide-in {
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md overflow-hidden">
+<!-- DASHBOARD BACKGROUND (Simulated dimmed content) -->
+<div class="fixed inset-0 w-full h-full overflow-hidden blur-sm opacity-60">
+<header class="w-full flex justify-between items-center px-container-padding py-xs bg-surface shadow-md">
+<span class="material-symbols-outlined text-primary">menu</span>
+<span class="font-display text-headline-md text-primary">PayClay</span>
+<div class="w-10 h-10 rounded-full bg-primary-fixed"></div>
+</header>
+<main class="p-container-padding space-y-md">
+<div class="w-full h-40 bg-surface-container rounded-lg clay-level-1"></div>
+<div class="grid grid-cols-4 gap-sm">
+<div class="aspect-square bg-surface-container-high rounded-lg clay-level-1"></div>
+<div class="aspect-square bg-surface-container-high rounded-lg clay-level-1"></div>
+<div class="aspect-square bg-surface-container-high rounded-lg clay-level-1"></div>
+<div class="aspect-square bg-surface-container-high rounded-lg clay-level-1"></div>
+</div>
+<div class="w-full h-64 bg-surface-container rounded-lg clay-level-1"></div>
+</main>
+</div>
+<!-- DIMMED BACKDROP -->
+<div class="fixed inset-0 bg-black/40 z-40 backdrop-blur-[2px]"></div>
+<!-- SIDE MENU PANEL -->
+<aside class="fixed top-0 left-0 h-full w-[80%] max-w-[340px] bg-surface-bright z-50 rounded-r-[28px] animate-slide-in flex flex-col shadow-2xl" id="side-menu">
+<!-- TOP SECTION -->
+<div class="p-container-padding pt-xl pb-lg flex flex-col items-start gap-sm">
+<!-- Avatar Circle -->
+<div class="w-[72px] h-[72px] rounded-full bg-primary-fixed flex items-center justify-center clay-level-2 mb-xs overflow-hidden">
+<span class="text-primary font-display text-headline-lg" style="margin-top: 4px;">R</span>
+</div>
+<div class="space-y-0.5">
+<h2 class="font-headline-md text-on-surface tracking-tight" style="font-size: 18px;">Rahul Sharma</h2>
+<p class="font-label-md text-on-surface-variant" style="font-size: 13px;">rahul.sharma@email.com</p>
+<div class="flex items-center gap-xs mt-xs px-3 py-1.5 bg-primary-container/20 rounded-full clay-sunken">
+<span class="font-label-md text-primary font-bold" style="font-size: 13px;">UPI ID: rahul@payclay</span>
+<button class="material-symbols-outlined text-[16px] text-primary hover:scale-110 transition-transform active:opacity-50">content_copy</button>
+</div>
+</div>
+</div>
+<!-- MENU ITEMS -->
+<nav class="flex-1 overflow-y-auto px-sm py-xs">
+<ul class="space-y-sm">
+<!-- My Profile -->
+<li>
+<a class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container-low transition-all active:scale-95 group" href="#">
+<div class="w-10 h-10 rounded-full flex items-center justify-center clay-level-1 bg-primary-fixed transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="person">person</span>
+</div>
+<span class="font-title-lg text-body-md font-bold text-on-surface">My Profile</span>
+</a>
+</li>
+<!-- Payment Methods -->
+<li>
+<a class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container-low transition-all active:scale-95 group" href="#">
+<div class="w-10 h-10 rounded-full flex items-center justify-center clay-level-1 bg-secondary-container transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-secondary text-[20px]" data-icon="credit_card">credit_card</span>
+</div>
+<span class="font-title-lg text-body-md font-bold text-on-surface">Payment Methods</span>
+</a>
+</li>
+<!-- Transaction History -->
+<li>
+<a class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container-low transition-all active:scale-95 group" href="#">
+<div class="w-10 h-10 rounded-full flex items-center justify-center clay-level-1 bg-surface-variant transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="schedule">schedule</span>
+</div>
+<span class="font-title-lg text-body-md font-bold text-on-surface">Transaction History</span>
+</a>
+</li>
+<!-- Saved Beneficiaries -->
+<li>
+<a class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container-low transition-all active:scale-95 group" href="#">
+<div class="w-10 h-10 rounded-full flex items-center justify-center clay-level-1 bg-error-container transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="group">group</span>
+</div>
+<span class="font-title-lg text-body-md font-bold text-on-surface">Saved Beneficiaries</span>
+</a>
+</li>
+<!-- Rewards & Offers -->
+<li>
+<a class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container-low transition-all active:scale-95 group" href="#">
+<div class="w-10 h-10 rounded-full flex items-center justify-center clay-level-1 bg-tertiary-fixed transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-tertiary text-[20px]" data-icon="star">star</span>
+</div>
+<span class="font-title-lg text-body-md font-bold text-on-surface">Rewards &amp; Offers</span>
+</a>
+</li>
+<!-- Settings -->
+<li>
+<a class="flex items-center gap-md p-sm rounded-lg hover:bg-surface-container-low transition-all active:scale-95 group" href="#">
+<div class="w-10 h-10 rounded-full flex items-center justify-center clay-level-1 bg-surface-container-highest transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="settings">settings</span>
+</div>
+<span class="font-title-lg text-body-md font-bold text-on-surface">Settings</span>
+</a>
+</li>
+</ul>
+<!-- DIVIDER -->
+<div class="mx-sm my-md clay-line"></div>
+</nav>
+<!-- BOTTOM SECTION -->
+<div class="p-container-padding pb-lg space-y-md">
+<button class="w-full flex items-center gap-md p-sm rounded-lg hover:bg-error-container/20 transition-all active:scale-95 group">
+<div class="w-10 h-10 rounded-full flex items-center justify-center clay-level-1 bg-white transition-transform group-hover:scale-110">
+<span class="material-symbols-outlined text-error text-[20px]" data-icon="logout">logout</span>
+</div>
+<span class="font-title-lg text-body-md font-bold text-error">Log Out</span>
+</button>
+<div class="flex flex-col items-center justify-center opacity-60">
+<span class="font-label-sm text-on-surface-variant" style="font-size: 10px; letter-spacing: 0.05em;">PAYCLAY V2.1.0</span>
+<div class="mt-xs w-24 h-1 rounded-full bg-on-surface-variant/10"></div>
+</div>
+</div>
+</aside>
+<!-- INTERACTIVE SCRIPT -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sideMenu = document.getElementById('side-menu');
+            const backdrop = document.querySelector('.bg-black\\/40');
+
+            // Handle active states and micro-interactions
+            const links = document.querySelectorAll('a, button');
+            links.forEach(link => {
+                link.addEventListener('touchstart', () => {
+                    link.style.transform = 'scale(0.96)';
+                });
+                link.addEventListener('touchend', () => {
+                    link.style.transform = 'scale(1)';
+                });
+            });
+
+            // Close logic placeholder
+            backdrop.addEventListener('click', () => {
+                sideMenu.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 1, 1)';
+                sideMenu.style.transform = 'translateX(-100%)';
+                backdrop.style.opacity = '0';
+                backdrop.style.transition = 'opacity 0.3s ease';
+                setTimeout(() => {
+                    // In a real app, this would remove components from DOM or change state
+                    console.log('Menu Closed');
+                }, 300);
+            });
+        });
+    </script>
+</body></html>

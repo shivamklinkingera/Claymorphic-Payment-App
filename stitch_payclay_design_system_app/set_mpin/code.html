@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay - Set MPIN</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-tint": "#2f6192",
+                    "on-primary-fixed": "#001d35",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "on-secondary-fixed": "#002114",
+                    "secondary-fixed": "#8af8c5",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#727780",
+                    "on-surface": "#161a32",
+                    "inverse-on-surface": "#f0efff",
+                    "on-background": "#161a32",
+                    "tertiary-fixed": "#ffddaf",
+                    "surface-variant": "#dee0ff",
+                    "tertiary": "#7f5604",
+                    "background": "#fbf8ff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface": "#fbf8ff",
+                    "surface-container-highest": "#dee0ff",
+                    "on-tertiary-container": "#432b00",
+                    "surface-dim": "#d5d8f9",
+                    "primary-fixed": "#d1e4ff",
+                    "surface-container": "#ececff",
+                    "on-primary-container": "#003256",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f4f2ff",
+                    "inverse-surface": "#2b2f48",
+                    "secondary": "#006c4b",
+                    "on-tertiary-fixed": "#281800",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#8af8c5",
+                    "on-primary": "#ffffff",
+                    "primary": "#2f6192",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "inverse-primary": "#9dcaff",
+                    "surface-bright": "#fbf8ff",
+                    "primary-container": "#6c9bcf",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#42474f",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#007350",
+                    "outline-variant": "#c2c7d0",
+                    "on-secondary-fixed-variant": "#005137",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e5e6ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "4px",
+                    "lg": "32px",
+                    "container-padding": "24px",
+                    "gutter": "20px",
+                    "xl": "48px",
+                    "md": "20px",
+                    "xs": "8px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Claymorphism Elevation 2 (Standard) */
+        .clay-elevation-2 {
+            box-shadow: 
+                8px 8px 20px rgba(163, 177, 198, 0.4), 
+                inset 4px 4px 10px rgba(255, 255, 255, 0.6),
+                inset -2px -2px 5px rgba(163, 177, 198, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .clay-elevation-2:active {
+            box-shadow: 
+                inset 6px 6px 12px rgba(163, 177, 198, 0.5), 
+                inset -4px -4px 10px rgba(255, 255, 255, 0.7);
+            transform: scale(0.96);
+        }
+
+        /* Sunken Input Style */
+        .clay-sunken {
+            box-shadow: 
+                inset 6px 6px 12px rgba(163, 177, 198, 0.4), 
+                inset -6px -6px 12px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Inflated Dot Style */
+        .clay-inflated-dot {
+            box-shadow: 
+                4px 4px 8px rgba(163, 177, 198, 0.4), 
+                inset 2px 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen text-on-surface">
+<!-- Top Navigation (Shell suppressed for Task-Focused screen, but keeping back arrow per request) -->
+<header class="w-full flex items-center px-container-padding py-md bg-transparent">
+<button aria-label="Go back" class="w-12 h-12 flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 text-primary active:scale-95">
+<span class="material-symbols-outlined text-headline-md" data-icon="arrow_back">arrow_back</span>
+</button>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-container-padding pb-xl">
+<!-- Center Brand/Icon Section -->
+<div class="flex flex-col items-center mb-lg">
+<div class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center clay-elevation-2 mb-md">
+<span class="material-symbols-outlined text-[48px] text-primary" data-icon="fingerprint" data-weight="fill" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-xs">Set your MPIN</h1>
+<p class="font-body-md text-body-md text-on-surface-variant text-center opacity-80">Used to authorize payments</p>
+</div>
+<!-- Pin Indicators (4 Clay Dots) -->
+<div class="flex gap-gutter mb-xl">
+<!-- Filled Blue (Raised) -->
+<div class="w-6 h-6 rounded-full bg-primary-container clay-inflated-dot"></div>
+<!-- Filled Blue (Raised) -->
+<div class="w-6 h-6 rounded-full bg-primary-container clay-inflated-dot"></div>
+<!-- Empty (Sunken) -->
+<div class="w-6 h-6 rounded-full bg-surface-dim clay-sunken"></div>
+<!-- Empty (Sunken) -->
+<div class="w-6 h-6 rounded-full bg-surface-dim clay-sunken"></div>
+</div>
+<!-- Keypad (3x4 Grid) -->
+<div class="grid grid-cols-3 gap-md w-full max-w-xs mx-auto">
+<!-- 1-9 -->
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">1</button>
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">2</button>
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">3</button>
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">4</button>
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">5</button>
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">6</button>
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">7</button>
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">8</button>
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">9</button>
+<!-- Empty Space -->
+<div class="aspect-square"></div>
+<!-- 0 -->
+<button class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 font-display text-title-lg text-primary">0</button>
+<!-- Backspace -->
+<button aria-label="Backspace" class="aspect-square flex items-center justify-center bg-surface-container rounded-full clay-elevation-2 text-primary">
+<span class="material-symbols-outlined text-headline-md" data-icon="backspace">backspace</span>
+</button>
+</div>
+</main>
+<!-- Bottom Action -->
+<footer class="w-full flex flex-col items-center justify-center pb-xl pt-md">
+<button class="flex items-center gap-xs text-primary font-label-md active:opacity-70 transition-opacity">
+<span class="material-symbols-outlined text-md" data-icon="fingerprint" data-weight="fill" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
+<span class="font-label-md text-label-md">Use biometric instead</span>
+</button>
+</footer>
+<!-- Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.clay-elevation-2').forEach(btn => {
+            btn.addEventListener('touchstart', () => {
+                btn.style.transform = 'scale(0.92)';
+            });
+            btn.addEventListener('touchend', () => {
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.92)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+
+        // Simple haptic feedback simulation
+        const keypadButtons = document.querySelectorAll('.grid button');
+        keypadButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate(20);
+                }
+            });
+        });
+    </script>
+</body></html>

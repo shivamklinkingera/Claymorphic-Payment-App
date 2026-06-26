@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay Rewards Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .clay-card {
+            background: #ffffff;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clay-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            box-shadow: inset 10px 10px 15px rgba(255, 255, 255, 0.6), 
+                        inset -5px -5px 10px rgba(0, 0, 0, 0.02);
+            border-radius: inherit;
+        }
+
+        .clay-button {
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), 
+                        -6px -6px 12px rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .clay-button::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            box-shadow: inset 4px 4px 6px rgba(255, 255, 255, 0.4);
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        .clay-button:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+            transform: scale(0.98);
+        }
+
+        .clay-inset {
+            background: #f4f2ff;
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.3), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "secondary-fixed": "#8af8c5",
+                    "on-background": "#161a32",
+                    "secondary": "#006c4b",
+                    "tertiary-fixed": "#ffddaf",
+                    "outline-variant": "#c2c7d0",
+                    "outline": "#727780",
+                    "on-surface-variant": "#42474f",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f0efff",
+                    "secondary-container": "#8af8c5",
+                    "surface": "#fbf8ff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#7f5604",
+                    "on-primary-container": "#003256",
+                    "surface-container": "#ececff",
+                    "on-surface": "#161a32",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-tertiary-fixed": "#281800",
+                    "surface-container-highest": "#dee0ff",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "primary-container": "#6c9bcf",
+                    "primary": "#2f6192",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#d1e4ff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#c08f3e",
+                    "surface-dim": "#d5d8f9",
+                    "inverse-primary": "#9dcaff",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#432b00",
+                    "on-secondary-container": "#007350",
+                    "on-secondary-fixed": "#002114",
+                    "inverse-surface": "#2b2f48",
+                    "surface-container-high": "#e5e6ff",
+                    "surface-tint": "#2f6192",
+                    "surface-bright": "#fbf8ff",
+                    "on-primary-fixed": "#001d35",
+                    "surface-variant": "#dee0ff",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface-container-low": "#f4f2ff",
+                    "background": "#fbf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "32px",
+                    "gutter": "20px",
+                    "xl": "48px",
+                    "unit": "4px",
+                    "md": "20px",
+                    "xs": "8px",
+                    "sm": "12px",
+                    "container-padding": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding h-16 bg-background shadow-[10px_10px_20px_rgba(163,177,198,0.4),-10px_-10px_20px_rgba(255,255,255,0.6)]">
+<button class="w-10 h-10 flex items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-title-lg text-title-lg text-primary">Offers &amp; Rewards</h1>
+<button class="w-10 h-10 flex items-center justify-center text-primary active:scale-90 transition-transform">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</button>
+</header>
+<main class="pt-24 px-container-padding space-y-lg max-w-[1200px] mx-auto">
+<!-- Hero Section -->
+<section class="relative w-full aspect-[2/1] md:aspect-[3/1] bg-primary-container rounded-lg clay-card flex items-center p-lg overflow-hidden">
+<div class="z-10 w-2/3">
+<span class="inline-block px-sm py-unit bg-on-primary-container text-primary-fixed rounded-full font-label-sm text-label-sm mb-xs">
+                    LIMITED TIME
+                </span>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:text-headline-lg md:font-headline-lg text-on-primary-container leading-tight">
+                    Refer &amp; Earn 500
+                </h2>
+<p class="text-on-primary-container/80 mt-xs font-body-md text-body-md">
+                    Invite your squad to PayClay and unlock premium rewards.
+                </p>
+<button class="mt-md px-lg py-sm bg-primary text-on-primary rounded-full clay-button font-label-md text-label-md hover:opacity-90 transition-all">
+                    Refer Now
+                </button>
+</div>
+<!-- Visual Blob Decor -->
+<div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+<div class="absolute right-8 top-1/2 -translate-y-1/2 w-32 h-32 md:w-48 md:h-48 animate-float">
+<div class="w-full h-full bg-secondary-fixed rounded-full clay-card flex items-center justify-center">
+<span class="material-symbols-outlined text-[64px] text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">share</span>
+</div>
+</div>
+</section>
+<!-- Categories Section -->
+<section class="space-y-sm">
+<h3 class="font-title-lg text-title-lg text-on-surface px-unit">Categories</h3>
+<div class="flex gap-md overflow-x-auto scroll-hide pb-md px-unit">
+<div class="flex-shrink-0 flex flex-col items-center gap-xs">
+<div class="w-16 h-16 rounded-full clay-card flex items-center justify-center text-primary transition-transform active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined text-headline-md">restaurant</span>
+</div>
+<span class="font-label-sm text-label-sm">Food</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs">
+<div class="w-16 h-16 rounded-full clay-card flex items-center justify-center text-primary transition-transform active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined text-headline-md">shopping_bag</span>
+</div>
+<span class="font-label-sm text-label-sm">Shopping</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs">
+<div class="w-16 h-16 rounded-full clay-card flex items-center justify-center text-primary transition-transform active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined text-headline-md">flight</span>
+</div>
+<span class="font-label-sm text-label-sm">Travel</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs">
+<div class="w-16 h-16 rounded-full clay-card flex items-center justify-center text-primary transition-transform active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined text-headline-md">receipt_long</span>
+</div>
+<span class="font-label-sm text-label-sm">Bills</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-xs">
+<div class="w-16 h-16 rounded-full clay-card flex items-center justify-center text-primary transition-transform active:scale-95 cursor-pointer">
+<span class="material-symbols-outlined text-headline-md">sports_esports</span>
+</div>
+<span class="font-label-sm text-label-sm">Gaming</span>
+</div>
+</div>
+</section>
+<!-- Hot Offers Section (Bento Grid) -->
+<section class="space-y-sm">
+<div class="flex justify-between items-center px-unit">
+<h3 class="font-title-lg text-title-lg text-on-surface">Hot Offers</h3>
+<button class="text-primary font-label-md text-label-md">View All</button>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<!-- Offer Card 1 -->
+<div class="clay-card rounded-lg p-md flex flex-col items-center text-center space-y-sm group hover:-translate-y-1 transition-transform">
+<div class="w-16 h-16 clay-inset rounded-full flex items-center justify-center p-sm">
+<img class="w-full h-full object-contain" data-alt="A stylized minimalist circular logo for a famous coffee brand, featuring soft green tones and organic shapes against a white claymorphic surface, professional and modern financial app style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAVCDNdJqWACJCCTTeVQiRxerhxD8MDuNS3V7f7HTNUK8-5LdO3wKDCGXZeI3I4tmE-uWdsvWJhcVmmjZnI-3iBmef6NylF2j4C3m2QEqzgDHlJhMLFAOoSj98EO6mJ44ku9TpxLz4nLTfjO3rg_zShA5IjNj8019NpwZ-JV1m4MAjzQurdPFVqDsSAY5RA8iR78t2WAsD5vJ87o_9p0Z0wMM3hHjz4UFryRwF6rjhDcqbKkKaimuwO9eKg_HYbOwLjggObmJZqneC"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Starbucks</h4>
+<p class="text-secondary font-bold text-headline-md">25% OFF</p>
+</div>
+<button class="w-full py-xs bg-surface-container text-primary font-label-sm text-label-sm rounded-full clay-button">Grab Now</button>
+</div>
+<!-- Offer Card 2 -->
+<div class="clay-card rounded-lg p-md flex flex-col items-center text-center space-y-sm group hover:-translate-y-1 transition-transform">
+<div class="w-16 h-16 clay-inset rounded-full flex items-center justify-center p-sm">
+<img class="w-full h-full object-contain" data-alt="A minimalist tech e-commerce logo with soft orange and black accents, depicted as a physical badge embedded into a soft white clay-like material, high-end commercial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOBeMQQeOfzG4Ve-TtW-p7Tmk9KwoR0UOYKUkmmcEWdhtdj2-b9eEe2ugYxB2jWIjg1ZiKOsLcJW_gJTnYZxS6PUGTwKE0Tn0zIclk5t-lQnHxUSJwIAIPrp6mYTohf9H0Zg0hQQ8FD8mBJvV_A7RQwHGyXdEwMrOSZWSMlomCWcmp3Ru76kAB-rpRPnoRqpcLEf5AltGnwIUuMPpm9xwG-7QXSicx-GjyNb3HCV8ZA3mcMQWeSRM7F-JoKHBXxMPJfyDoatD3VEa0"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Amazon</h4>
+<p class="text-secondary font-bold text-headline-md">$10 Back</p>
+</div>
+<button class="w-full py-xs bg-surface-container text-primary font-label-sm text-label-sm rounded-full clay-button">Grab Now</button>
+</div>
+<!-- Offer Card 3 -->
+<div class="clay-card rounded-lg p-md flex flex-col items-center text-center space-y-sm group hover:-translate-y-1 transition-transform">
+<div class="w-16 h-16 clay-inset rounded-full flex items-center justify-center p-sm">
+<img class="w-full h-full object-contain" data-alt="A premium luxury fashion brand logo, simple black and white typography on a soft blue clay-morphic background, elegant and clean interface design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOODpOx6FM2uYLuOldS4S0pRPfFPRtPAszJbGlXQsAv3x_yerMixogcMQfcEnrk_kpKTzpP6rMjDReASWffFY_V9FW20qHRUENaxWrEfSQd4yIMx9xfrYLzHROfV0102tDLGPFu86tO11nuIkcNq-dZs3BffqNIHLzhAbZX383eUcOLXVqllEHjCM0uWTCO-rGHQMwL6XhcPwdLf_A_oEl5D2Tt26fiLs2xRa_Lt0o6qCyGJuOcE0Wj3vxOiFUyO8eN3PEbFZ6Ehe_"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Nike</h4>
+<p class="text-secondary font-bold text-headline-md">15% OFF</p>
+</div>
+<button class="w-full py-xs bg-surface-container text-primary font-label-sm text-label-sm rounded-full clay-button">Grab Now</button>
+</div>
+<!-- Offer Card 4 -->
+<div class="clay-card rounded-lg p-md flex flex-col items-center text-center space-y-sm group hover:-translate-y-1 transition-transform">
+<div class="w-16 h-16 clay-inset rounded-full flex items-center justify-center p-sm">
+<img class="w-full h-full object-contain" data-alt="A food delivery app logo with vibrant red and white colors, styled as an inflated 3D object on a soft grey surface, playful and engaging financial reward interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBttWeviFktqw9ENHZhxbquU8pPq6mY8vdws4kBNkjy6in8bwMNc7RzcxODCcS2KADStyOM6uFURbdLyIfmK6pB-WY_rHZaIeVI9BgprPNPim8ER3VqMH-AI2L13TnWiZI4Fqcq3WRKcW6U6zcZ0jesM72rIqFpTZ2hnWS4pQG2OtgXjWRn0OclKIqNn9SMhZ_4wqGoQkZ83LVgKB8C-pyNAA-uEacLlukgoC4NdUwKPT-LV7vk1Zd-fjLACqVf-9N23DFytjekAA6x"/>
+</div>
+<div>
+<h4 class="font-label-md text-label-md">Doordash</h4>
+<p class="text-secondary font-bold text-headline-md">Free Del.</p>
+</div>
+<button class="w-full py-xs bg-surface-container text-primary font-label-sm text-label-sm rounded-full clay-button">Grab Now</button>
+</div>
+</div>
+</section>
+<!-- Ending Soon Section -->
+<section class="space-y-sm pb-10">
+<h3 class="font-title-lg text-title-lg text-on-surface px-unit">Ending Soon</h3>
+<div class="flex gap-md overflow-x-auto scroll-hide pb-md px-unit">
+<!-- Rectangular Card 1 -->
+<div class="flex-shrink-0 w-72 clay-card rounded-lg p-md flex gap-md items-center">
+<div class="w-20 h-20 rounded-md clay-inset flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[40px]">confirmation_number</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md truncate">Movie Night Pass</h4>
+<div class="flex items-center text-error gap-xs mt-unit">
+<span class="material-symbols-outlined text-label-sm">schedule</span>
+<span class="font-label-sm text-label-sm">02h 15m left</span>
+</div>
+<p class="text-primary font-bold text-title-lg">Buy 1 Get 1</p>
+</div>
+</div>
+<!-- Rectangular Card 2 -->
+<div class="flex-shrink-0 w-72 clay-card rounded-lg p-md flex gap-md items-center">
+<div class="w-20 h-20 rounded-md clay-inset flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[40px]">directions_car</span>
+</div>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md truncate">Uber Ride Off</h4>
+<div class="flex items-center text-error gap-xs mt-unit">
+<span class="material-symbols-outlined text-label-sm">schedule</span>
+<span class="font-label-sm text-label-sm">05h 40m left</span>
+</div>
+<p class="text-primary font-bold text-title-lg">50% Discount</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-6 left-4 right-4 z-50 flex justify-around items-center h-20 p-2 bg-surface-container-lowest/90 backdrop-blur-md rounded-full shadow-[15px_15px_30px_rgba(163,177,198,0.4),-10px_-10px_20px_rgba(255,255,255,0.8)] max-w-[500px] mx-auto">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-2 shadow-[inset_2px_2px_5px_rgba(255,255,255,0.5),inset_-2px_-2px_5px_rgba(0,0,0,0.05)] active:scale-95 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">local_offer</span>
+<span class="font-label-sm text-label-sm mt-1">Offers</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-sm text-label-sm mt-1">Earnings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">confirmation_number</span>
+<span class="font-label-sm text-label-sm mt-1">Coupons</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors active:scale-95" href="#">
+<span class="material-symbols-outlined">share</span>
+<span class="font-label-sm text-label-sm mt-1">Refer</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for active state simulation
+        const navItems = document.querySelectorAll('nav a');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                navItems.forEach(nav => {
+                    nav.classList.remove('bg-primary-container', 'text-on-primary-container', 'rounded-full', 'px-6', 'py-2', 'shadow-[inset_2px_2px_5px_rgba(255,255,255,0.5),inset_-2px_-2px_5px_rgba(0,0,0,0.05)]');
+                    nav.classList.add('text-outline', 'p-2');
+                    const icon = nav.querySelector('.material-symbols-outlined');
+                    if(icon) icon.style.fontVariationSettings = "'FILL' 0";
+                });
+                item.classList.add('bg-primary-container', 'text-on-primary-container', 'rounded-full', 'px-6', 'py-2', 'shadow-[inset_2px_2px_5px_rgba(255,255,255,0.5),inset_-2px_-2px_5px_rgba(0,0,0,0.05)]');
+                item.classList.remove('text-outline', 'p-2');
+                const icon = item.querySelector('.material-symbols-outlined');
+                if(icon) icon.style.fontVariationSettings = "'FILL' 1";
+            });
+        });
+    </script>
+</body></html>

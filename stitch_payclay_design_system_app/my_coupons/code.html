@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay Rewards - My Coupons</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "secondary-fixed": "#8af8c5",
+                    "on-background": "#161a32",
+                    "secondary": "#006c4b",
+                    "tertiary-fixed": "#ffddaf",
+                    "outline-variant": "#c2c7d0",
+                    "outline": "#727780",
+                    "on-surface-variant": "#42474f",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f0efff",
+                    "secondary-container": "#8af8c5",
+                    "surface": "#fbf8ff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#7f5604",
+                    "on-primary-container": "#003256",
+                    "surface-container": "#ececff",
+                    "on-surface": "#161a32",
+                    "on-secondary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-tertiary-fixed": "#281800",
+                    "surface-container-highest": "#dee0ff",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "primary-container": "#6c9bcf",
+                    "primary": "#2f6192",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#d1e4ff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#c08f3e",
+                    "surface-dim": "#d5d8f9",
+                    "inverse-primary": "#9dcaff",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-container": "#432b00",
+                    "on-secondary-container": "#007350",
+                    "on-secondary-fixed": "#002114",
+                    "inverse-surface": "#2b2f48",
+                    "surface-container-high": "#e5e6ff",
+                    "surface-tint": "#2f6192",
+                    "surface-bright": "#fbf8ff",
+                    "on-primary-fixed": "#001d35",
+                    "surface-variant": "#dee0ff",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface-container-low": "#f4f2ff",
+                    "background": "#fbf8ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "32px",
+                    "gutter": "20px",
+                    "xl": "48px",
+                    "unit": "4px",
+                    "md": "20px",
+                    "xs": "8px",
+                    "sm": "12px",
+                    "container-padding": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fbf8ff;
+            font-family: 'Nunito Sans', sans-serif;
+            color: #161a32;
+        }
+
+        /* Claymorphism Elevation 2 */
+        .clay-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        -10px -10px 20px rgba(255, 255, 255, 0.8);
+            position: relative;
+            overflow: visible;
+        }
+
+        .clay-card::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border-radius: inherit;
+            box-shadow: inset 10px 10px 15px rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        /* Sunken / Inset effect */
+        .clay-inset {
+            background: #f4f2ff;
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.05), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+            border-radius: 1rem;
+        }
+
+        /* Perforated Edge Effect */
+        .perforated-left::after, .perforated-right::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: #fbf8ff; /* Matches page background */
+            border-radius: 50%;
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.2),
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+        .perforated-left::after { left: -12px; }
+        .perforated-right::after { right: -12px; }
+
+        /* Tactile Toggle Pills */
+        .toggle-pill-active {
+            background: #6c9bcf;
+            color: #003256;
+            box-shadow: inset 4px 4px 8px rgba(255, 255, 255, 0.4),
+                        inset -4px -4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle-pill-inactive {
+            background: #ffffff;
+            color: #727780;
+            box-shadow: 6px 6px 12px rgba(163, 177, 198, 0.3),
+                        -4px -4px 8px rgba(255, 255, 255, 0.7);
+        }
+
+        /* Pressed Button Effect */
+        .btn-pressed {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1),
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.5) !important;
+            transform: scale(0.98);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top App Bar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-container-padding h-16 bg-background shadow-[10px_10px_20px_rgba(163,177,198,0.4)]">
+<div class="flex items-center gap-4">
+<button class="p-2 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-primary text-[28px]">menu</span>
+</button>
+<h1 class="font-display text-title-lg text-primary">PayClay Rewards</h1>
+</div>
+<button class="p-2 bg-surface-container-lowest rounded-full shadow-[5px_5px_10px_rgba(163,177,198,0.3),-5px_-5px_10px_rgba(255,255,255,0.8)] active:shadow-inner transition-all">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</button>
+</header>
+<main class="pt-24 px-container-padding max-w-lg mx-auto">
+<!-- Headline Section -->
+<div class="mb-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-xs">My Coupons</h2>
+<p class="font-body-md text-on-surface-variant">Tap a coupon to copy your unique code and save on your next purchase.</p>
+</div>
+<!-- Tactile Pill Toggles -->
+<nav class="flex gap-md mb-xl overflow-x-auto scroll-hide pb-2">
+<button class="toggle-pill-active font-label-md px-lg py-3 rounded-full transition-all flex-shrink-0" onclick="switchTab(this)">
+                Active
+            </button>
+<button class="toggle-pill-inactive font-label-md px-lg py-3 rounded-full transition-all flex-shrink-0" onclick="switchTab(this)">
+                Used
+            </button>
+<button class="toggle-pill-inactive font-label-md px-lg py-3 rounded-full transition-all flex-shrink-0" onclick="switchTab(this)">
+                Expired
+            </button>
+</nav>
+<!-- Coupons List -->
+<div class="flex flex-col gap-lg" id="coupon-container">
+<!-- Coupon Card 1 -->
+<div class="clay-card p-6 flex flex-col gap-4 perforated-left perforated-right">
+<div class="flex items-start justify-between">
+<div class="flex gap-4 items-center">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center shadow-inner overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="A minimalist tech company logo with organic, rounded shapes and a vibrant blue primary color, set against a clean white studio background in a soft claymorphism style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzj8jqMVvjGzVLru48BqIE7X_5Njsi-efrhmWjUUJ1EQ_jZ5sJW3M53JxMuJXkbiMsNocOAm2LvGlIfYXbWGDV5hdGE4APU0B51WBia3pPVkknU1FHSzgELr6FptDvf3WNKQNrvqIpcpO14f4GHytc5tTD4EHrurPu4_hkQkfojS-po0mVvdrF_kWEOmOmUc3HnUXc-Gp690ixfyfsvP_35Y3VcVRArfE3ViifgZ6bkfyA8prMhWZUnC9PZdBaJyEst5f9fiDbW-_9"/>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg">CloudStore</h3>
+<p class="font-label-sm text-outline">Electronics &amp; Gear</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-display text-primary text-[28px] leading-none">60%</span>
+<span class="block font-label-sm text-primary uppercase tracking-wider">OFF</span>
+</div>
+</div>
+<div class="h-[1px] w-full border-t border-dashed border-outline-variant my-2"></div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-sm text-on-surface-variant">Expires</p>
+<p class="font-body-md font-bold text-on-surface">24 Oct 2024</p>
+</div>
+<button class="clay-inset px-lg py-3 font-label-md text-primary active:btn-pressed transition-all flex items-center gap-2" onclick="copyCode(this, 'CLD60OFF')">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+                        COPY CODE
+                    </button>
+</div>
+</div>
+<!-- Coupon Card 2 -->
+<div class="clay-card p-6 flex flex-col gap-4 perforated-left perforated-right">
+<div class="flex items-start justify-between">
+<div class="flex gap-4 items-center">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center shadow-inner overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="A trendy fashion brand logo featuring elegant, flowing cursive typography in a deep forest green, presented as a 3D soft plastic emblem on a neutral light background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwojDWJUOu5903U2ztA459G7bqFlbUygs1hHNtxaMQkOOq_8530H75dD1jIqCrXxDtARWFkT6ID3DsmLiWGj7S1y_XEvGMtZmJb1G_xWs61yVQbamg0l__ud40b8PmyhUfAWHwL8WqT00bdfU74oliAsyPNokSKGShwbef1YE-NbAZh77t5g_lDldtjvCrkB3fRHMHlJC8Cih9GhyITr8n8NzjnNYYTZPUdKAAYXZOMO0kfTSykCOhhSLcUrCQYurrq2UiXkD_xAtS"/>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg">Urban Bloom</h3>
+<p class="font-label-sm text-outline">Lifestyle &amp; Fashion</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-display text-secondary text-[28px] leading-none">$15</span>
+<span class="block font-label-sm text-secondary uppercase tracking-wider">CASHBACK</span>
+</div>
+</div>
+<div class="h-[1px] w-full border-t border-dashed border-outline-variant my-2"></div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-sm text-on-surface-variant">Expires</p>
+<p class="font-body-md font-bold text-on-surface">02 Nov 2024</p>
+</div>
+<button class="clay-inset px-lg py-3 font-label-md text-primary active:btn-pressed transition-all flex items-center gap-2" onclick="copyCode(this, 'BLOOM15')">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+                        COPY CODE
+                    </button>
+</div>
+</div>
+<!-- Coupon Card 3 -->
+<div class="clay-card p-6 flex flex-col gap-4 perforated-left perforated-right">
+<div class="flex items-start justify-between">
+<div class="flex gap-4 items-center">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-highest flex items-center justify-center shadow-inner overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="A modern gourmet food delivery service logo showing a stylized steaming bowl in warm terracotta and gold colors, rendered with soft lighting and smooth, rounded edges." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIGA4wAslRtBVx2MRuCdjWgstOhvhC-QDXXQ89dMNR7H006kMlsYJoqgPQR_3X9KxcCZOw7gDJkxydYco9ybtO7PnZa2mFY8VlbJIS-YlP05D2w-l_Gz6LRnsRdLjaTRxbtkf9-ND_oSMlb_m35vd2v4obB49-gfY7XhlLoYKnYhiOTN2cmUVU1h7pgOC0QAUkJIWZ0ni41hXV1SjSNvSi7xtdHw8oAo7GF0IDYMWHj3bZBWHomg6TR4ox4Jr5o0IF97r3iPlNJE8I"/>
+</div>
+<div>
+<h3 class="font-title-lg text-title-lg">GourmetGo</h3>
+<p class="font-label-sm text-outline">Food &amp; Dining</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-display text-tertiary text-[28px] leading-none">FREE</span>
+<span class="block font-label-sm text-tertiary uppercase tracking-wider">DELIVERY</span>
+</div>
+</div>
+<div class="h-[1px] w-full border-t border-dashed border-outline-variant my-2"></div>
+<div class="flex items-center justify-between">
+<div>
+<p class="font-label-sm text-on-surface-variant">Expires</p>
+<p class="font-body-md font-bold text-on-surface">Tomorrow</p>
+</div>
+<button class="clay-inset px-lg py-3 font-label-md text-primary active:btn-pressed transition-all flex items-center gap-2" onclick="copyCode(this, 'GOGOFR')">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+                        COPY CODE
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-6 left-4 right-4 z-50 flex justify-around items-center h-20 p-2 bg-surface-container-lowest/90 backdrop-blur-md rounded-full shadow-[15px_15px_30px_rgba(163,177,198,0.4),-10px_-10px_20px_rgba(255,255,255,0.8)]">
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">local_offer</span>
+<span class="font-label-sm text-label-sm">Offers</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-sm text-label-sm">Earnings</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-6 py-2 shadow-[inset_2px_2px_5px_rgba(255,255,255,0.5),inset_-2px_-2px_5px_rgba(0,0,0,0.05)] active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+<span class="font-label-sm text-label-sm">Coupons</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline p-2 hover:text-primary transition-colors active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">share</span>
+<span class="font-label-sm text-label-sm">Refer</span>
+</a>
+</nav>
+<script>
+        function switchTab(btn) {
+            // Find all buttons in the same parent
+            const buttons = btn.parentElement.querySelectorAll('button');
+            buttons.forEach(b => {
+                b.classList.remove('toggle-pill-active');
+                b.classList.add('toggle-pill-inactive');
+            });
+            
+            btn.classList.add('toggle-pill-active');
+            btn.classList.remove('toggle-pill-inactive');
+
+            // Add simple animation to content
+            const container = document.getElementById('coupon-container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.4s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        }
+
+        function copyCode(btn, code) {
+            // Visual feedback
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<span class="material-symbols-outlined text-[18px]">check</span> COPIED!`;
+            btn.classList.add('btn-pressed');
+            btn.style.color = '#006c4b'; // secondary color for success
+
+            // Simulation of clipboard action
+            console.log(`Copied: ${code}`);
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.classList.remove('btn-pressed');
+                btn.style.color = '';
+            }, 2000);
+        }
+
+        // Floating Micro-interaction for cards on mouse move
+        document.querySelectorAll('.clay-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+    </script>
+</body></html>

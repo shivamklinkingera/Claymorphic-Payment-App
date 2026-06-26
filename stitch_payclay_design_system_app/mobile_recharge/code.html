@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mobile Recharge | ClayPay</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ececff",
+                    "on-tertiary-fixed": "#281800",
+                    "background": "#fbf8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-secondary-container": "#007350",
+                    "tertiary": "#7f5604",
+                    "primary": "#2f6192",
+                    "surface-variant": "#dee0ff",
+                    "surface-dim": "#d5d8f9",
+                    "tertiary-fixed": "#ffddaf",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fbf8ff",
+                    "outline": "#727780",
+                    "on-primary-fixed": "#001d35",
+                    "inverse-surface": "#2b2f48",
+                    "on-primary-container": "#003256",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface": "#fbf8ff",
+                    "surface-tint": "#2f6192",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#161a32",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-background": "#161a32",
+                    "on-surface-variant": "#42474f",
+                    "secondary": "#006c4b",
+                    "secondary-fixed": "#8af8c5",
+                    "secondary-container": "#8af8c5",
+                    "on-secondary-fixed": "#002114",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "primary-fixed": "#d1e4ff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "surface-container-highest": "#dee0ff",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#9dcaff",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f4f2ff",
+                    "outline-variant": "#c2c7d0",
+                    "surface-container-high": "#e5e6ff",
+                    "primary-container": "#6c9bcf",
+                    "on-tertiary-container": "#432b00",
+                    "inverse-on-surface": "#f0efff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "20px",
+                    "unit": "4px",
+                    "lg": "32px",
+                    "xs": "8px",
+                    "md": "20px",
+                    "container-padding": "24px",
+                    "xl": "48px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        /* Claymorphism Elevation 2 - Standard */
+        .clay-card {
+            background: #ffffff;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+            border: none;
+        }
+
+        /* Claymorphism Inset - Sunken Inputs */
+        .clay-inset {
+            background: #f0f2f5;
+            box-shadow: inset 8px 8px 16px rgba(163, 177, 198, 0.5), 
+                        inset -8px -8px 16px rgba(255, 255, 255, 0.8);
+            border: none;
+        }
+
+        /* Claymorphism Level 1 - Subtle Chips */
+        .clay-chip {
+            box-shadow: 4px 4px 10px rgba(163, 177, 198, 0.3), 
+                        inset 2px 2px 5px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Interactive States */
+        .clay-button-active:active {
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.1);
+            transform: scale(0.96);
+            transition: all 0.2s ease;
+        }
+
+        .scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            color: #161a32;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- Top App Bar (Back + Heading) -->
+<header class="flex items-center px-container-padding py-md sticky top-0 bg-[#F0EDE8]/80 backdrop-blur-md z-50">
+<button class="mr-md clay-button-active p-sm rounded-full flex items-center justify-center bg-white shadow-[8px_8px_16px_rgba(163,177,198,0.3)]">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-on-surface">Mobile Recharge</h1>
+</header>
+<main class="flex-grow px-container-padding pb-xl">
+<!-- Prepaid/Postpaid Selector -->
+<div class="flex p-xs clay-inset rounded-lg mb-lg">
+<button class="flex-1 py-sm px-md rounded-lg font-label-md text-label-md text-on-primary bg-primary clay-button-active shadow-[6px_6px_12px_rgba(47,97,146,0.3),inset_4px_4px_8px_rgba(255,255,255,0.3)]">
+                Prepaid
+            </button>
+<button class="flex-1 py-sm px-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">
+                Postpaid
+            </button>
+</div>
+<!-- Phone Input Section -->
+<div class="space-y-md mb-xl">
+<div class="relative">
+<div class="absolute left-md top-1/2 -translate-y-1/2 text-outline">
+<span class="material-symbols-outlined">call</span>
+</div>
+<input class="w-full pl-xl pr-md py-lg rounded-lg clay-inset focus:ring-0 border-none font-body-md text-body-md placeholder:text-outline/60 text-on-surface transition-all" placeholder="Enter mobile number" type="text" value="98765 43210"/>
+<!-- Operator Badge -->
+<div class="mt-sm flex justify-start">
+<div class="clay-chip bg-secondary-container px-md py-xs rounded-full flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm text-on-secondary-container">Jio — Prepaid</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Plan Section -->
+<div class="space-y-lg">
+<div class="flex items-center justify-between">
+<h2 class="font-title-lg text-title-lg text-on-surface">Choose Plan</h2>
+<button class="text-primary font-label-md text-label-md">View all</button>
+</div>
+<!-- Tab Filter -->
+<div class="flex gap-md overflow-x-auto scroll-hide pb-sm">
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-[4px_4px_10px_rgba(47,97,146,0.3)]">Popular</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-white text-on-surface-variant font-label-md text-label-md clay-chip">Data</button>
+<button class="whitespace-nowrap px-lg py-sm rounded-full bg-white text-on-surface-variant font-label-md text-label-md clay-chip">Unlimited</button>
+</div>
+<!-- Plan Cards (Horizontal Scrollable) -->
+<div class="flex gap-md overflow-x-auto scroll-hide -mx-container-padding px-container-padding py-sm">
+<!-- Card 1 (Popular) -->
+<div class="min-w-[280px] clay-card p-md rounded-lg flex flex-col relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-tertiary-container text-on-tertiary-container px-md py-xs rounded-bl-lg font-label-sm text-label-sm shadow-sm">
+                        POPULAR
+                    </div>
+<div class="flex items-end gap-xs mb-sm">
+<span class="font-headline-md text-headline-md text-on-surface">₹299</span>
+</div>
+<div class="flex flex-wrap gap-xs mb-md">
+<div class="clay-chip bg-surface-variant/50 px-sm py-xs rounded-md font-label-sm text-label-sm">28 Days</div>
+<div class="clay-chip bg-surface-variant/50 px-sm py-xs rounded-md font-label-sm text-label-sm">2GB/Day</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Unlimited Voice Calls + 100 SMS/Day</p>
+<button class="mt-auto w-full py-md rounded-lg bg-primary/10 text-primary font-label-md text-label-md clay-button-active hover:bg-primary hover:text-on-primary transition-all shadow-[inset_2px_2px_4px_rgba(255,255,255,0.8)]">
+                        Recharge
+                    </button>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[280px] clay-card p-md rounded-lg flex flex-col">
+<div class="flex items-end gap-xs mb-sm">
+<span class="font-headline-md text-headline-md text-on-surface">₹599</span>
+</div>
+<div class="flex flex-wrap gap-xs mb-md">
+<div class="clay-chip bg-surface-variant/50 px-sm py-xs rounded-md font-label-sm text-label-sm">56 Days</div>
+<div class="clay-chip bg-surface-variant/50 px-sm py-xs rounded-md font-label-sm text-label-sm">1.5GB/Day</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Unlimited Calls + Data rollover benefits</p>
+<button class="mt-auto w-full py-md rounded-lg bg-primary/10 text-primary font-label-md text-label-md clay-button-active hover:bg-primary hover:text-on-primary transition-all">
+                        Recharge
+                    </button>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[280px] clay-card p-md rounded-lg flex flex-col">
+<div class="flex items-end gap-xs mb-sm">
+<span class="font-headline-md text-headline-md text-on-surface">₹719</span>
+</div>
+<div class="flex flex-wrap gap-xs mb-md">
+<div class="clay-chip bg-surface-variant/50 px-sm py-xs rounded-md font-label-sm text-label-sm">84 Days</div>
+<div class="clay-chip bg-surface-variant/50 px-sm py-xs rounded-md font-label-sm text-label-sm">2GB/Day</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg">Best value for long-term unlimited usage</p>
+<button class="mt-auto w-full py-md rounded-lg bg-primary/10 text-primary font-label-md text-label-md clay-button-active hover:bg-primary hover:text-on-primary transition-all">
+                        Recharge
+                    </button>
+</div>
+</div>
+</div>
+<!-- Banner Ad Section -->
+<div class="mt-xl">
+<div class="clay-card p-container-padding rounded-lg bg-gradient-to-br from-primary to-primary-container relative overflow-hidden group">
+<div class="relative z-10 flex flex-col gap-xs">
+<h3 class="font-title-lg text-title-lg text-on-primary">Double Data Offer</h3>
+<p class="font-body-md text-body-md text-on-primary/80">Get 2GB extra on selected unlimited plans today.</p>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-20 transform rotate-12 group-hover:rotate-0 transition-transform duration-500">
+<span class="material-symbols-outlined text-[120px] text-white" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Bottom Action -->
+<div class="fixed bottom-0 left-0 w-full p-container-padding bg-[#F0EDE8]/90 backdrop-blur-md z-40">
+<button class="w-full py-lg rounded-full bg-primary text-on-primary font-headline-md text-headline-md shadow-[15px_15px_30px_rgba(47,97,146,0.3),inset_8px_8px_16px_rgba(255,255,255,0.3)] clay-button-active flex items-center justify-center gap-md">
+            Recharge ₹299
+            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<!-- Padding for bottom button -->
+<div class="h-32"></div>
+<script>
+        // Micro-interaction for input focus
+        const inputs = document.querySelectorAll('.clay-inset');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.style.boxShadow = 'inset 4px 4px 8px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.6)';
+            });
+            input.addEventListener('blur', () => {
+                input.style.boxShadow = '';
+            });
+        });
+
+        // Plan Selection simulation
+        const planCards = document.querySelectorAll('.clay-card');
+        planCards.forEach(card => {
+            card.addEventListener('click', () => {
+                planCards.forEach(c => c.classList.remove('ring-2', 'ring-primary'));
+                card.classList.add('ring-2', 'ring-primary');
+                // Update bottom button value if text matches
+                const price = card.querySelector('.text-headline-md').textContent;
+                document.querySelector('.fixed button').textContent = `Recharge ${price}`;
+            });
+        });
+    </script>
+</body></html>

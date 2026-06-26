@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay - Bill Splitter Hub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #fbf8ff;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .clay-card {
+            background: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 0 10px 20px rgba(163, 177, 198, 0.2), inset 10px 10px 10px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .clay-card:active {
+            transform: scale(0.98);
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .clay-button-primary {
+            background: #2f6192;
+            color: #ffffff;
+            border-radius: 9999px;
+            box-shadow: 0 10px 20px rgba(163, 177, 198, 0.4), inset 4px 4px 8px rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clay-button-primary:active {
+            box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(0.95);
+        }
+
+        .clay-inset {
+            background: #f4f2ff;
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.3), inset -4px -4px 8px rgba(255, 255, 255, 0.8);
+            border-radius: 1rem;
+        }
+
+        .dashed-clay-border {
+            border: 3px dashed #727780;
+            border-radius: 2rem;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .dashed-clay-border:hover {
+            border-color: #2f6192;
+            background: #ffffff;
+            box-shadow: 0 10px 20px rgba(163, 177, 198, 0.2);
+        }
+
+        .avatar-stack img {
+            border: 4px solid #ffffff;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fbf8ff",
+                        "primary-container": "#6c9bcf",
+                        "surface-tint": "#2f6192",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#8af8c5",
+                        "surface-container-high": "#e5e6ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#007350",
+                        "surface-container": "#ececff",
+                        "inverse-on-surface": "#f0efff",
+                        "secondary-container": "#8af8c5",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "surface": "#fbf8ff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-surface": "#161a32",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "surface-dim": "#d5d8f9",
+                        "inverse-primary": "#9dcaff",
+                        "primary-fixed-dim": "#9dcaff",
+                        "on-surface-variant": "#42474f",
+                        "background": "#fbf8ff",
+                        "outline-variant": "#c2c7d0",
+                        "outline": "#727780",
+                        "on-tertiary-fixed": "#281800",
+                        "on-tertiary-container": "#432b00",
+                        "surface-container-highest": "#dee0ff",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#003256",
+                        "secondary": "#006c4b",
+                        "primary-fixed": "#d1e4ff",
+                        "error": "#ba1a1a",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#002114",
+                        "surface-container-low": "#f4f2ff",
+                        "on-primary-fixed": "#001d35",
+                        "on-background": "#161a32",
+                        "inverse-surface": "#2b2f48",
+                        "tertiary-container": "#c08f3e",
+                        "primary": "#2f6192",
+                        "on-secondary-fixed-variant": "#005137",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#dee0ff",
+                        "tertiary": "#7f5604"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "8px",
+                        "gutter": "20px",
+                        "xl": "48px",
+                        "md": "20px",
+                        "sm": "12px",
+                        "unit": "4px",
+                        "lg": "32px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "title-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- Top AppBar -->
+<header class="bg-surface dark:bg-surface-dim shadow-[0_10px_20px_rgba(163,177,198,0.2),inset_10px_10px_10px_rgba(255,255,255,0.6)] w-full pt-4 px-container-padding sticky top-0 z-40">
+<div class="flex items-center justify-between h-20 max-w-[1200px] mx-auto">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shadow-inner">
+<span class="material-symbols-outlined">person</span>
+</div>
+<h1 class="font-display text-display text-primary dark:text-primary-fixed-dim tracking-tight">PayClay</h1>
+</div>
+<div class="flex gap-md items-center">
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity p-2 bg-surface-container-low rounded-full shadow-sm">search</button>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity p-2 bg-surface-container-low rounded-full shadow-sm">notifications</button>
+</div>
+</div>
+</header>
+<main class="max-w-[1200px] mx-auto px-container-padding mt-lg">
+<!-- Welcome Section -->
+<section class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Split Bill Hub</h2>
+<p class="font-body-md text-body-md text-outline">Manage your group expenses with ease.</p>
+</section>
+<!-- Create New Group -->
+<section class="mb-xl">
+<div class="dashed-clay-border p-lg flex flex-col items-center justify-center cursor-pointer group hover:scale-[1.01]">
+<div class="w-16 h-16 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-md shadow-lg group-hover:rotate-90 transition-transform duration-500">
+<span class="material-symbols-outlined text-4xl">add</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface">Create New Group</h3>
+<p class="font-label-md text-label-md text-outline-variant mt-1 text-center">Start tracking shared costs with friends</p>
+</div>
+</section>
+<!-- Recent Groups Section -->
+<section>
+<div class="flex justify-between items-end mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Groups</h3>
+<button class="text-primary font-label-md text-label-md flex items-center gap-1 hover:underline">
+                    View all <span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+</button>
+</div>
+<!-- Grid Layout for Groups -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Group Card 1: Goa Trip -->
+<div class="clay-card p-container-padding border border-white/40">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<div class="flex items-center gap-xs mb-xs">
+<span class="material-symbols-outlined text-tertiary-container">beach_access</span>
+<h4 class="font-title-lg text-title-lg">Goa Trip</h4>
+</div>
+<p class="font-label-sm text-label-sm text-outline">Created 2 days ago</p>
+</div>
+<div class="bg-secondary-container/30 px-sm py-1 rounded-full text-secondary font-label-md">
+                            Active
+                        </div>
+</div>
+<div class="flex justify-between items-center mb-lg">
+<div class="avatar-stack flex -space-x-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a smiling young man in a blue polo shirt, set against a soft blurred studio background with clean lighting, consistent with a professional yet friendly fintech user profile aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxfQ-M0CV1OksKEHyvCyHEm05rGQj4RJp6lq_y7fIP3i_6ZupQPwwYV5-JJDXz0SterefSZAbuBiI-C54LbhPUlQk39bN1HScdj9SkARHYJVS-ZEq8AhUmOWITNuuVRJKx-LGs51RJ9DL8KGWgC1Lk-BfKobljWzYNYwHQApT2h-_ofZd1wS7r0AG9FOFs30Sab6m97sYQOZxJkOqPUBfiltgfWoTAbh9OaHtEVkN8d0wKmod3Igk8HKO9sLJEMBhphvBBiYkun4mq"/>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a woman with vibrant energy and a warm smile, wearing a modern white blouse. The lighting is bright and airy, reflecting a contemporary and approachable digital brand feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC66rMMpRXEQiNQWOw7OJxsVleblWf9l5kwAZJ5ROMaEJVFEuBcdxmpcgTK1swSv1duBj_UfpmYPdWWy9dv8qZbOJhf3SbqXgLSAbkr0pZ8Vp-KUQA8BPYfgWIqWOBuUTxVKJE8d-BykAibYeNWcWCKUDDuV4m7PXdMuDs0WCSBEpzHV_FW4L7-JKsLIHYuqIDJGh6LhnQvmc9hk6y2gLS2BqLOA74gdVMqt6M1m_gmvfK_vnw1yfRiwpPr1R1wNSn9N_1bps9GqjcD"/>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A smiling man with glasses in a casual grey t-shirt, appearing friendly and trustworthy. The image features soft shadows and a high-key lighting setup suitable for a soft clay-themed UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCOxBqSggQRSz0fPmpA1EopxkGSqSdH51TawrC3RST6gNSNTFowePLpabH0eipMfsksQvbxG8fPK13xQu58O44zYkijGwsEKqbk6SW5cKsznlQIeW-mPmaObbvH_BnzwhZSwTkwubpcgQI85L2u8E6l7pyimIuuHoSS4kjuEnzoqCwkeW8Su2qmm3IWFT8EGgXabDLP4LnPML3W_2lXQMPtNwBTkL8ogVlxc7NTm_xAkdBQwTAv2hDiI4JvIj92SjfyINefAlu3WwF"/>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-outline font-label-sm border-2 border-white">+2</div>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1">Your Balance</p>
+<p class="font-headline-md text-headline-md text-secondary">+ ₹4,250</p>
+<p class="font-label-sm text-label-sm text-secondary">You are owed</p>
+</div>
+</div>
+<button class="clay-button-primary w-full py-md font-label-md text-label-md gap-xs">
+<span class="material-symbols-outlined">payments</span>
+                        Split a Bill
+                    </button>
+</div>
+<!-- Group Card 2: Roommates -->
+<div class="clay-card p-container-padding border border-white/40">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<div class="flex items-center gap-xs mb-xs">
+<span class="material-symbols-outlined text-primary">home</span>
+<h4 class="font-title-lg text-title-lg">Roommates</h4>
+</div>
+<p class="font-label-sm text-label-sm text-outline">Updated 4 hours ago</p>
+</div>
+<div class="bg-surface-container px-sm py-1 rounded-full text-outline font-label-md">
+                            Monthly
+                        </div>
+</div>
+<div class="flex justify-between items-center mb-lg">
+<div class="avatar-stack flex -space-x-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A high-quality studio portrait of a man with a slight smile, wearing a casual denim shirt. The background is a soft neutral grey, creating a clean and professional appearance for a banking app profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9da15uOKs_cPXJSHohUbxCaqlXLMoY9fOhEKfqNuVtuDQyAW8aRtpEprOTmi-7oRDh8Z6i4KS_xfhxPt7Gq-1NUq2xPp7T5apwCTQobcnWAUFWxwf4lHLu99NEkMIRSZPRTMKT0T8Og_KnT_F4tw6D1r8xuIGNiWSQefitQId3aA5JitnmdS2Ov8kjKGHplFo20_rowb4eJxYk7iAHxi1Rf2r5Iu3mrg7Ynz_zIBDSBPquj4VzCwnRsPKiRibANHTpbj7TZF2OVNE"/>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a cheerful woman with a clean, minimalist aesthetic. Soft lighting illuminates her face, projecting a sense of security and friendliness, perfect for a high-end financial dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDuKkvbMbNt0HfDldmPXiKO9NGTHHEeIS9IfsGGTodlfIb-i7fL7bHFfz7T01efLIGZRC0q9JxV7CmhZa5xfQXud5VE99oohpQ_WZVU8AWPonU9ID0ZXQLO7aHOxWSQhxd1XWuel9FwMAV6_dWCt_-Fd2UEyznQqgm1rbxQTQi5QRyB1IvEQgefwAEQGEUb_0SqypEl_5ZSX5PVhH75TiyiXeh_38g1TyxjwZRcuM_ideuOZjnlMyOEMf2GoGQcwy7p_YmrwHpj_vb"/>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1">Your Balance</p>
+<p class="font-headline-md text-headline-md text-error">- ₹1,120</p>
+<p class="font-label-sm text-label-sm text-error">You owe</p>
+</div>
+</div>
+<button class="clay-button-primary w-full py-md font-label-md text-label-md gap-xs">
+<span class="material-symbols-outlined">receipt_long</span>
+                        Split a Bill
+                    </button>
+</div>
+<!-- Group Card 3: Dinner Party -->
+<div class="clay-card p-container-padding border border-white/40">
+<div class="flex justify-between items-start mb-lg">
+<div>
+<div class="flex items-center gap-xs mb-xs">
+<span class="material-symbols-outlined text-tertiary">restaurant</span>
+<h4 class="font-title-lg text-title-lg">Dinner Party</h4>
+</div>
+<p class="font-label-sm text-label-sm text-outline">Yesterday</p>
+</div>
+<div class="bg-error-container/30 px-sm py-1 rounded-full text-error font-label-md">
+                            Pending
+                        </div>
+</div>
+<div class="flex justify-between items-center mb-lg">
+<div class="avatar-stack flex -space-x-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of a creative professional woman with a warm expression, against a soft pastel background. The image is bright and modern, evoking a sense of ease and approachable financial management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDvIWrYz6hSXrJTAJijfPkbvY4YH6VplHlxYeT-x11PvFQpg5Fi1rv1XazgbRFlwlh6AfcZWmUlqkVW3bpSLLU5ar2A55q5YesfKlkOaAePrHfarJI7iOPFWkvxSH4Vm4d1Pxi-dzVHCVms-PmfxDHvTlAKO1qDEEqgSTKwLzbMECUaXIkHZtIpkLBKamhsd-FbMPFiPKyVG7eB2Ays6nKZAKHnurC0hjeTRzxOE1lZ6eRkNyOVH_td_1WJ5qqLgwLR_5mD9VIW6-z"/>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A crisp, high-detail portrait of a friendly man in a light blue shirt. The lighting is diffused and soft, matching the claymorphic UI elements and overall friendly brand identity of PayClay." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz2adHyyCL2Zx-BO1bAjwIbYSLgkJ64ZkDz4VcKziMjhGM5QivnyMtfRg67XJFitLCAbR8Fa563cUO5WaQKWBakMQwYVc7MglLKK2vLHp3pDw3lLKUZyyLIcYr-CTwqV6ZL-17_8SWENo080TxCxSSAF5fD6QPzR3WXpzgMeQg0uwBCj9SClU9WRVVpDDBAzhB4FnutVhj6gNyExRcaSK9SVbY8NvnOws5lLFQghg5lUaBKysyXvwUHQOrra89hXPFPV96mtb_cele"/>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A high-quality image of a smiling woman in a neutral setting. The lighting is soft and even, highlighting her friendly expression and making her suitable for a modern Fintech user avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqnYZpirnLmpxVAfHcCv7fkTEU81qfGguICzrRAqQDObSuk-syKXO5NyFjhfD1MZemXLxWMqXKOxhnZT5kpxc1lr6mBSBJvM_k49cxcztDPU0sB7qMkZTiIPSQRJq5neVhFEpgbpEsfapAkZ6h7DLzsQC_Uu0zsgoCosQtP-n0_JBjW1XKy7xmgdOnqn6pB8-Vrulr4zw0-yiwEwsYzKL7BmKPlNXGOZyyQKZYKyZ4jshL97WcB2xGITQgZdGeHI1G5ghZNf1r8vP-"/>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-outline uppercase tracking-wider mb-1">Your Balance</p>
+<p class="font-headline-md text-headline-md text-secondary">+ ₹640</p>
+<p class="font-label-sm text-label-sm text-secondary">You are owed</p>
+</div>
+</div>
+<button class="clay-button-primary w-full py-md font-label-md text-label-md gap-xs">
+<span class="material-symbols-outlined">fastfood</span>
+                        Split a Bill
+                    </button>
+</div>
+<!-- Summary Clay Card (Bento Style) -->
+<div class="clay-card p-container-padding bg-primary-container text-on-primary-container relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="font-headline-md text-headline-md mb-md">Total Overview</h4>
+<div class="clay-inset p-md mb-md bg-white/20 border-none">
+<p class="font-label-sm text-label-sm opacity-80 uppercase mb-1">Net Balance</p>
+<p class="font-display text-display">+ ₹3,770</p>
+</div>
+<div class="flex gap-md">
+<div class="flex-1">
+<p class="font-label-sm text-label-sm opacity-80">You owe</p>
+<p class="font-title-lg text-title-lg">₹1,120</p>
+</div>
+<div class="w-px bg-white/20"></div>
+<div class="flex-1">
+<p class="font-label-sm text-label-sm opacity-80">Owed to you</p>
+<p class="font-title-lg text-title-lg">₹4,890</p>
+</div>
+</div>
+</div>
+<!-- Decorative Background Element -->
+<span class="material-symbols-outlined absolute -bottom-8 -right-8 text-[120px] opacity-10 group-hover:scale-110 transition-transform duration-700">account_balance_wallet</span>
+</div>
+</div>
+</section>
+<!-- Insights Banner -->
+<section class="mt-xl">
+<div class="clay-card bg-surface-container-high p-lg flex flex-col md:flex-row items-center gap-lg border-2 border-white/50">
+<div class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg floating">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h4 class="font-title-lg text-title-lg text-primary mb-1">Spending Insights</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Your group travel expenses have increased by 12% this month. Want to set a budget?</p>
+</div>
+<button class="bg-surface p-4 rounded-full shadow-md hover:shadow-inner active:scale-95 transition-all">
+<span class="material-symbols-outlined text-primary">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-gutter left-gutter right-gutter h-20 flex justify-around items-center px-4 max-w-[600px] mx-auto bg-surface-container-low/90 backdrop-blur-md rounded-xl z-50 shadow-[0_20px_40px_rgba(163,177,198,0.4),inset_0_10px_10px_rgba(255,255,255,0.6)]">
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-4 py-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="font-label-sm text-label-sm">Bank</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-4 py-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label-sm text-label-sm">Wealth</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container dark:bg-on-primary-fixed-variant rounded-full px-4 py-2 shadow-[inset_2px_2px_5px_rgba(0,0,0,0.05)] scale-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Pay</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-4 py-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">redeem</span>
+<span class="font-label-sm text-label-sm">Rewards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-outline dark:text-outline-variant px-4 py-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-label-sm text-label-sm">Help</span>
+</a>
+</nav>
+<!-- Floating Action Button for Splitting a new bill -->
+<button class="fixed bottom-28 right-8 w-16 h-16 bg-primary text-on-primary rounded-full shadow-[0_20px_40px_rgba(47,97,146,0.4),inset_5px_5px_10px_rgba(255,255,255,0.3)] flex items-center justify-center z-40 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-3xl">add_shopping_cart</span>
+</button>
+<script>
+        // Simple micro-interaction for clay cards
+        document.querySelectorAll('.clay-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+                card.style.boxShadow = 'inset 4px 4px 8px rgba(0, 0, 0, 0.05)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+                card.style.boxShadow = '0 10px 20px rgba(163, 177, 198, 0.2), inset 10px 10px 10px rgba(255, 255, 255, 0.6)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+                card.style.boxShadow = '0 10px 20px rgba(163, 177, 198, 0.2), inset 10px 10px 10px rgba(255, 255, 255, 0.6)';
+            });
+        });
+    </script>
+</body></html>

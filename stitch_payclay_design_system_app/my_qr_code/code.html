@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay - My QR Code</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary": "#ffffff",
+                      "background": "#fbf8ff",
+                      "on-tertiary-fixed": "#281800",
+                      "on-secondary": "#ffffff",
+                      "surface-dim": "#d5d8f9",
+                      "secondary-container": "#8af8c5",
+                      "primary-fixed": "#d1e4ff",
+                      "surface-container-highest": "#dee0ff",
+                      "on-primary-fixed-variant": "#0d4978",
+                      "tertiary-fixed": "#ffddaf",
+                      "tertiary-container": "#c08f3e",
+                      "outline-variant": "#c2c7d0",
+                      "on-surface": "#161a32",
+                      "surface-variant": "#dee0ff",
+                      "on-secondary-fixed": "#002114",
+                      "on-error-container": "#93000a",
+                      "error-container": "#ffdad6",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#2b2f48",
+                      "primary": "#2f6192",
+                      "on-primary-fixed": "#001d35",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed-variant": "#005137",
+                      "surface": "#fbf8ff",
+                      "on-secondary-container": "#007350",
+                      "surface-tint": "#2f6192",
+                      "surface-container-lowest": "#ffffff",
+                      "on-background": "#161a32",
+                      "secondary-fixed": "#8af8c5",
+                      "primary-fixed-dim": "#9dcaff",
+                      "surface-bright": "#fbf8ff",
+                      "on-tertiary-fixed-variant": "#614000",
+                      "outline": "#727780",
+                      "on-error": "#ffffff",
+                      "surface-container-low": "#f4f2ff",
+                      "inverse-on-surface": "#f0efff",
+                      "tertiary": "#7f5604",
+                      "inverse-primary": "#9dcaff",
+                      "primary-container": "#6c9bcf",
+                      "secondary-fixed-dim": "#6ddbaa",
+                      "surface-container-high": "#e5e6ff",
+                      "on-tertiary-container": "#432b00",
+                      "surface-container": "#ececff",
+                      "secondary": "#006c4b",
+                      "on-surface-variant": "#42474f",
+                      "tertiary-fixed-dim": "#f4bd67",
+                      "on-primary-container": "#003256"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "20px",
+                      "unit": "4px",
+                      "lg": "32px",
+                      "xl": "48px",
+                      "md": "20px",
+                      "container-padding": "24px",
+                      "xs": "8px",
+                      "sm": "12px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Nunito Sans"],
+                      "body-lg": ["Nunito Sans"],
+                      "body-md": ["Nunito Sans"],
+                      "display": ["Nunito Sans"],
+                      "label-md": ["Nunito Sans"],
+                      "label-sm": ["Nunito Sans"],
+                      "title-lg": ["Nunito Sans"],
+                      "headline-lg": ["Nunito Sans"],
+                      "headline-md": ["Nunito Sans"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                      "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .clay-elevation-1 {
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .clay-elevation-2 {
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), -10px -10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-elevation-3 {
+            box-shadow: 20px 20px 40px rgba(163, 177, 198, 0.4), -12px -12px 24px rgba(255, 255, 255, 0.7);
+        }
+
+        .clay-inset {
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.4), inset -4px -4px 8px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-button-active:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+            transform: scale(0.98);
+        }
+
+        .clay-card {
+            background: #ffffff;
+            border-radius: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .clay-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: inherit;
+            box-shadow: inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+        }
+
+        .qr-gradient {
+            background: linear-gradient(135deg, #2f6192 0%, #003256 100%);
+            -webkit-mask: url('https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=RahulSharmaPayClay') no-repeat center;
+            mask: url('https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=RahulSharmaPayClay') no-repeat center;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+<!-- Top Navigation -->
+<nav class="w-full max-w-md flex items-center justify-between px-container-padding py-md sticky top-0 z-50 bg-[#F0EDE8]">
+<button class="w-10 h-10 flex items-center justify-center rounded-full clay-elevation-1 bg-surface-container-lowest clay-button-active">
+<span class="material-symbols-outlined text-on-surface" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile text-on-surface">My QR Code</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</nav>
+<main class="w-full max-w-md flex-1 flex flex-col items-center px-container-padding pb-xl pt-sm">
+<!-- Main QR Card -->
+<div class="clay-card clay-elevation-3 w-full p-lg flex flex-col items-center mb-xl">
+<!-- Profile Section -->
+<div class="flex flex-col items-center w-full mb-md">
+<div class="w-14 h-14 rounded-full bg-primary-fixed-dim flex items-center justify-center clay-elevation-1 border-4 border-white mb-sm">
+<span class="text-on-primary-container font-display text-[24px]">R</span>
+</div>
+<div class="text-center">
+<h2 class="font-title-lg text-title-lg text-on-surface font-bold leading-tight">Rahul Sharma</h2>
+<p class="font-label-md text-label-md text-primary">rahul@payclay</p>
+</div>
+</div>
+<!-- QR Code Area -->
+<div class="relative w-full aspect-square p-md bg-white rounded-xl shadow-[inset_2px_2px_10px_rgba(0,0,0,0.05)] flex items-center justify-center mb-md">
+<div class="w-full h-full max-w-[200px] max-h-[200px] bg-white rounded-lg p-sm">
+<div class="w-full h-full bg-contain bg-center bg-no-repeat" data-alt="A clean, minimalist high-contrast QR code generated in a soft clay aesthetic. The pattern is deep navy blue on a crisp white background with rounded square corners. The lighting is bright and even, highlighting the soft 3D inflated look of the white card surface. High-end fintech branding with organic soft shadows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCvKNkz4NgqlNky3G7JLbnKSnixYE9vngLqFMm30O40Oa_zmgCCV0gY50dWngv3SxP3821iDnTBkmm14uib72sgYwanue5oNKCDb-YvEm4LH-lcwnOJbxfGpZWeB6AI-xjHujmKUjKESAa_cLs6dXZxAoPcrtv4MUf7npJWWX5q-TfF0gk8cJOQO99DDidJpisZDnEdtQ0t8-TfLk0tGM3meh3CeGTYJ3K-wGMREFCY3SJ5hyuEFAXB913guivc9xUIDoa_yZKW7kGI')"></div>
+</div>
+</div>
+<!-- Footer Text -->
+<p class="font-label-md text-on-surface-variant">Scan to pay me</p>
+</div>
+<!-- Amount Section -->
+<div class="w-full mb-xl">
+<div class="relative flex items-center w-full h-14 px-md rounded-full bg-[#EAE8E3] clay-inset">
+<span class="material-symbols-outlined text-primary mr-sm" data-icon="currency_rupee">currency_rupee</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-on-surface placeholder:text-outline-variant outline-none" placeholder="Add amount (optional)" type="number"/>
+</div>
+</div>
+<!-- Action Row -->
+<div class="w-full grid grid-cols-2 gap-md">
+<button class="h-14 flex items-center justify-center gap-xs rounded-full bg-primary text-on-primary clay-elevation-2 clay-button-active font-label-md">
+<span class="material-symbols-outlined text-[20px]" data-icon="share">share</span>
+                Share QR
+            </button>
+<button class="h-14 flex items-center justify-center gap-xs rounded-full bg-secondary text-on-secondary clay-elevation-2 clay-button-active font-label-md">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+                Download
+            </button>
+</div>
+<!-- Subtle Background Animation Container -->
+<div class="fixed inset-0 -z-10 pointer-events-none opacity-20">
+
+</div>
+</main>
+<!-- Bottom Nav Shell (Filtered per rules: suppressed on focused/transactional sub-pages, but included here as top-level identity) -->
+<div class="fixed bottom-0 w-full z-50 flex justify-around items-center px-gutter pb-md pt-sm bg-surface-container/80 backdrop-blur-md rounded-t-3xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-sm clay-button-active" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-sm clay-button-active" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-sm clay-button-active" href="#">
+<span class="material-symbols-outlined" data-icon="local_offer">local_offer</span>
+<span class="font-label-md text-label-md">Offers</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg p-sm shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)]" href="#">
+<span class="material-symbols-outlined" data-icon="person" data-weight="fill" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</div>
+<script>
+        // Simple micro-interaction for the input focus
+        const amountInput = document.querySelector('input');
+        const inputContainer = amountInput.parentElement;
+
+        amountInput.addEventListener('focus', () => {
+            inputContainer.classList.remove('clay-inset');
+            inputContainer.classList.add('shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1)]', 'border-primary/20', 'border');
+        });
+
+        amountInput.addEventListener('blur', () => {
+            inputContainer.classList.add('clay-inset');
+            inputContainer.classList.remove('shadow-[inset_2px_2px_4px_rgba(0,0,0,0.1)]', 'border-primary/20', 'border');
+        });
+
+        // Interactive "Pop" effect for buttons
+        document.querySelectorAll('.clay-button-active').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.style.transform = 'scale(0.95)';
+            });
+            button.addEventListener('mouseup', () => {
+                button.style.transform = 'scale(1)';
+            });
+            button.addEventListener('mouseleave', () => {
+                button.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

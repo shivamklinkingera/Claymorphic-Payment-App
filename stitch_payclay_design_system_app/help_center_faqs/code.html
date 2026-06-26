@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PayClay Help Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#7f5604",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#d5d8f9",
+                    "outline-variant": "#c2c7d0",
+                    "on-tertiary-fixed": "#281800",
+                    "tertiary-container": "#c08f3e",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "primary-fixed-dim": "#9dcaff",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f0efff",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface-container-low": "#f4f2ff",
+                    "tertiary-fixed": "#ffddaf",
+                    "on-primary": "#ffffff",
+                    "on-tertiary-container": "#432b00",
+                    "on-secondary-container": "#007350",
+                    "on-primary-fixed": "#001d35",
+                    "error": "#ba1a1a",
+                    "on-background": "#161a32",
+                    "secondary-container": "#8af8c5",
+                    "surface-variant": "#dee0ff",
+                    "inverse-primary": "#9dcaff",
+                    "inverse-surface": "#2b2f48",
+                    "on-secondary-fixed": "#002114",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "surface-container-highest": "#dee0ff",
+                    "on-error-container": "#93000a",
+                    "surface-container-high": "#e5e6ff",
+                    "secondary": "#006c4b",
+                    "primary-container": "#6c9bcf",
+                    "primary": "#2f6192",
+                    "on-surface": "#161a32",
+                    "on-secondary-fixed-variant": "#005137",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#fbf8ff",
+                    "on-tertiary": "#ffffff",
+                    "surface-bright": "#fbf8ff",
+                    "secondary-fixed": "#8af8c5",
+                    "surface-tint": "#2f6192",
+                    "on-primary-container": "#003256",
+                    "surface-container": "#ececff",
+                    "background": "#fbf8ff",
+                    "on-surface-variant": "#42474f",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "primary-fixed": "#d1e4ff",
+                    "outline": "#727780",
+                    "on-error": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "48px",
+                    "gutter": "20px",
+                    "sm": "12px",
+                    "md": "20px",
+                    "unit": "4px",
+                    "lg": "32px",
+                    "container-padding": "24px",
+                    "xs": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "title-lg": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fbf8ff;
+            color: #161a32;
+            font-family: 'Nunito Sans', sans-serif;
+        }
+
+        .clay-card {
+            background: #fbf8ff;
+            box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.4), 
+                        -10px -10px 15px rgba(255, 255, 255, 0.7);
+            border-radius: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+
+        .clay-card::before {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border-radius: 2rem;
+            box-shadow: inset 4px 4px 10px rgba(255, 255, 255, 0.6),
+                        inset -2px -2px 5px rgba(0, 0, 0, 0.05);
+            pointer-events: none;
+        }
+
+        .clay-card:hover {
+            transform: scale(1.02);
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.5), 
+                        -12px -12px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-card:active {
+            transform: scale(0.98);
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.3), 
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.5);
+        }
+
+        .clay-input {
+            background: #ececff;
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.4), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 9999px;
+            outline: none;
+        }
+
+        .clay-fab {
+            background: #2f6192;
+            color: white;
+            box-shadow: 8px 8px 16px rgba(47, 97, 146, 0.3), 
+                        -4px -4px 10px rgba(255, 255, 255, 0.3),
+                        inset 2px 2px 6px rgba(255, 255, 255, 0.4);
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+        }
+
+        .clay-fab:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 10px 10px 20px rgba(47, 97, 146, 0.4), 
+                        -6px -6px 15px rgba(255, 255, 255, 0.4);
+        }
+
+        .clay-fab:active {
+            transform: translateY(2px) scale(0.95);
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item {
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item[open] {
+            background: #ececff;
+            box-shadow: inset 4px 4px 10px rgba(163, 177, 198, 0.2);
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32 overflow-x-hidden">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full sticky top-0 z-50 bg-surface/80 backdrop-blur-md px-gutter pt-4 pb-4 shadow-[10px_10px_20px_rgba(163,177,198,0.2)]">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:scale-105 transition-transform active:scale-95 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h1 class="font-display text-display text-primary tracking-tight">PayClay</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container shadow-inner overflow-hidden border-2 border-white/50">
+<img class="w-full h-full object-cover" data-alt="A professional and friendly headshot of a young business person with a warm smile, set against a soft blue and white clay-morphic background with rounded shapes. The lighting is bright and optimistic, fitting a high-end fintech app profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPkBgCE9S1bC313ehKnG-7yVpTJfJoRNrTIcHXXSeuaiHWos1HbLR02pEWyPxgqBgHaRyj_7elXNuibs5XhSLWaZCZTytHdZ9dKPmXDyX4ZPyM16YofMJ2yZHeJ-nKYl2DLjLYRAS_Kk9lvflceixxySnDw1Nr1CHCK-MyKrZR02f8q286NJtb7PxBs-kcDVMoZvzZmNjf24Qy_eP3jE5tVFo0bz2y1FJT--rN-7nOM7AJtfXw7kofgk_r15tZA2f0yMAfkoNw5ihv"/>
+</div>
+</div>
+</header>
+<main class="max-w-screen-xl mx-auto px-gutter py-8">
+<!-- Hero Search Section -->
+<section class="flex flex-col items-center text-center mb-16 pt-8">
+<h2 class="font-display text-display text-on-surface mb-4">How can we help?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg mb-10">Search our knowledge base or browse categories below to find answers to your clay-soft questions.</p>
+<div class="w-full max-w-2xl relative">
+<span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-on-surface-variant z-10">search</span>
+<input class="clay-input w-full py-6 pl-16 pr-6 text-body-lg font-body-md placeholder:text-on-surface-variant/50 focus:ring-4 focus:ring-primary/10 transition-all" placeholder="Search topics, keywords, or FAQs..." type="text"/>
+</div>
+</section>
+<!-- Category Grid -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-8 mb-20">
+<!-- Payments -->
+<div class="clay-card p-8 flex flex-col items-center text-center cursor-pointer group">
+<div class="w-16 h-16 rounded-2xl bg-primary-container/20 flex items-center justify-center mb-4 shadow-inner">
+<span class="material-symbols-outlined text-primary text-[32px]">payments</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2">Payments</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Send, receive, and track transfers</p>
+</div>
+<!-- Account -->
+<div class="clay-card p-8 flex flex-col items-center text-center cursor-pointer group">
+<div class="w-16 h-16 rounded-2xl bg-secondary-container/20 flex items-center justify-center mb-4 shadow-inner">
+<span class="material-symbols-outlined text-secondary text-[32px]">person_outline</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2">Account</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Manage profile and preferences</p>
+</div>
+<!-- Security -->
+<div class="clay-card p-8 flex flex-col items-center text-center cursor-pointer group">
+<div class="w-16 h-16 rounded-2xl bg-tertiary-container/20 flex items-center justify-center mb-4 shadow-inner">
+<span class="material-symbols-outlined text-tertiary text-[32px]">shield</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2">Security</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Privacy, passwords and 2FA</p>
+</div>
+<!-- Refunds -->
+<div class="clay-card p-8 flex flex-col items-center text-center cursor-pointer group">
+<div class="w-16 h-16 rounded-2xl bg-error-container/20 flex items-center justify-center mb-4 shadow-inner">
+<span class="material-symbols-outlined text-error text-[32px]">replay</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2">Refunds</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Requesting and tracking returns</p>
+</div>
+<!-- Offers -->
+<div class="clay-card p-8 flex flex-col items-center text-center cursor-pointer group">
+<div class="w-16 h-16 rounded-2xl bg-primary-container/10 flex items-center justify-center mb-4 shadow-inner">
+<span class="material-symbols-outlined text-primary-container text-[32px]">redeem</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2">Offers</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Cashback, rewards and promos</p>
+</div>
+<!-- Merchant -->
+<div class="clay-card p-8 flex flex-col items-center text-center cursor-pointer group">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-highest flex items-center justify-center mb-4 shadow-inner">
+<span class="material-symbols-outlined text-on-surface-variant text-[32px]">storefront</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-2">Merchant</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Business tools and APIs</p>
+</div>
+</section>
+<!-- Popular FAQs -->
+<section class="max-w-3xl mx-auto mb-20">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-8 px-2">Popular FAQs</h2>
+<div class="space-y-4">
+<details class="faq-item group">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-title-lg text-title-lg text-on-surface">How do I reset my clay wallet PIN?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-body-md text-on-surface-variant leading-relaxed">
+                        To reset your PIN, go to Settings &gt; Security &gt; Change PIN. You'll need to verify your identity via biometrics or email code before creating a new 6-digit soft-key PIN.
+                    </div>
+</details>
+<details class="faq-item group">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-title-lg text-title-lg text-on-surface">Can I use PayClay for international transfers?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-body-md text-on-surface-variant leading-relaxed">
+                        Yes! PayClay supports over 50 currencies with real-time exchange rates and minimal fees. Just tap 'Send', select the destination country, and we'll handle the rest.
+                    </div>
+</details>
+<details class="faq-item group">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-title-lg text-title-lg text-on-surface">What is the "Soft Shield" protection?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-body-md text-on-surface-variant leading-relaxed">
+                        Soft Shield is our proprietary AI-driven security layer that monitors transactions for unusual patterns. If we detect anything suspicious, we temporarily pause the payment and ask for your clay-tap confirmation.
+                    </div>
+</details>
+<details class="faq-item group">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-title-lg text-title-lg text-on-surface">Are there fees for adding money?</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-body-md text-on-surface-variant leading-relaxed">
+                        Adding money via bank transfer is always free. Card top-ups may incur a small processing fee depending on your card issuer and region.
+                    </div>
+</details>
+</div>
+</section>
+<!-- Help Banner -->
+<section class="clay-card bg-primary text-on-primary p-12 overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8 relative">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+<div class="relative z-10 max-w-md">
+<h2 class="font-headline-lg text-headline-lg mb-4 text-white">Can't find what you're looking for?</h2>
+<p class="font-body-md text-body-md text-white/80 mb-6">Our dedicated clay-support team is available 24/7 to help you resolve any issues or answer your financial questions.</p>
+<button class="bg-white text-primary px-8 py-4 rounded-full font-label-md hover:scale-105 active:scale-95 transition-transform shadow-lg">
+                    Contact Us Now
+                </button>
+</div>
+<div class="w-full md:w-1/3 aspect-video rounded-2xl overflow-hidden shadow-2xl relative z-10">
+<img class="w-full h-full object-cover" data-alt="A friendly customer support scene featuring a diverse team of professionals working in a modern, brightly lit office with organic, rounded furniture. The colors are dominated by soft blues, creams, and whites, reflecting a high-tech yet approachable fintech brand identity. Soft clay-morphic 3D shapes float in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrO-Mzg0YrjSTtAxT61T6JnQAKJU_K1UX0ZbSILQh-oxki8TaBeeRL_D2_EjDMl86dLDW6GP_XvODV0Ow_9REqwCMALO7Kw89hOdd_f3MkTRkO9WCFq7VdTpREuLhc8yT5IDViHQPCvhQdFSm8R87LYjQ-D-0Aa1oWgoyrrz6lB0NMFgWyrRQFmXkQwu01yM7GCkvesE9N3VZxJ-tliTB3g0_F13W7LLLh73iUjaFx1mNRxEW9zzIiiG-MLb3pIoniNtNKAPZdTraq"/>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="clay-fab fixed bottom-8 right-8 z-[100] p-4 flex items-center gap-3 pr-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">contact_support</span>
+<span class="font-label-md">Contact Support</span>
+</button>
+<!-- Navigation Shell (Bottom) -->
+<nav class="fixed bottom-6 w-[92%] max-w-md mx-auto left-0 right-0 z-50 flex justify-around items-center py-2 px-4 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-md shadow-[20px_20px_40px_rgba(163,177,198,0.4),-10px_-10px_20px_rgba(255,255,255,0.7)] rounded-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg p-3 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.05),2px_2px_10px_rgba(255,255,255,0.5)]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">contact_support</span>
+<span class="font-label-sm text-label-sm">Support</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="font-label-sm text-label-sm">Cards</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-3 hover:bg-surface-container-high transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for active cards
+        document.querySelectorAll('.clay-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.96)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1.02)';
+            });
+        });
+
+        // Search input dynamic shadow
+        const searchInput = document.querySelector('.clay-input');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.style.transform = 'scale(1.01)';
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.style.transform = 'scale(1)';
+        });
+    </script>
+</body></html>

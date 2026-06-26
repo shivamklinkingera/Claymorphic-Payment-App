@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClayPay - My Wallet</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed": "#d1e4ff",
+                        "surface-bright": "#fbf8ff",
+                        "tertiary-container": "#c08f3e",
+                        "on-surface": "#161a32",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2b2f48",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#ffddaf",
+                        "on-tertiary-fixed": "#281800",
+                        "on-secondary-container": "#007350",
+                        "primary-container": "#6c9bcf",
+                        "inverse-primary": "#9dcaff",
+                        "on-tertiary-fixed-variant": "#614000",
+                        "on-tertiary-container": "#432b00",
+                        "secondary-container": "#8af8c5",
+                        "primary-fixed-dim": "#9dcaff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-container-highest": "#dee0ff",
+                        "background": "#fbf8ff",
+                        "on-primary-container": "#003256",
+                        "tertiary-fixed-dim": "#f4bd67",
+                        "secondary": "#006c4b",
+                        "surface-variant": "#dee0ff",
+                        "primary": "#2f6192",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#0d4978",
+                        "on-background": "#161a32",
+                        "surface-tint": "#2f6192",
+                        "on-secondary-fixed": "#002114",
+                        "outline-variant": "#c2c7d0",
+                        "tertiary": "#7f5604",
+                        "secondary-fixed-dim": "#6ddbaa",
+                        "on-primary-fixed": "#001d35",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f4f2ff",
+                        "surface-container": "#ececff",
+                        "secondary-fixed": "#8af8c5",
+                        "surface-dim": "#d5d8f9",
+                        "outline": "#727780",
+                        "on-surface-variant": "#42474f",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f0efff",
+                        "surface": "#fbf8ff",
+                        "surface-container-high": "#e5e6ff",
+                        "clay-background": "#F0EDE8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "32px",
+                        "container-padding": "24px",
+                        "sm": "12px",
+                        "unit": "4px",
+                        "xs": "8px",
+                        "xl": "48px",
+                        "md": "20px",
+                        "gutter": "20px"
+                    },
+                    "fontFamily": {
+                        "title-lg": ["Nunito Sans"],
+                        "label-md": ["Nunito Sans"],
+                        "display": ["Nunito Sans"],
+                        "body-lg": ["Nunito Sans"],
+                        "body-md": ["Nunito Sans"],
+                        "label-sm": ["Nunito Sans"],
+                        "headline-md": ["Nunito Sans"],
+                        "headline-lg": ["Nunito Sans"],
+                        "headline-lg-mobile": ["Nunito Sans"]
+                    },
+                    "fontSize": {
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                        "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F0EDE8;
+            font-family: 'Nunito Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .clay-level-1 {
+            background: #fbf8ff;
+            box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.3), 
+                        inset 6px 6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-level-2 {
+            background: #fbf8ff;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-level-3 {
+            box-shadow: 20px 20px 40px rgba(163, 177, 198, 0.45), 
+                        inset 12px 12px 24px rgba(255, 255, 255, 0.4);
+        }
+
+        .clay-inset {
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.3), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .clay-button-active:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+            transform: scale(0.96);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .scrolling-content::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen text-on-surface">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 w-full px-container-padding py-sm flex justify-between items-center bg-clay-background">
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full clay-level-1 clay-button-active transition-all">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md text-primary">My Wallet</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full clay-level-1 clay-button-active transition-all">
+<span class="material-symbols-outlined text-primary">history</span>
+</button>
+</header>
+<main class="max-w-md mx-auto px-container-padding pb-32 pt-xs scrolling-content">
+<!-- Wallet Card (Level 3) -->
+<section class="mb-lg">
+<div class="w-full h-[160px] clay-level-3 rounded-lg bg-primary-container p-md flex flex-col justify-between relative overflow-hidden group">
+<!-- Inner Highlight Shine Effect -->
+<div class="absolute top-0 left-0 w-full h-1/2 bg-white/10 blur-xl -translate-y-1/2 pointer-events-none"></div>
+<div>
+<p class="text-white/80 font-label-sm text-[13px] uppercase tracking-wider">Available Balance</p>
+<h2 class="text-white text-[36px] font-bold leading-tight">₹12,450.75</h2>
+</div>
+<div class="flex justify-between items-end border-t border-white/10 pt-sm">
+<div class="flex flex-col">
+<span class="text-white/60 text-[11px] font-label-sm">Added</span>
+<span class="text-white font-bold text-[13px]">₹50,000</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-white/60 text-[11px] font-label-sm">Spent</span>
+<span class="text-white font-bold text-[13px]">₹37,549.25</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Action Buttons Row -->
+<section class="grid grid-cols-3 gap-md mb-lg">
+<button class="flex flex-col items-center gap-xs py-md clay-level-2 clay-button-active rounded-lg group">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-primary-container/20 text-primary mb-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</div>
+<span class="font-label-sm text-on-surface-variant">Add Money</span>
+</button>
+<button class="flex flex-col items-center gap-xs py-md clay-level-2 clay-button-active rounded-lg group">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-secondary-container/30 text-secondary mb-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<span class="font-label-sm text-on-surface-variant">Withdraw</span>
+</button>
+<button class="flex flex-col items-center gap-xs py-md clay-level-2 clay-button-active rounded-lg group">
+<div class="w-12 h-12 flex items-center justify-center rounded-full bg-tertiary-fixed/30 text-tertiary mb-1">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<span class="font-label-sm text-on-surface-variant">History</span>
+</button>
+</section>
+<!-- Stats Section -->
+<section class="mb-lg">
+<h3 class="font-title-lg text-title-lg mb-md text-on-surface-variant px-1">This Month</h3>
+<div class="grid grid-cols-2 gap-md">
+<!-- Money In -->
+<div class="clay-level-1 rounded-lg p-md flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-on-surface-variant">Money In</span>
+<span class="material-symbols-outlined text-secondary text-sm">arrow_upward</span>
+</div>
+<span class="font-headline-md text-headline-md text-secondary">+₹15,000</span>
+</div>
+<!-- Money Out -->
+<div class="clay-level-1 rounded-lg p-md flex flex-col gap-xs">
+<div class="flex justify-between items-start">
+<span class="font-label-sm text-on-surface-variant">Money Out</span>
+<span class="material-symbols-outlined text-error text-sm">arrow_downward</span>
+</div>
+<span class="font-headline-md text-headline-md text-error">-₹8,500</span>
+</div>
+</div>
+</section>
+<!-- Recent Transactions -->
+<section>
+<div class="flex justify-between items-center mb-md px-1">
+<h3 class="font-title-lg text-title-lg text-on-surface-variant">Recent</h3>
+<button class="text-primary font-label-md">See All</button>
+</div>
+<div class="flex flex-col gap-md">
+<!-- Transaction Item 1 -->
+<div class="clay-level-1 rounded-lg p-md flex items-center justify-between clay-button-active">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full clay-inset flex items-center justify-center bg-primary-container/10">
+<span class="material-symbols-outlined text-primary">shopping_bag</span>
+</div>
+<div>
+<p class="font-title-lg text-[16px] text-on-surface">Amazon India</p>
+<p class="font-label-sm text-on-surface-variant">14 Oct, 2:30 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-[16px] text-error">-₹2,450.00</p>
+<p class="font-label-sm text-secondary">Success</p>
+</div>
+</div>
+<!-- Transaction Item 2 -->
+<div class="clay-level-1 rounded-lg p-md flex items-center justify-between clay-button-active">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full clay-inset flex items-center justify-center bg-secondary-container/20">
+<span class="material-symbols-outlined text-secondary">person</span>
+</div>
+<div>
+<p class="font-title-lg text-[16px] text-on-surface">Received from Rahul</p>
+<p class="font-label-sm text-on-surface-variant">12 Oct, 11:05 AM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-[16px] text-secondary">+₹500.00</p>
+<p class="font-label-sm text-secondary">Success</p>
+</div>
+</div>
+<!-- Transaction Item 3 -->
+<div class="clay-level-1 rounded-lg p-md flex items-center justify-between clay-button-active">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-full clay-inset flex items-center justify-center bg-tertiary-fixed/20">
+<span class="material-symbols-outlined text-tertiary">bolt</span>
+</div>
+<div>
+<p class="font-title-lg text-[16px] text-on-surface">Electricity Bill</p>
+<p class="font-label-sm text-on-surface-variant">10 Oct, 09:15 AM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-title-lg text-[16px] text-error">-₹1,890.00</p>
+<p class="font-label-sm text-on-surface-variant">Pending</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-lg pb-lg pt-xs bg-surface-bright/90 backdrop-blur-md rounded-t-xl">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-lg px-4 py-2 shadow-[inset_4px_4px_8px_rgba(0,0,0,0.1)]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-label-sm text-label-sm">Wallet</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-sm text-label-sm">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm">History</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple touch interaction feedback
+        document.querySelectorAll('.clay-button-active').forEach(button => {
+            button.addEventListener('touchstart', function() {
+                this.classList.add('scale-95');
+            });
+            button.addEventListener('touchend', function() {
+                this.classList.remove('scale-95');
+            });
+        });
+
+        // Background scroll effect to keep top bar feeling cohesive
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md', 'backdrop-blur-md', 'bg-clay-background/80');
+            } else {
+                header.classList.remove('shadow-md', 'backdrop-blur-md', 'bg-clay-background/80');
+            }
+        });
+    </script>
+</body></html>

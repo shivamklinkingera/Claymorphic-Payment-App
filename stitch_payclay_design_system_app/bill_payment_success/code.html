@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ClayPay - Payment Success</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ececff",
+                    "on-tertiary-fixed": "#281800",
+                    "background": "#fbf8ff",
+                    "on-tertiary": "#ffffff",
+                    "on-tertiary-fixed-variant": "#614000",
+                    "on-secondary-container": "#007350",
+                    "tertiary": "#7f5604",
+                    "primary": "#2f6192",
+                    "surface-variant": "#dee0ff",
+                    "surface-dim": "#d5d8f9",
+                    "tertiary-fixed": "#ffddaf",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#f4bd67",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#fbf8ff",
+                    "outline": "#727780",
+                    "on-primary-fixed": "#001d35",
+                    "inverse-surface": "#2b2f48",
+                    "on-primary-container": "#003256",
+                    "on-primary-fixed-variant": "#0d4978",
+                    "surface": "#fbf8ff",
+                    "surface-tint": "#2f6192",
+                    "error-container": "#ffdad6",
+                    "on-surface": "#161a32",
+                    "on-secondary-fixed-variant": "#005137",
+                    "on-background": "#161a32",
+                    "on-surface-variant": "#42474f",
+                    "secondary": "#006c4b",
+                    "secondary-fixed": "#8af8c5",
+                    "secondary-container": "#8af8c5",
+                    "on-secondary-fixed": "#002114",
+                    "secondary-fixed-dim": "#6ddbaa",
+                    "primary-fixed": "#d1e4ff",
+                    "primary-fixed-dim": "#9dcaff",
+                    "surface-container-highest": "#dee0ff",
+                    "tertiary-container": "#c08f3e",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#9dcaff",
+                    "on-secondary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f4f2ff",
+                    "outline-variant": "#c2c7d0",
+                    "surface-container-high": "#e5e6ff",
+                    "primary-container": "#6c9bcf",
+                    "on-tertiary-container": "#432b00",
+                    "inverse-on-surface": "#f0efff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "20px",
+                    "unit": "4px",
+                    "lg": "32px",
+                    "xs": "8px",
+                    "md": "20px",
+                    "container-padding": "24px",
+                    "xl": "48px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "title-lg": ["Nunito Sans"],
+                    "label-md": ["Nunito Sans"],
+                    "headline-lg-mobile": ["Nunito Sans"],
+                    "headline-lg": ["Nunito Sans"],
+                    "body-md": ["Nunito Sans"],
+                    "display": ["Nunito Sans"],
+                    "label-sm": ["Nunito Sans"],
+                    "headline-md": ["Nunito Sans"],
+                    "body-lg": ["Nunito Sans"]
+            },
+            "fontSize": {
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "26px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            background-color: #F0EDE8; /* Requested warm off-white */
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Claymorphism Levels */
+        .clay-card-l2 {
+            background-color: #ffffff;
+            border-radius: 2rem;
+            box-shadow: 15px 15px 30px rgba(163, 177, 198, 0.4), 
+                        inset 10px 10px 20px rgba(255, 255, 255, 0.6);
+        }
+
+        .clay-button-filled {
+            box-shadow: 8px 8px 16px rgba(163, 177, 198, 0.4), 
+                        inset 6px 6px 12px rgba(255, 255, 255, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .clay-button-filled:active {
+            box-shadow: inset 4px 4px 8px rgba(0, 0, 0, 0.1);
+            transform: scale(0.96);
+        }
+
+        .clay-button-outline {
+            box-shadow: inset 4px 4px 8px rgba(255, 255, 255, 0.8),
+                        inset -4px -4px 8px rgba(163, 177, 198, 0.2);
+            border: 2px solid #727780;
+            transition: all 0.2s ease;
+        }
+
+        .clay-button-outline:active {
+            box-shadow: inset 6px 6px 12px rgba(0, 0, 0, 0.05);
+            transform: scale(0.96);
+        }
+
+        .clay-icon-circle {
+            background: #006c4b;
+            box-shadow: 10px 10px 20px rgba(163, 177, 198, 0.5), 
+                        inset 8px 8px 16px rgba(255, 255, 255, 0.3);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .clay-sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: sparkle 2s infinite ease-in-out;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1); opacity: 1; }
+        }
+
+        .clay-chip {
+            background: #8af8c5;
+            box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.8),
+                        inset -2px -2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .sunken-detail {
+            background: #f4f2ff;
+            box-shadow: inset 4px 4px 8px rgba(163, 177, 198, 0.3),
+                        inset -4px -4px 8px rgba(255, 255, 255, 0.7);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<!-- Top App Bar (Shared Component Strategy) -->
+<header class="flex justify-between items-center px-container-padding py-sm w-full z-50 bg-transparent">
+<div class="flex items-center gap-sm">
+<button class="p-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary text-headline-md" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display text-display text-primary tracking-tight">ClayPay</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden clay-button-filled border-2 border-white">
+<img class="w-full h-full object-cover" data-alt="Close up of a friendly, smiling digital avatar with soft lighting, set against a pastel blue claymorphic background, looking professional yet approachable for a fintech app profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLdHaBtRlfwrXofKa3pxUhPMSPe_0SPuAuR9Hgu4MRD4WGZSbWsDagAoxWL0d-1aKMd8LewlKKLg-6udEKa9saFxkjyFUkQiUlpnbEpZpPsjk3SO_Xjn0Ndwty89BVa24daF-RDiEVO-dQqjlTNzSnx1C1x_e2m1F4VzuVjMUjz_4Mp6CYrUgFLh3AyGenXfrPo5f1-unOlRRIxepWUeiNmvBfWfU8AlYDZo0UX_vKrwDgDsfTQdlw6hfafU6WrXjQ6VldT4DYiSsO"/>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-container-padding py-xl">
+<div class="max-w-md w-full flex flex-col items-center">
+<!-- Success Icon Section -->
+<div class="relative mb-lg">
+<div class="clay-icon-circle">
+<span class="material-symbols-outlined text-white text-[48px]" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Sparkles -->
+<div class="clay-sparkle w-3 h-3 top-0 -right-2" style="animation-delay: 0s;"></div>
+<div class="clay-sparkle w-2 h-2 top-8 -right-6" style="animation-delay: 0.5s;"></div>
+<div class="clay-sparkle w-4 h-4 -bottom-2 -left-4" style="animation-delay: 1s;"></div>
+<div class="clay-sparkle w-2 h-2 top-4 -left-8" style="animation-delay: 1.5s;"></div>
+</div>
+<!-- Heading -->
+<h2 class="font-headline-md text-headline-md text-secondary mb-xl text-center">Bill Paid Successfully!</h2>
+<!-- Details Card (Level 2) -->
+<div class="clay-card-l2 w-full p-container-padding space-y-md">
+<!-- Provider -->
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center clay-button-filled border border-white">
+<span class="material-symbols-outlined text-primary text-headline-md" data-icon="bolt">bolt</span>
+</div>
+<div>
+<p class="font-title-lg text-on-surface">MAHADISCOM</p>
+<p class="font-body-md text-on-surface-variant">Electricity Bill</p>
+</div>
+</div>
+<!-- Horizontal Rule (Clay style) -->
+<div class="h-[2px] w-full bg-surface-dim rounded-full"></div>
+<!-- Transaction Details -->
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Amount Paid</span>
+<span class="font-headline-md text-on-surface">₹847.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Transaction ID</span>
+<span class="font-body-md font-bold text-on-surface">TXN20241220150000</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-on-surface-variant">Status</span>
+<div class="clay-chip px-4 py-1 rounded-full flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-on-secondary-fixed-variant" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+<span class="font-label-sm text-on-secondary-fixed-variant uppercase tracking-wider">Success</span>
+</div>
+</div>
+</div>
+<!-- Receipt Link (Soft sunken effect) -->
+<div class="sunken-detail p-md rounded-lg flex items-center justify-between mt-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="receipt_long">receipt_long</span>
+<span class="font-body-md text-on-primary-container">E-Receipt Generated</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="w-full mt-xl flex flex-col gap-md">
+<button class="clay-button-filled bg-primary text-on-primary w-full py-md rounded-full font-title-lg flex items-center justify-center gap-sm">
+<span>Pay Another Bill</span>
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="clay-button-outline text-on-surface-variant w-full py-md rounded-full font-title-lg flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+<span>Download Receipt</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Shared Component Strategy) -->
+<!-- Suppressed based on "Success/Confirmation" rule, but leaving layout space as per design system norms -->
+<div class="h-20"></div>
+<script>
+        // Subtle micro-interaction for the sparkles
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.clay-card-l2');
+            card.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = card.getBoundingClientRect();
+                const x = (e.clientX - left) / width;
+                const y = (e.clientY - top) / height;
+                
+                const moveX = (x - 0.5) * 10;
+                const moveY = (y - 0.5) * 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${-moveY}deg) rotateY(${moveX}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+                card.style.transition = 'transform 0.5s ease';
+            });
+
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'none';
+            });
+        });
+    </script>
+</body></html>
