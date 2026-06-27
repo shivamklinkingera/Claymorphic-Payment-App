@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/database.dart';
 import '../data/repositories.dart';
 import 'security_service.dart';
+import 'transaction_service.dart';
 
 final databaseProvider = Provider<AppDatabase>((ref) {
   final db = AppDatabase();
@@ -16,11 +17,17 @@ final contactRepositoryProvider = Provider<ContactRepository>((ref) => ContactRe
 
 final securityServiceProvider = Provider<SecurityService>((ref) => SecurityService());
 
+final transactionServiceProvider = Provider<TransactionService>((ref) => TransactionService(
+  bankRepository: ref.watch(bankRepositoryProvider),
+  transactionRepository: ref.watch(transactionRepositoryProvider),
+));
+
 final currentUserProvider = StateProvider<User?>((ref) => null);
 
 final userTransactionsProvider = FutureProvider<List<Transaction>>((ref) async {
   final user = ref.watch(currentUserProvider);
   if (user == null) return [];
+  // Use a refreshable future or stream to ensure updates are reflected
   return ref.watch(transactionRepositoryProvider).getTransactionsForUser(user.id);
 });
 

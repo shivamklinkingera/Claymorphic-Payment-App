@@ -1,12 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../core/widgets/clay_text_field.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
 import '../../../../core/widgets/clay_button.dart';
+import '../../../../core/widgets/clay_text_field.dart';
+import '../../../../core/services/providers.dart';
 
-class LoginPhoneNumberPage extends StatelessWidget {
+class LoginPhoneNumberPage extends ConsumerStatefulWidget {
   const LoginPhoneNumberPage({super.key});
+
+  @override
+  ConsumerState<LoginPhoneNumberPage> createState() => _LoginPhoneNumberPageState();
+}
+
+class _LoginPhoneNumberPageState extends ConsumerState<LoginPhoneNumberPage> {
+  final TextEditingController _phoneController = TextEditingController();
+
+  void _login() async {
+    final phone = _phoneController.text;
+    if (phone.length < 10) return;
+
+    final userRepo = ref.read(userRepositoryProvider);
+    var user = await userRepo.getUserByPhone(phone);
+
+    if (user != null) {
+      ref.read(currentUserProvider.notifier).state = user;
+      context.push('/otp_verification');
+    } else {
+      // Create a dummy user for demo if not exists
+      // In real app, this would be a registration flow
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,57 +57,23 @@ class LoginPhoneNumberPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 40),
-            Text(
-              'Welcome Back',
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
+            Text('Welcome Back', style: Theme.of(context).textTheme.headlineLarge),
             const SizedBox(height: 12),
-            Text(
-              'Login with your phone number to continue',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: ClayColors.onSurfaceVariant,
-              ),
-            ),
+            Text('Login with your phone number to continue', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: ClayColors.onSurfaceVariant)),
             const SizedBox(height: 48),
-            const Text(
-              'Phone Number',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-            ),
+            const Text('Phone Number', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 12),
             Row(
               children: [
-                ClayContainer(
-                  width: 80,
-                  isSunken: true,
-                  padding: const EdgeInsets.symmetric(vertical: 20),
-                  child: const Text(
-                    '+91',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
+                ClayContainer(width: 80, isSunken: true, padding: const EdgeInsets.symmetric(vertical: 20), child: const Text('+91', textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold))),
                 const SizedBox(width: 16),
-                const Expanded(
-                  child: ClayTextField(
-                    hintText: 'Enter phone number',
-                    keyboardType: TextInputType.phone,
-                  ),
-                ),
+                Expanded(child: ClayTextField(controller: _phoneController, hintText: 'Enter phone number', keyboardType: TextInputType.phone)),
               ],
             ),
             const SizedBox(height: 48),
-            ClayButton(
-              onPressed: () => context.go('/otp_verification'),
-              child: const Text('Send OTP'),
-            ),
+            ClayButton(onPressed: _login, child: const Text('Send OTP')),
             const SizedBox(height: 32),
-            const Center(
-              child: Text(
-                'By continuing, you agree to our Terms & Privacy Policy',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 12, color: ClayColors.onSurfaceVariant),
-              ),
-            ),
+            const Center(child: Text('By continuing, you agree to our Terms & Privacy Policy', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: ClayColors.onSurfaceVariant))),
           ],
         ),
       ),
