@@ -4,15 +4,41 @@ import '../../../../core/widgets/clay_container.dart';
 
 class SupportTicketsPage extends StatelessWidget {
   const SupportTicketsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('My Tickets')),
-      body: ListView(padding: const EdgeInsets.all(24), children: [
-        _ticket('Refund Issue', '#TK102', 'Resolved', ClayColors.secondary),
-        _ticket('Account Access', '#TK105', 'Pending', const Color(0xFF7F5604)),
-      ]),
+      appBar: AppBar(title: const Text('My Tickets'), backgroundColor: Colors.transparent),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(24),
+        itemCount: 2,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: ClayContainer(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Ticket #${10234 + index}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      decoration: BoxDecoration(color: index == 0 ? Colors.green : Colors.orange, borderRadius: BorderRadius.circular(4)),
+                      child: Text(index == 0 ? 'Resolved' : 'Pending', style: const TextStyle(color: Colors.white, fontSize: 10)),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                const Text('Transaction failed but amount deducted', style: TextStyle(fontSize: 13)),
+                const SizedBox(height: 12),
+                Text('Last updated: ${index == 0 ? "Yesterday" : "2h ago"}', style: const TextStyle(fontSize: 11, color: ClayColors.onSurfaceVariant)),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
-  Widget _ticket(String t, String id, String s, Color c) => Padding(padding: const EdgeInsets.only(bottom: 16), child: ClayContainer(borderRadius: 20, padding: const EdgeInsets.all(16), child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(t, style: const TextStyle(fontWeight: FontWeight.bold)), Text(id, style: const TextStyle(fontSize: 10))]), Text(s, style: TextStyle(color: c, fontWeight: FontWeight.bold, fontSize: 12))])));
 }

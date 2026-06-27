@@ -6,24 +6,38 @@ import '../../../../core/widgets/clay_button.dart';
 
 class RequestSentPendingPage extends StatelessWidget {
   const RequestSentPendingPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: Column(children: [
-            const Spacer(),
-            const ClayContainer(width: 120, height: 120, borderRadius: 60, color: Color(0xFFFFDDAF), child: Icon(Icons.hourglass_empty, size: 64, color: Color(0xFF7F5604))),
-            const SizedBox(height: 32),
-            const Text('Request Sent!', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 16),
-            const Text('₹500.00', style: TextStyle(fontSize: 40, fontWeight: FontWeight.w800, color: ClayColors.primary)),
-            const SizedBox(height: 8),
-            const Text('Requested from Priya Sharma', style: TextStyle(color: ClayColors.onSurfaceVariant)),
-            const Spacer(),
-            ClayButton(onPressed: () => context.go('/'), width: double.infinity, child: const Text('Done')),
-          ]),
+          padding: const EdgeInsets.all(48.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ClayContainer(
+                width: 100,
+                height: 100,
+                borderRadius: 50,
+                child: const Icon(Icons.timer_outlined, size: 48, color: ClayColors.tertiary),
+              ),
+              const SizedBox(height: 32),
+              const Text('Request Sent', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 12),
+              const Text(
+                'Waiting for Priya Sharma to approve your request of ₹500',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: ClayColors.onSurfaceVariant),
+              ),
+              const SizedBox(height: 48),
+              ClayButton(
+                onPressed: () => context.go('/'),
+                width: double.infinity,
+                child: const Text('Go to Dashboard'),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
 import '../../../../core/services/providers.dart';
@@ -11,10 +12,23 @@ class MyQrCodePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(currentUserProvider);
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent, elevation: 0,
-        title: const Text('My QR Code', style: TextStyle(color: ClayColors.primary, fontWeight: FontWeight.bold)),
+        title: const Text('My QR Code'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ClayContainer(
+            borderRadius: 999,
+            elevation: ClayElevation.level1,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back, color: ClayColors.primary),
+              onPressed: () => context.pop(),
+            ),
+          ),
+        ),
       ),
       body: Center(
         child: Padding(
@@ -23,39 +37,72 @@ class MyQrCodePage extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ClayContainer(
-                borderRadius: 40, elevation: ClayElevation.level3, padding: const EdgeInsets.all(32),
+                padding: const EdgeInsets.all(32),
+                elevation: ClayElevation.level3,
+                borderRadius: 40,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    ClayContainer(
-                      width: 64, height: 64, borderRadius: 32, elevation: ClayElevation.level1,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(32),
-                        child: Image.network(user?.avatarUrl ?? '', fit: BoxFit.cover, errorBuilder: (c, e, s) => const Icon(Icons.person)),
-                      ),
+                    Text(
+                      user?.name ?? 'Rahul Kumar',
+                      style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    const SizedBox(height: 16),
-                    Text(user?.name ?? 'Rahul', style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                    Text(user?.upiId ?? 'rahul@payclay', style: const TextStyle(color: ClayColors.onSurfaceVariant)),
+                    const SizedBox(height: 8),
+                    Text(
+                      user?.upiId ?? 'rahul@payclay',
+                      style: const TextStyle(color: ClayColors.onSurfaceVariant),
+                    ),
                     const SizedBox(height: 32),
-                    ClayContainer(
-                      borderRadius: 24, isSunken: true, padding: const EdgeInsets.all(16),
-                      child: QrImageView(
-                        data: 'upi://pay?pa=${user?.upiId}&pn=${user?.name}&cu=INR',
-                        version: QrVersions.auto,
-                        size: 200.0,
-                        eyeStyle: const QrEyeStyle(eyeShape: QrEyeShape.square, color: ClayColors.primary),
-                        dataModuleStyle: const QrDataModuleStyle(dataModuleShape: QrDataModuleShape.square, color: ClayColors.primary),
+                    QrImageView(
+                      data: 'upi://pay?pa=${user?.upiId ?? "rahul@payclay"}&pn=${user?.name ?? "Rahul Kumar"}',
+                      version: QrVersions.auto,
+                      size: 200.0,
+                      dataModuleStyle: const QrDataModuleStyle(
+                        color: ClayColors.onSurface,
+                        dataModuleShape: QrDataModuleShape.square,
+                      ),
+                      eyeStyle: const QrEyeStyle(
+                        color: ClayColors.onSurface,
+                        eyeShape: QrEyeShape.square,
                       ),
                     ),
-                    const SizedBox(height: 24),
-                    const Text('Scan this QR to pay me', style: TextStyle(color: ClayColors.onSurfaceVariant, fontSize: 12)),
                   ],
                 ),
+              ),
+              const SizedBox(height: 48),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  _ActionIcon(icon: Icons.share, label: 'Share QR'),
+                  _ActionIcon(icon: Icons.download, label: 'Download'),
+                ],
               ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class _ActionIcon extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  const _ActionIcon({required this.icon, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ClayContainer(
+          width: 56,
+          height: 56,
+          borderRadius: 28,
+          child: Icon(icon, color: ClayColors.primary),
+        ),
+        const SizedBox(height: 8),
+        Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+      ],
     );
   }
 }

@@ -1,18 +1,39 @@
 import 'package:flutter/material.dart';
-import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
 
 class MyCouponsPage extends StatelessWidget {
   const MyCouponsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('My Coupons')),
-      body: ListView(padding: const EdgeInsets.all(24), children: [
-        _coupon('Flat ₹100 Off', 'Recharge', const Color(0xFFD1E4FF)),
-        _coupon('50% Off', 'Food', const Color(0xFFFFDDAF)),
-      ]),
+      appBar: AppBar(title: const Text('My Coupons'), backgroundColor: Colors.transparent),
+      body: ListView.builder(
+        padding: const EdgeInsets.all(24),
+        itemCount: 3,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: ClayContainer(
+            padding: const EdgeInsets.all(20),
+            child: Row(
+              children: [
+                const Icon(Icons.card_giftcard, size: 40),
+                const SizedBox(width: 16),
+                const Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Zomato Flat ₹120 Off', style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Valid till 30 June', style: TextStyle(fontSize: 12)),
+                    ],
+                  ),
+                ),
+                TextButton(onPressed: () {}, child: const Text('Redeem')),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
-  Widget _coupon(String t, String c, Color col) => Padding(padding: const EdgeInsets.only(bottom: 16), child: ClayContainer(borderRadius: 16, padding: const EdgeInsets.all(16), child: Row(children: [ClayContainer(width: 44, height: 44, borderRadius: 8, color: col, child: const Icon(Icons.confirmation_number)), const SizedBox(width: 16), Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(t, style: const TextStyle(fontWeight: FontWeight.bold)), Text(c, style: const TextStyle(fontSize: 12))])), const Text('Copy', style: TextStyle(color: ClayColors.primary, fontWeight: FontWeight.bold))])));
 }

@@ -5,45 +5,93 @@ import '../../../../core/widgets/clay_container.dart';
 
 class WealthInvestmentsPage extends StatelessWidget {
   const WealthInvestmentsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Wealth')),
+      appBar: AppBar(title: const Text('Wealth & Investments'), backgroundColor: Colors.transparent),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
-        child: Column(children: [
-          ClayContainer(
-            borderRadius: 24, color: ClayColors.primary, padding: const EdgeInsets.all(24),
-            child: const Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('Net Worth', style: TextStyle(color: Colors.white70, fontSize: 13)),
-              SizedBox(height: 8),
-              Text('₹4,25,000.00', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold)),
-              SizedBox(height: 8),
-              Text('+2.4% this month', style: TextStyle(color: ClayColors.secondaryContainer, fontSize: 12, fontWeight: FontWeight.bold)),
-            ]),
-          ),
-          const SizedBox(height: 32),
-          _item(context, 'Mutual Funds', '₹3,50,000', Icons.analytics, ClayColors.primaryContainer, '/mutual-funds'),
-          _item(context, 'Stocks', '₹50,000', Icons.show_chart, ClayColors.secondaryContainer, null),
-          _item(context, 'Gold', '₹25,000', Icons.toll, const Color(0xFFFFDDAF), null),
-        ]),
+        child: Column(
+          children: [
+            ClayContainer(
+              padding: const EdgeInsets.all(24),
+              color: ClayColors.primary,
+              child: Column(
+                children: [
+                  const Text('Total Wealth', style: TextStyle(color: Colors.white70)),
+                  const SizedBox(height: 8),
+                  const Text('₹4,25,000', style: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.trending_up, color: ClayColors.secondaryContainer, size: 20),
+                      const SizedBox(width: 4),
+                      Text('+₹12,450 (14.2%)', style: TextStyle(color: ClayColors.secondaryContainer, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+            _InvestmentCategory(
+              icon: Icons.show_chart,
+              label: 'Mutual Funds',
+              value: '₹2,80,000',
+              onTap: () => context.push('/mutual-funds'),
+            ),
+            const SizedBox(height: 16),
+            _InvestmentCategory(
+              icon: Icons.account_balance,
+              label: 'Fixed Deposits',
+              value: '₹1,45,000',
+              onTap: () {},
+            ),
+            const SizedBox(height: 16),
+            _InvestmentCategory(
+              icon: Icons.currency_rupee,
+              label: 'Digital Gold',
+              value: '₹0',
+              onTap: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
-  Widget _item(BuildContext context, String t, String a, IconData i, Color c, String? r) => Padding(
-    padding: const EdgeInsets.only(bottom: 16),
-    child: ClayContainer(
-      borderRadius: 20, padding: const EdgeInsets.all(16),
-      child: InkWell(
-        onTap: r != null ? () => context.push(r) : null,
-        child: Row(children: [
-          ClayContainer(width: 44, height: 44, borderRadius: 12, color: c, child: Icon(i)),
-          const SizedBox(width: 16),
-          Expanded(child: Text(t, style: const TextStyle(fontWeight: FontWeight.bold))),
-          Text(a, style: const TextStyle(fontWeight: FontWeight.bold)),
-          const Icon(Icons.chevron_right, color: ClayColors.outlineVariant),
-        ]),
+}
+
+class _InvestmentCategory extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  final VoidCallback onTap;
+  const _InvestmentCategory({required this.icon, required this.label, required this.value, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: ClayContainer(
+        padding: const EdgeInsets.all(20),
+        child: Row(
+          children: [
+            ClayContainer(width: 48, height: 48, borderRadius: 24, child: Icon(icon, color: ClayColors.primary)),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  Text(value, style: const TextStyle(color: ClayColors.onSurfaceVariant)),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right, color: ClayColors.outlineVariant),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

@@ -4,28 +4,44 @@ import '../../../../core/widgets/clay_container.dart';
 
 class NotificationsPage extends StatelessWidget {
   const NotificationsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Notifications')),
-      body: ListView(
+      appBar: AppBar(title: const Text('Notifications'), backgroundColor: Colors.transparent),
+      body: ListView.builder(
         padding: const EdgeInsets.all(24),
-        children: [
-          _item('Payment Received', 'You received ₹500 from Priya', Icons.south_west, ClayColors.secondaryContainer),
-          _item('Bill Due', 'Electricity bill is due tomorrow', Icons.bolt, const Color(0xFFFFDDAF)),
-        ],
+        itemCount: 4,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: ClayContainer(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              children: [
+                ClayContainer(
+                  width: 48,
+                  height: 48,
+                  borderRadius: 24,
+                  color: ClayColors.primaryContainer.withValues(alpha: 0.1),
+                  child: const Icon(Icons.notifications_outlined, color: ClayColors.primary),
+                ),
+                const SizedBox(width: 16),
+                const Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Payment Received', style: TextStyle(fontWeight: FontWeight.bold)),
+                      SizedBox(height: 4),
+                      Text('You received ₹500 from Amit Shah', style: TextStyle(fontSize: 13, color: ClayColors.onSurfaceVariant)),
+                    ],
+                  ),
+                ),
+                const Text('2m ago', style: TextStyle(fontSize: 11, color: ClayColors.outlineVariant)),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
-  Widget _item(String t, String m, IconData i, Color c) => Padding(
-    padding: const EdgeInsets.only(bottom: 16),
-    child: ClayContainer(
-      borderRadius: 20, padding: const EdgeInsets.all(16),
-      child: Row(children: [
-        ClayContainer(width: 44, height: 44, borderRadius: 12, color: c, child: Icon(i)),
-        const SizedBox(width: 16),
-        Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(t, style: const TextStyle(fontWeight: FontWeight.bold)), Text(m, style: const TextStyle(fontSize: 12, color: ClayColors.onSurfaceVariant))])),
-      ]),
-    ),
-  );
 }

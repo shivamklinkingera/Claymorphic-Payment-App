@@ -1,35 +1,138 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/widgets/clay_text_field.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
-import '../../../../core/widgets/clay_text_field.dart';
 
 class BillPaymentsHubPage extends StatelessWidget {
   const BillPaymentsHubPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Bill Payments')),
+      appBar: AppBar(title: const Text('Bills & Recharges'), backgroundColor: Colors.transparent),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const ClayTextField(hintText: 'Search billers...', prefixIcon: Icon(Icons.search)),
-          const SizedBox(height: 32),
-          const Text('Categories', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-          const SizedBox(height: 16),
-          _grid(context),
-          const SizedBox(height: 32),
-          const Text('Recent Bills', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-          const SizedBox(height: 16),
-          _bill(context, 'Airtel Postpaid', '₹849.00', Icons.phone_android, const Color(0xFFD1E4FF)),
-          _bill(context, 'Bescom', '₹1,240.00', Icons.bolt, const Color(0xFFFFDDAF)),
-        ]),
+        child: Column(
+          children: [
+            const ClayTextField(hintText: 'Search billers', prefixIcon: Icons.search),
+            const SizedBox(height: 32),
+            _Section(
+              title: 'Utilities',
+              items: [
+                _ServiceTile(icon: Icons.phone_android, label: 'Mobile', onTap: () => context.push('/mobile-recharge')),
+                _ServiceTile(icon: Icons.lightbulb_outline, label: 'Electricity', onTap: () => context.push('/electricity-bill')),
+                _ServiceTile(icon: Icons.tv, label: 'DTH', onTap: () => context.push('/dth-recharge')),
+                _ServiceTile(icon: Icons.local_fire_department, label: 'Gas', onTap: () => context.push('/gas-bill')),
+                _ServiceTile(icon: Icons.water_drop_outlined, label: 'Water', onTap: () {}),
+                _ServiceTile(icon: Icons.wifi, label: 'Broadband', onTap: () {}),
+                _ServiceTile(icon: Icons.home_repair_service_outlined, label: 'Insurance', onTap: () {}),
+                _ServiceTile(icon: Icons.credit_card, label: 'Credit Card', onTap: () {}),
+              ],
+            ),
+            const SizedBox(height: 32),
+            _Section(
+              title: 'Recent Bills',
+              items: [
+                _RecentBillTile(label: 'Airtel Mobile', amount: 499, date: 'Paid 2 days ago'),
+                _RecentBillTile(label: 'Tata Power', amount: 1240, date: 'Due in 5 days', isDue: true),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
-  Widget _grid(BuildContext context) {
-    final items = [['Mobile', Icons.phone_android, '/mobile-recharge'], ['DTH', Icons.tv, '/dth-recharge'], ['Electricity', Icons.bolt, '/electricity-bill'], ['Gas', Icons.local_fire_department, '/gas-bill']];
-    return GridView.count(shrinkWrap: true, physics: const NeverScrollableScrollPhysics(), crossAxisCount: 4, children: items.map((e) => InkWell(onTap: () => context.push(e[2] as String), child: Column(children: [ClayContainer(width: 50, height: 50, borderRadius: 15, child: Icon(e[1] as IconData)), const SizedBox(height: 4), Text(e[0] as String, style: const TextStyle(fontSize: 10))]))).toList());
+}
+
+class _Section extends StatelessWidget {
+  final String title;
+  final List<Widget> items;
+  const _Section({required this.title, required this.items});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 16),
+        if (items.first is _ServiceTile)
+          GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 4,
+            mainAxisSpacing: 16,
+            children: items,
+          )
+        else
+          Column(children: items),
+      ],
+    );
   }
-  Widget _bill(BuildContext context, String n, String a, IconData i, Color c) => Padding(padding: const EdgeInsets.only(bottom: 16), child: ClayContainer(borderRadius: 20, padding: const EdgeInsets.all(16), child: InkWell(onTap: () => context.push('/bill-success', extra: {'billerName': n, 'amount': 1000.0}), child: Row(children: [ClayContainer(width: 44, height: 44, borderRadius: 12, color: c, child: Icon(i)), const SizedBox(width: 16), Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(n, style: const TextStyle(fontWeight: FontWeight.bold)), const Text('Due in 3 days', style: TextStyle(fontSize: 10, color: ClayColors.error))])), Text(a, style: const TextStyle(fontWeight: FontWeight.bold))]))));
+}
+
+class _ServiceTile extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  const _ServiceTile({required this.icon, required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          ClayContainer(
+            width: 56,
+            height: 56,
+            borderRadius: 16,
+            child: Icon(icon, color: ClayColors.primary),
+          ),
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(fontSize: 12), textAlign: TextAlign.center),
+        ],
+      ),
+    );
+  }
+}
+
+class _RecentBillTile extends StatelessWidget {
+  final String label;
+  final double amount;
+  final String date;
+  final bool isDue;
+  const _RecentBillTile({required this.label, required this.amount, required this.date, this.isDue = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: ClayContainer(
+        padding: const EdgeInsets.all(16),
+        child: Row(
+          children: [
+            ClayContainer(
+              width: 48,
+              height: 48,
+              borderRadius: 24,
+              child: Icon(Icons.receipt_long, color: isDue ? ClayColors.error : ClayColors.secondary),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(date, style: TextStyle(fontSize: 12, color: isDue ? ClayColors.error : ClayColors.onSurfaceVariant)),
+                ],
+              ),
+            ),
+            Text('₹$amount', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          ],
+        ),
+      ),
+    );
+  }
 }

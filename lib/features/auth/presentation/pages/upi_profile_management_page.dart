@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/services/providers.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
-import '../../../../core/widgets/clay_button.dart';
-import '../../../../core/services/providers.dart';
 
 class UpiProfilePage extends ConsumerWidget {
   const UpiProfilePage({super.key});
@@ -12,94 +11,115 @@ class UpiProfilePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final user = ref.watch(currentUserProvider);
+
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ClayContainer(
-            borderRadius: 999,
-            elevation: ClayElevation.level1,
-            child: IconButton(
-              icon: const Icon(Icons.arrow_back, color: ClayColors.primary),
-              onPressed: () => context.pop(),
-            ),
-          ),
-        ),
-        title: const Text('UPI Profile', style: TextStyle(color: ClayColors.primary, fontWeight: FontWeight.bold)),
-      ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           children: [
-            ClayContainer(
-              borderRadius: 32,
-              padding: const EdgeInsets.all(24),
-              child: Column(
+            const SizedBox(height: 40),
+            Center(
+              child: Stack(
                 children: [
-                  Row(
-                    children: [
-                      ClayContainer(
-                        width: 64, height: 64, borderRadius: 32, elevation: ClayElevation.level1,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(32),
-                          child: Image.network(user?.avatarUrl ?? '', fit: BoxFit.cover, errorBuilder: (c,e,s) => const Icon(Icons.person)),
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(user?.name ?? 'Rahul', style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                          Text(user?.upiId ?? 'rahul@payclay', style: const TextStyle(color: ClayColors.onSurfaceVariant)),
-                        ],
-                      ),
-                      const Spacer(),
-                      IconButton(onPressed: () => context.push('/my-qr'), icon: const Icon(Icons.qr_code, color: ClayColors.primary)),
-                    ],
+                  ClayContainer(
+                    width: 120,
+                    height: 120,
+                    borderRadius: 60,
+                    elevation: ClayElevation.level2,
+                    child: const Icon(Icons.person, size: 60, color: ClayColors.primary),
                   ),
-                  const SizedBox(height: 32),
-                  _buildOption(context, Icons.account_balance, 'Linked Bank Accounts', '/linked-banks'),
-                  _buildOption(context, Icons.lock_reset, 'Change UPI PIN', '/change-pin'),
-                  _buildOption(context, Icons.speed, 'Transaction Limit', null),
-                  _buildOption(context, Icons.help_outline, 'Help & Support', '/support'),
+                  Positioned(
+                    bottom: 0,
+                    right: 0,
+                    child: ClayContainer(
+                      width: 40,
+                      height: 40,
+                      borderRadius: 20,
+                      color: ClayColors.primary,
+                      child: const Icon(Icons.edit, color: Colors.white, size: 20),
+                    ),
+                  ),
                 ],
               ),
             ),
-            const SizedBox(height: 32),
-            ClayButton(
-              onPressed: () => context.go('/login_phone_number'),
-              color: ClayColors.errorContainer,
-              child: const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.logout, color: ClayColors.error),
-                  SizedBox(width: 8),
-                  Text('Logout', style: TextStyle(color: ClayColors.error, fontWeight: FontWeight.bold)),
-                ],
-              ),
-            )
+            const SizedBox(height: 16),
+            Text(
+              user?.name ?? 'Rahul Kumar',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            Text(
+              user?.upiId ?? 'rahul@payclay',
+              style: const TextStyle(color: ClayColors.onSurfaceVariant),
+            ),
+            const SizedBox(height: 40),
+            _ProfileItem(
+              icon: Icons.qr_code,
+              label: 'My QR Code',
+              onTap: () => context.push('/my-qr'),
+            ),
+            const SizedBox(height: 16),
+            _ProfileItem(
+              icon: Icons.account_balance,
+              label: 'Linked Bank Accounts',
+              onTap: () => context.push('/linked-banks'),
+            ),
+            const SizedBox(height: 16),
+            _ProfileItem(
+              icon: Icons.lock_outline,
+              label: 'Change UPI PIN',
+              onTap: () => context.push('/change-pin'),
+            ),
+            const SizedBox(height: 16),
+            _ProfileItem(
+              icon: Icons.help_outline,
+              label: 'Help & Support',
+              onTap: () => context.push('/support'),
+            ),
+            const SizedBox(height: 16),
+            _ProfileItem(
+              icon: Icons.logout,
+              label: 'Logout',
+              iconColor: ClayColors.error,
+              onTap: () => context.go('/login_phone_number'),
+            ),
+            const SizedBox(height: 100), // Navigation bar spacing
           ],
         ),
       ),
     );
   }
+}
 
-  Widget _buildOption(BuildContext context, IconData icon, String title, String? route) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 24.0),
-      child: InkWell(
-        onTap: route != null ? () => context.push(route) : null,
+class _ProfileItem extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  final Color? iconColor;
+
+  const _ProfileItem({
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.iconColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: ClayContainer(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        elevation: ClayElevation.level1,
         child: Row(
           children: [
-            ClayContainer(
-              width: 40, height: 40, borderRadius: 12, isSunken: true,
-              child: Icon(icon, size: 20, color: ClayColors.primary),
-            ),
+            Icon(icon, color: iconColor ?? ClayColors.primary),
             const SizedBox(width: 16),
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
-            const Spacer(),
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+            ),
             const Icon(Icons.chevron_right, color: ClayColors.outlineVariant),
           ],
         ),

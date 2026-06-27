@@ -2,39 +2,106 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
-import '../../../../core/widgets/clay_button.dart';
 
 class OffersRewardsHubPage extends StatelessWidget {
   const OffersRewardsHubPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Offers & Rewards')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),
-        child: Column(children: [
-          Row(children: [
-            _stat(context, 'Cashback', '₹1,240', '/my-earnings'),
-            const SizedBox(width: 16),
-            _stat(context, 'Coupons', '12', '/my-coupons'),
-          ]),
-          const SizedBox(height: 32),
-          const Text('Top Offers', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-          const SizedBox(height: 16),
-          _offer('Zomato', 'Flat 50% OFF', Colors.orange[100]!),
-          _offer('Amazon', '10% Cashback', Colors.yellow[100]!),
-          const SizedBox(height: 32),
-          ClayContainer(
-            color: ClayColors.primary, borderRadius: 20, padding: const EdgeInsets.all(20),
-            child: Row(children: [
-              const Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text('Refer & Earn', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)), Text('Get ₹100 for each friend', style: TextStyle(color: Colors.white70, fontSize: 12))])),
-              ClayButton(onPressed: () => context.push('/refer-earn'), color: Colors.white, padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), child: const Text('Invite', style: TextStyle(color: ClayColors.primary, fontSize: 12))),
-            ]),
-          )
-        ]),
+        child: Column(
+          children: [
+            const SizedBox(height: 40),
+            ClayContainer(
+              padding: const EdgeInsets.all(24),
+              color: ClayColors.accent,
+              child: const Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Cashback Earned', style: TextStyle(color: Colors.white70)),
+                        SizedBox(height: 4),
+                        Text('₹1,240', style: TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.bold)),
+                      ],
+                    ),
+                  ),
+                  Icon(Icons.workspace_premium, color: Colors.white, size: 48),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _RewardAction(icon: Icons.confirmation_number_outlined, label: 'My Coupons', onTap: () => context.push('/my-coupons')),
+                _RewardAction(icon: Icons.account_balance_wallet_outlined, label: 'Earnings', onTap: () => context.push('/my-earnings')),
+                _RewardAction(icon: Icons.person_add_outlined, label: 'Refer & Earn', onTap: () => context.push('/refer-earn')),
+              ],
+            ),
+            const SizedBox(height: 32),
+            const Align(alignment: Alignment.centerLeft, child: Text('Exclusive Offers', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))),
+            const SizedBox(height: 16),
+            _OfferCard(title: 'Get 50% Off on Swiggy', description: 'On orders above ₹400', code: 'CLAY50'),
+            _OfferCard(title: 'Flat ₹100 Cashback', description: 'On first electricity bill payment', code: 'BILL100'),
+            const SizedBox(height: 100),
+          ],
+        ),
       ),
     );
   }
-  Widget _stat(BuildContext context, String l, String v, String r) => Expanded(child: ClayContainer(borderRadius: 16, padding: const EdgeInsets.all(16), child: InkWell(onTap: () => context.push(r), child: Column(children: [Text(l, style: const TextStyle(fontSize: 12, color: ClayColors.onSurfaceVariant)), const SizedBox(height: 4), Text(v, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold))]))));
-  Widget _offer(String b, String o, Color c) => Padding(padding: const EdgeInsets.only(bottom: 16), child: ClayContainer(borderRadius: 16, color: c, padding: const EdgeInsets.all(16), child: Row(children: [const Icon(Icons.local_offer), const SizedBox(width: 16), Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(b, style: const TextStyle(fontWeight: FontWeight.bold)), Text(o, style: const TextStyle(fontSize: 12))])])));
+}
+
+class _RewardAction extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onTap;
+  const _RewardAction({required this.icon, required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          ClayContainer(width: 64, height: 64, borderRadius: 20, child: Icon(icon, color: ClayColors.primary)),
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+        ],
+      ),
+    );
+  }
+}
+
+class _OfferCard extends StatelessWidget {
+  final String title;
+  final String description;
+  final String code;
+  const _OfferCard({required this.title, required this.description, required this.code});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: ClayContainer(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            Text(description, style: const TextStyle(color: ClayColors.onSurfaceVariant, fontSize: 13)),
+            const SizedBox(height: 16),
+            ClayContainer(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              isSunken: true,
+              child: Text(code, style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 2, color: ClayColors.primary)),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

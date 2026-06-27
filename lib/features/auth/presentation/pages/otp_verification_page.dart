@@ -4,16 +4,8 @@ import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
 import '../../../../core/widgets/clay_button.dart';
 
-class OtpVerificationPage extends StatefulWidget {
+class OtpVerificationPage extends StatelessWidget {
   const OtpVerificationPage({super.key});
-
-  @override
-  State<OtpVerificationPage> createState() => _OtpVerificationPageState();
-}
-
-class _OtpVerificationPageState extends State<OtpVerificationPage> {
-  final List<TextEditingController> _controllers = List.generate(4, (_) => TextEditingController());
-  final List<FocusNode> _focusNodes = List.generate(4, (_) => FocusNode());
 
   @override
   Widget build(BuildContext context) {
@@ -28,74 +20,81 @@ class _OtpVerificationPageState extends State<OtpVerificationPage> {
             elevation: ClayElevation.level1,
             child: IconButton(
               icon: const Icon(Icons.arrow_back, color: ClayColors.primary),
-              onPressed: () => context.go('/login_phone_number'),
+              onPressed: () => context.pop(),
             ),
           ),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(24.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 40),
             Text(
               'Verify OTP',
-              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: ClayColors.onSurface,
-                  ),
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
-            const SizedBox(height: 8),
-            const Text(
-              'Sent to +91 98765 43210',
-              style: TextStyle(color: ClayColors.onSurfaceVariant, fontSize: 14),
+            const SizedBox(height: 12),
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: ClayColors.onSurfaceVariant),
+                children: [
+                  const TextSpan(text: 'We sent a 4-digit code to '),
+                  TextSpan(
+                    text: '+91 98765 43210',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: ClayColors.onSurface),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 48),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(4, (index) {
-                return SizedBox(
-                  width: 64,
-                  height: 64,
-                  child: ClayContainer(
-                    isSunken: true,
-                    borderRadius: 16,
-                    child: TextField(
-                      controller: _controllers[index],
-                      focusNode: _focusNodes[index],
-                      textAlign: TextAlign.center,
-                      keyboardType: TextInputType.number,
-                      maxLength: 1,
-                      onChanged: (value) {
-                        if (value.isNotEmpty && index < 3) {
-                          _focusNodes[index + 1].requestFocus();
-                        }
-                      },
-                      decoration: const InputDecoration(
-                        counterText: "",
-                        border: InputBorder.none,
-                      ),
-                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: ClayColors.primary),
-                    ),
-                  ),
-                );
-              }),
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: List.generate(4, (index) => _OtpBox(index == 0)),
             ),
-            const SizedBox(height: 32),
-            Center(
-              child: TextButton(
-                onPressed: () {},
-                child: const Text('Resend Code in 00:30', style: TextStyle(color: ClayColors.outline)),
-              ),
-            ),
-            const Spacer(),
+            const SizedBox(height: 48),
             ClayButton(
               onPressed: () => context.go('/set_mpin'),
-              width: double.infinity,
-              child: const Text('Verify & Proceed'),
+              child: const Text('Verify & Continue'),
+            ),
+            const SizedBox(height: 32),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Didn't receive code? "),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Text(
+                    'Resend in 30s',
+                    style: TextStyle(color: ClayColors.primary, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _OtpBox extends StatelessWidget {
+  final bool isActive;
+  const _OtpBox(this.isActive);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClayContainer(
+      width: 64,
+      height: 64,
+      isSunken: !isActive,
+      elevation: isActive ? ClayElevation.level2 : ClayElevation.level1,
+      borderRadius: 16,
+      child: Center(
+        child: Text(
+          isActive ? '4' : '',
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
     );

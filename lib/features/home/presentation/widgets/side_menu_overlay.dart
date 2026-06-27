@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/services/providers.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
-import '../../../../core/services/providers.dart';
 
 class SideMenuOverlay extends ConsumerWidget {
   const SideMenuOverlay({super.key});
