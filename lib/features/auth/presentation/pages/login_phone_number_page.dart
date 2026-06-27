@@ -6,6 +6,8 @@ import '../../../../core/widgets/clay_container.dart';
 import '../../../../core/widgets/clay_button.dart';
 import '../../../../core/widgets/clay_text_field.dart';
 import '../../../../core/services/providers.dart';
+import 'package:drift/drift.dart' show Value;
+import '../../../../core/data/database.dart';
 
 class LoginPhoneNumberPage extends ConsumerStatefulWidget {
   const LoginPhoneNumberPage({super.key});
@@ -24,12 +26,30 @@ class _LoginPhoneNumberPageState extends ConsumerState<LoginPhoneNumberPage> {
     final userRepo = ref.read(userRepositoryProvider);
     var user = await userRepo.getUserByPhone(phone);
 
+    if (user == null) {
+      // Auto-create user if not exists to allow "Create Account" flow to work seamlessly
+      final newUserId = await userRepo.createUser(UsersCompanion.insert(
+        name: 'New User',
+        phoneNumber: phone,
+        upiId: '${phone}@payclay',
+      ));
+
+      // Also add a default bank account for the new user
+      await ref.read(bankRepositoryProvider).addAccount(BankAccountsCompanion.insert(
+        userId: newUserId,
+        bankName: 'PayClay Digital Bank',
+        accountNumber: '•••• ${phone.substring(phone.length - 4)}',
+        ifsc: 'PCLY0001234',
+        balance: const Value(5000.0),
+        isPrimary: const Value(true),
+      ));
+
+      user = await userRepo.getUserById(newUserId);
+    }
+
     if (user != null) {
       ref.read(currentUserProvider.notifier).state = user;
-      context.push('/otp_verification');
-    } else {
-      // Create a dummy user for demo if not exists
-      // In real app, this would be a registration flow
+      if (mounted) context.push('/otp_verification');
     }
   }
 
@@ -59,7 +79,7 @@ class _LoginPhoneNumberPageState extends ConsumerState<LoginPhoneNumberPage> {
             const SizedBox(height: 40),
             Text('Welcome Back', style: Theme.of(context).textTheme.headlineLarge),
             const SizedBox(height: 12),
-            Text('Login with your phone number to continue', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: ClayColors.onSurfaceVariant)),
+            Text('Login or Create Account with your phone number', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: ClayColors.onSurfaceVariant)),
             const SizedBox(height: 48),
             const Text('Phone Number', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
             const SizedBox(height: 12),
@@ -71,7 +91,7 @@ class _LoginPhoneNumberPageState extends ConsumerState<LoginPhoneNumberPage> {
               ],
             ),
             const SizedBox(height: 48),
-            ClayButton(onPressed: _login, child: const Text('Send OTP')),
+            ClayButton(onPressed: _login, child: const Text('Continue')),
             const SizedBox(height: 32),
             const Center(child: Text('By continuing, you agree to our Terms & Privacy Policy', textAlign: TextAlign.center, style: TextStyle(fontSize: 12, color: ClayColors.onSurfaceVariant))),
           ],

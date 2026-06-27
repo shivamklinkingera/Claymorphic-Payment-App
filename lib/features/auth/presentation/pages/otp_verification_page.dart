@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
 import '../../../../core/widgets/clay_button.dart';
+import '../../../../core/services/providers.dart';
 
-class OtpVerificationPage extends StatelessWidget {
+class OtpVerificationPage extends ConsumerWidget {
   const OtpVerificationPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final user = ref.watch(currentUserProvider);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -30,10 +34,7 @@ class OtpVerificationPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 40),
-            Text(
-              'Verify OTP',
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
+            Text('Verify OTP', style: Theme.of(context).textTheme.headlineLarge),
             const SizedBox(height: 12),
             RichText(
               textAlign: TextAlign.center,
@@ -42,8 +43,8 @@ class OtpVerificationPage extends StatelessWidget {
                 children: [
                   const TextSpan(text: 'We sent a 4-digit code to '),
                   TextSpan(
-                    text: '+91 98765 43210',
-                    style: TextStyle(fontWeight: FontWeight.bold, color: ClayColors.onSurface),
+                    text: '+91 ${user?.phoneNumber ?? "98765 43210"}',
+                    style: const TextStyle(fontWeight: FontWeight.bold, color: ClayColors.onSurface),
                   ),
                 ],
               ),
@@ -65,10 +66,7 @@ class OtpVerificationPage extends StatelessWidget {
                 const Text("Didn't receive code? "),
                 GestureDetector(
                   onTap: () {},
-                  child: const Text(
-                    'Resend in 30s',
-                    style: TextStyle(color: ClayColors.primary, fontWeight: FontWeight.bold),
-                  ),
+                  child: const Text('Resend in 30s', style: TextStyle(color: ClayColors.primary, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -92,10 +90,7 @@ class _OtpBox extends StatelessWidget {
       elevation: isActive ? ClayElevation.level2 : ClayElevation.level1,
       borderRadius: 16,
       child: Center(
-        child: Text(
-          isActive ? '4' : '',
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
+        child: Text(isActive ? '4' : '', style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ),
     );
   }
