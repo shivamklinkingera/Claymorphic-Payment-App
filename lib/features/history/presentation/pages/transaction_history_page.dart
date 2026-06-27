@@ -1,36 +1,71 @@
-import '../../../../core/data/database.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../../core/services/providers.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
-import '../../../../core/services/providers.dart';
 
 class TransactionHistoryPage extends ConsumerWidget {
   const TransactionHistoryPage({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final transactions = ref.watch(userTransactionsProvider);
+    final transactionsAsync = ref.watch(userTransactionsProvider);
+
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0, title: const Text('Transaction History', style: TextStyle(color: ClayColors.onSurface, fontWeight: FontWeight.bold))),
-      body: RefreshIndicator(
-        onRefresh: () async => ref.invalidate(userTransactionsProvider),
-        child: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: transactions.when(
-            data: (data) => data.isEmpty ? const Center(child: Text('No transactions yet')) : ListView.builder(itemCount: data.length, itemBuilder: (context, index) => _Item(t: data[index])),
-            loading: () => const Center(child: CircularProgressIndicator()),
-            error: (e, s) => const Center(child: Text('Error loading history')),
-          ),
+      appBar: AppBar(
+        title: const Text('History'),
+        backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(icon: const Icon(Icons.bar_chart), onPressed: () => context.push('/spending-insights')),
+          IconButton(icon: const Icon(Icons.download), onPressed: () => context.push('/download-statement')),
+        ],
+      ),
+      body: transactionsAsync.when(
+        data: (transactions) => ListView.builder(
+          padding: const EdgeInsets.all(24),
+          itemCount: transactions.length,
+          itemBuilder: (context, index) {
+            final tx = transactions[index];
+            final isDebit = tx.type == 'DEBIT';
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: GestureDetector(
+                onTap: () => context.push('/transaction-details', extra: tx),
+                child: ClayContainer(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      ClayContainer(
+                        width: 48,
+                        height: 48,
+                        borderRadius: 24,
+                        child: Icon(isDebit ? Icons.arrow_upward : Icons.arrow_downward, color: isDebit ? ClayColors.error : ClayColors.secondary),
+                      ),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(isDebit ? 'To ${tx.receiverName}' : 'From ${tx.senderName}', style: const TextStyle(fontWeight: FontWeight.bold)),
+                            Text(tx.timestamp.toString().substring(0, 16), style: const TextStyle(fontSize: 12, color: ClayColors.onSurfaceVariant)),
+                          ],
+                        ),
+                      ),
+                      Text(
+                        '${isDebit ? "-" : "+"}₹${tx.amount}',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: isDebit ? ClayColors.onSurface : ClayColors.secondary),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
         ),
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, s) => Center(child: Text('Error: $e')),
       ),
     );
-  }
-}
-class _Item extends StatelessWidget {
-  final Transaction t; const _Item({required this.t});
-  @override
-  Widget build(BuildContext context) {
-    final isSent = t.type == 'transfer';
-    return Padding(padding: const EdgeInsets.only(bottom: 16.0), child: ClayContainer(borderRadius: 20, elevation: ClayElevation.level1, padding: const EdgeInsets.all(16), child: Row(children: [ClayContainer(width: 44, height: 44, borderRadius: 22, isSunken: true, child: Icon(isSent ? Icons.north_east : Icons.south_west, color: isSent ? ClayColors.error : ClayColors.secondary, size: 20)), const SizedBox(width: 16), Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [Text(isSent ? 'To: ${t.receiverName}' : 'From: ${t.senderName}', style: const TextStyle(fontWeight: FontWeight.bold)), Text(t.timestamp.toString().substring(0, 10), style: const TextStyle(color: ClayColors.onSurfaceVariant, fontSize: 10))])), Text('${isSent ? "-" : "+"}₹${t.amount}', style: TextStyle(fontWeight: FontWeight.bold, color: isSent ? ClayColors.error : ClayColors.secondary))])));
   }
 }

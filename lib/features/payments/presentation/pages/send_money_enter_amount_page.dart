@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/data/database.dart';
 import '../../../../core/theme/clay_theme.dart';
 import '../../../../core/widgets/clay_container.dart';
 import '../../../../core/widgets/clay_button.dart';
-import '../../../../core/data/database.dart';
 
 class SendMoneyAmountPage extends StatefulWidget {
   final Contact contact;
@@ -14,24 +14,24 @@ class SendMoneyAmountPage extends StatefulWidget {
 }
 
 class _SendMoneyAmountPageState extends State<SendMoneyAmountPage> {
-  String _amount = "0";
+  final TextEditingController _amountController = TextEditingController(text: '0');
 
-  void _onKeyPress(String value) {
+  void _onKeyTap(String val) {
     setState(() {
-      if (_amount == "0") {
-        _amount = value;
+      if (_amountController.text == '0') {
+        _amountController.text = val;
       } else {
-        _amount += value;
+        _amountController.text += val;
       }
     });
   }
 
   void _onBackspace() {
     setState(() {
-      if (_amount.length > 1) {
-        _amount = _amount.substring(0, _amount.length - 1);
+      if (_amountController.text.length > 1) {
+        _amountController.text = _amountController.text.substring(0, _amountController.text.length - 1);
       } else {
-        _amount = "0";
+        _amountController.text = '0';
       }
     });
   }
@@ -39,67 +39,105 @@ class _SendMoneyAmountPageState extends State<SendMoneyAmountPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ClayContainer(
-            borderRadius: 999,
-            child: IconButton(icon: const Icon(Icons.arrow_back), onPressed: () => context.pop()),
-          ),
-        ),
-        title: Text(widget.contact.name),
-      ),
+      appBar: AppBar(backgroundColor: Colors.transparent),
       body: Column(
         children: [
-          const SizedBox(height: 32),
-          ClayContainer(
-            width: 80, height: 80, borderRadius: 40, elevation: ClayElevation.level2,
-            child: ClipRRect(borderRadius: BorderRadius.circular(40), child: Image.network(widget.contact.avatarUrl ?? '', fit: BoxFit.cover, errorBuilder: (c,e,s) => const Icon(Icons.person))),
-          ),
-          const SizedBox(height: 16),
-          Text(widget.contact.upiId, style: const TextStyle(color: ClayColors.onSurfaceVariant)),
-          const SizedBox(height: 48),
-          Text('₹$_amount', style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.w800, color: ClayColors.primary)),
+          const SizedBox(height: 20),
+          _ContactHeader(contact: widget.contact),
           const Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('₹', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: ClayColors.primary)),
+              const SizedBox(width: 8),
+              Text(_amountController.text, style: const TextStyle(fontSize: 48, fontWeight: FontWeight.w900)),
+            ],
+          ),
+          const SizedBox(height: 8),
+          const ClayContainer(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            borderRadius: 12,
+            isSunken: true,
+            child: Text('Add a note', style: TextStyle(color: ClayColors.onSurfaceVariant)),
+          ),
+          const Spacer(),
+          _CustomKeypad(onTap: _onKeyTap, onBackspace: _onBackspace),
+          const SizedBox(height: 24),
           Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: Column(
-              children: [
-                _buildKeypad(),
-                const SizedBox(height: 32),
-                ClayButton(
-                  onPressed: _amount == "0" ? null : () => context.push('/send-money/confirm', extra: {'contact': widget.contact, 'amount': double.parse(_amount)}),
-                  width: double.infinity,
-                  child: const Text('Proceed to Pay'),
-                ),
-              ],
+            padding: const EdgeInsets.all(24),
+            child: ClayButton(
+              onPressed: () => context.push('/confirm', extra: {
+                'contact': widget.contact,
+                'amount': double.parse(_amountController.text),
+              }),
+              width: double.infinity,
+              child: Text('Pay ₹${_amountController.text}'),
             ),
           ),
         ],
       ),
     );
   }
+}
 
-  Widget _buildKeypad() {
-    return GridView.builder(
-      shrinkWrap: true, physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 16, crossAxisSpacing: 16, childAspectRatio: 1.5),
-      itemCount: 12,
-      itemBuilder: (context, index) {
-        if (index == 9) return _KeypadButton(label: '.', onTap: () => _onKeyPress('.'));
-        if (index == 10) return _KeypadButton(label: '0', onTap: () => _onKeyPress('0'));
-        if (index == 11) return _KeypadButton(icon: Icons.backspace, onTap: _onBackspace);
-        return _KeypadButton(label: '${index + 1}', onTap: () => _onKeyPress('${index + 1}'));
-      },
+class _ContactHeader extends StatelessWidget {
+  final Contact contact;
+  const _ContactHeader({required this.contact});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ClayContainer(
+          width: 80,
+          height: 80,
+          borderRadius: 40,
+          child: const Icon(Icons.person, size: 40, color: ClayColors.primary),
+        ),
+        const SizedBox(height: 12),
+        Text(contact.name, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+        Text(contact.upiId, style: const TextStyle(color: ClayColors.onSurfaceVariant)),
+      ],
     );
   }
 }
 
-class _KeypadButton extends StatelessWidget {
-  final String? label; final IconData? icon; final VoidCallback onTap;
-  const _KeypadButton({this.label, this.icon, required this.onTap});
+class _CustomKeypad extends StatelessWidget {
+  final Function(String) onTap;
+  final VoidCallback onBackspace;
+  const _CustomKeypad({required this.onTap, required this.onBackspace});
+
   @override
-  Widget build(BuildContext context) => ClayButton(onPressed: onTap, padding: EdgeInsets.zero, color: ClayColors.surface, borderRadius: 999, child: Center(child: label != null ? Text(label!, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: ClayColors.primary)) : Icon(icon, color: ClayColors.primary)));
+  Widget build(BuildContext context) {
+    return GridView.count(
+      shrinkWrap: true,
+      crossAxisCount: 3,
+      childAspectRatio: 1.5,
+      children: [
+        for (var i = 1; i <= 9; i++) _Key(i.toString(), () => onTap(i.toString())),
+        _Key('.', () => onTap('.')),
+        _Key('0', () => onTap('0')),
+        _Key('back', onBackspace, icon: Icons.backspace),
+      ],
+    );
+  }
+}
+
+class _Key extends StatelessWidget {
+  final String label;
+  final VoidCallback onTap;
+  final IconData? icon;
+  const _Key(this.label, this.onTap, {this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Center(
+        child: icon != null
+          ? Icon(icon, color: ClayColors.onSurfaceVariant)
+          : Text(label, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+      ),
+    );
+  }
 }

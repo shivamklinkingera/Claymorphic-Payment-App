@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../core/theme/clay_theme.dart';
 
 class ClayColors {
   static const Color background = Color(0xFFF0EDE8);
